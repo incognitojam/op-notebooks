@@ -1,0 +1,6 @@
+target-version = "py311"
+extend-include = ["*.ipynb"]
+indent-width = 2
+
+[format]
+quote-style = "single"
