@@ -57,6 +57,9 @@ class AsBuiltData:
   def get_identifiers(self, ecu: FordEcu) -> dict[int, str]:
     return self.ecus[ecu].identifiers
 
+  def get_identifier(self, ecu: FordEcu, identifier: int) -> str | None:
+    return self.get_identifiers(ecu).get(identifier, None)
+
   def get_configuration(self, ecu: FordEcu) -> dict[str, bytes] | None:
     return self.ecus[ecu].configuration
 
