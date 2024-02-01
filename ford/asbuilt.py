@@ -1,9 +1,11 @@
 from collections import defaultdict
 from dataclasses import dataclass
+from functools import cache
 from pathlib import Path
 
 from bs4 import BeautifulSoup
 
+from download_asbuilt import download
 from ecu import FordEcu, get_ford_ecu
 from settings import VehicleSetting
 
@@ -14,27 +16,38 @@ ASBUILT_DIR = Path(__file__).parent / 'data' / 'asbuilt'
 if not ASBUILT_DIR.is_dir():
   ASBUILT_DIR.mkdir()
 
+
 def get_asbuilt_path(vin: str) -> Path:
   return ASBUILT_DIR / f'{vin}.ab'
 
+
+def get_missing(vins: list[str]) -> list[str]:
+  return [vin for vin in vins if not get_asbuilt_path(vin).is_file()]
+
+
 def check_asbuilt(vins: list[str]):
-  missing, found = 0, 0
-  for vin in vins:
-    if not get_asbuilt_path(vin).is_file():
-      print(f'missing: {vin}')
-      missing += 1
-    else:
-      found += 1
-  print(f'found: {found}')
-  if missing > 0:
-    print(f'missing: {missing}')
+  missing = get_missing(vins)
+  for vin in missing:
+    try:
+      asbuilt_xml = download(vin)
+      with open(get_asbuilt_path(vin), 'w') as f:
+        f.write(asbuilt_xml)
+    except Exception as e:
+      print(f'Failed to download {vin}: {e}')
+
+  missing = get_missing(vins)
+  if len(missing) > 0:
     print('Download from https://www.motorcraftservice.com/AsBuilt')
-    raise ValueError('Missing AsBuilt data')
+    raise ValueError(f'Missing AsBuilt data ({len(missing)}): {missing}')
+
+  print(f'Found AsBuilt data for {len(vins)} VINs')
+
 
 @dataclass
 class ModuleAsBuiltData:
   identifiers: dict[int, str]
   configuration: dict[str, bytes] | None
+
 
 @dataclass
 class AsBuiltData:
@@ -70,6 +83,7 @@ class AsBuiltData:
     return setting.value_map.get(value, 'Unknown')
 
   @staticmethod
+  @cache
   def from_vin(vin: str) -> 'AsBuiltData':
     with open(get_asbuilt_path(vin), 'r') as f:
       soup = BeautifulSoup(f, 'lxml')
@@ -77,49 +91,6 @@ class AsBuiltData:
     check_vin = soup.find('vin').text
     if check_vin != vin:
       raise ValueError(f'VIN mismatch: {vin=} {check_vin=}')
-
-    # <AS_BUILT_DATA>
-    #   <VEHICLE>
-    #     <VIN>1FM5K8D8XHGC96884</VIN>
-    #     <VEHICLE_DATA>
-    #       <DATA LABEL=""><CODE>52E4</CODE><CODE>FFFF</CODE><CODE>FF33</CODE></DATA>
-    #     </VEHICLE_DATA>
-    #     <PCM_MODULE>
-    #       <DATA LABEL="PCM 1"><CODE>FFFF</CODE><CODE>FFFF</CODE><CODE>FF0C</CODE></DATA>
-    #       <DATA LABEL="PCM 2"><CODE>FFFF</CODE><CODE>FFFF</CODE><CODE>FF0D</CODE></DATA>
-    #       ...
-    #     </PCM_MODULE>
-    #     <BCE_MODULE>
-    #       <DATA LABEL="7D0-01-01"><CODE>2A2A</CODE><CODE>0502</CODE><CODE>083C</CODE></DATA>
-    #       <DATA LABEL="7D0-01-02"><CODE>0289</CODE><CODE>0004</CODE><CODE>9A03</CODE></DATA>
-    #       ...
-    #       <DATA LABEL="716-01-01"><CODE>F716</CODE><CODE /><CODE /></DATA>
-    #       ...
-    #       <DATA LABEL="720-01-01"><CODE>CC23</CODE><CODE>5264</CODE><CODE>602E</CODE></DATA>
-    #       <DATA LABEL="720-01-02"><CODE>2813</CODE><CODE>3095</CODE><CODE /></DATA>
-    #       <DATA LABEL="720-01-03"><CODE>4D85</CODE><CODE>3C50</CODE><CODE>1CA4</CODE></DATA>
-    #       ...
-    #     </BCE_MODULE>
-    #     <NODEID>7A0
-    #       <F110>DSGB5T-18A802-AC</F110>
-    #       <F111>GB5T-14F166-ED</F111>
-    #       <F113>GB5T-18A802-ED</F113>
-    #       <F124>GB5T-14D018-BD</F124>
-    #       <F188>GB5T-14D017-BD</F188>
-    #     </NODEID>
-    #     <NODEID>7D0
-    #       <F10A>GB5T-14G379-AA</F10A>
-    #       <F110>DSHB5T-14G371-CA</F110>
-    #       <F111>HB5T-14G380-BA</F111>
-    #       <F113>HB5T-14G371-CCA</F113>
-    #       <F124>HB5T-14G375-CA</F124>
-    #       <F141>WW4CBD7D</F141>
-    #       <F16B>HB5T-14G379-BA</F16B>
-    #       <F188>HB5T-14G374-CA</F188>
-    #       <F1D0>E8EB1110B048</F1D0>
-    #       <F1D1>E8EB1110B049</F1D1>
-    #     </NODEID>
-    #     ...
 
     identifiers_by_ecu = {}
     for value in soup.find_all('nodeid'):
