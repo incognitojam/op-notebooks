@@ -4,6 +4,7 @@ from functools import cache
 from pathlib import Path
 
 from bs4 import BeautifulSoup
+from tqdm import tqdm
 
 from download_asbuilt import download
 from ecu import FordEcu, get_ford_ecu
@@ -27,20 +28,22 @@ def get_missing(vins: list[str]) -> list[str]:
 
 def check_asbuilt(vins: list[str]):
   missing = get_missing(vins)
-  for vin in missing:
-    try:
-      asbuilt_xml = download(vin)
-      with open(get_asbuilt_path(vin), 'w') as f:
-        f.write(asbuilt_xml)
-    except Exception as e:
-      print(f'Failed to download {vin}: {e}')
 
-  missing = get_missing(vins)
   if len(missing) > 0:
-    print('Download from https://www.motorcraftservice.com/AsBuilt')
-    raise ValueError(f'Missing AsBuilt data ({len(missing)}): {missing}')
+    for vin in tqdm(missing, desc='Downloading AsBuilt data'):
+      try:
+        asbuilt_xml = download(vin)
+        with open(get_asbuilt_path(vin), 'w') as f:
+          f.write(asbuilt_xml)
+      except Exception as e:
+        print(f'Failed to download {vin}: {e}')
 
-  print(f'Found AsBuilt data for {len(vins)} VINs')
+    missing = get_missing(vins)
+    if len(missing) > 0:
+      print('Download from https://www.motorcraftservice.com/AsBuilt')
+      raise ValueError(f'Missing AsBuilt data ({len(missing)}): {missing}')
+
+  print(f'Loaded AsBuilt data for {len(vins)} VINs')
 
 
 @dataclass
@@ -113,8 +116,15 @@ class AsBuiltData:
         continue
       identifiers_by_ecu[ecu] = ecu_data
 
+    if len(identifiers_by_ecu) == 0:
+      raise ValueError(f'No identifiers for {vin=}')
+
+    bce_module = soup.find('bce_module')
+    if not bce_module:
+      raise ValueError(f'Failed to get AsBuilt Data for {vin=}')
+
     configuration_by_ecu = defaultdict(dict)
-    for data in soup.find('bce_module').find_all('data'):
+    for data in bce_module.find_all('data'):
       addr, _, label = data['label'].partition('-')
 
       addr = int(addr, 16)
@@ -127,6 +137,9 @@ class AsBuiltData:
       data = bytearray.fromhex(''.join(codes))
 
       configuration_by_ecu[ecu][label] = data
+
+    if len(configuration_by_ecu) == 0:
+      raise ValueError(f'No configuration data for {vin=}')
 
     ecus = {}
     for ecu, identifiers in identifiers_by_ecu.items():

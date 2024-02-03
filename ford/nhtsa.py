@@ -3,6 +3,7 @@ import requests
 from pathlib import Path
 
 import pandas as pd
+from tqdm import tqdm
 
 NHTSA_DIR = Path(__file__).parent / 'data' / 'nhtsa'
 
@@ -25,7 +26,7 @@ def decode_nhtsa_vin_values(vin: str) -> dict[str, str] | None:
   )
   data = resp.json()['Results'][0]
   if 'ErrorCode' in data and data['ErrorCode'] != '0':
-    return None
+    raise ValueError(f'Failed to decode VIN {vin}: code={data["ErrorCode"]}\n{data["ErrorText"]}\n{data["AdditionalErrorText"]}')
 
   with open(path, 'w') as f:
     json.dump(data, f)
@@ -34,7 +35,11 @@ def decode_nhtsa_vin_values(vin: str) -> dict[str, str] | None:
 
 
 def decode_vins(vins: list[str]) -> pd.DataFrame:
-  df = pd.DataFrame.from_records([decode_nhtsa_vin_values(vin) for vin in vins])
+  rows = []
+  for vin in tqdm(vins, desc='Decoding VINs'):
+    rows.append(decode_nhtsa_vin_values(vin))
+
+  df = pd.DataFrame.from_records(rows)
 
   # Delete columns with all empty strings
   df = df.loc[:, (df != '').any(axis=0)]
@@ -53,6 +58,8 @@ def decode_vins(vins: list[str]) -> pd.DataFrame:
       'TrailerType',
     ],
     inplace=True,
+    errors='ignore',
   )
 
+  print(f'Decoded {len(df)} VINs')
   return df
