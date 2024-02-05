@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import pandas as pd
 
 from nhtsa import decode_vins
 from vins import load_vins
@@ -10,7 +11,7 @@ def lookup(
   include_police = False,
   min_model_year: int | None = None,
   max_model_year: int | None = None,
-):
+) -> pd.DataFrame:
   vins = set()
 
   if searches:
@@ -37,6 +38,15 @@ def lookup(
   return df_nhtsa
 
 
+def print_breakdown(df: pd.DataFrame) -> None:
+  max_columns, max_rows = pd.get_option('display.max_columns'), pd.get_option('display.max_rows')
+  pd.set_option('display.max_columns', None)
+  pd.set_option('display.max_rows', None)
+  print(df.groupby(['Model', 'ModelYear', 'Series']).size())
+  pd.set_option('display.max_columns', max_columns)
+  pd.set_option('display.max_rows', max_rows)
+
+
 if __name__ == '__main__':
   import argparse
   import pandas as pd
@@ -57,7 +67,5 @@ if __name__ == '__main__':
     max_model_year=args.max_model_year,
   )
 
-  pd.set_option('display.max_columns', None)
-  pd.set_option('display.max_rows', None)
-
-  print(df.groupby(['Model', 'ModelYear', 'Series']).size())
+  print()
+  print_breakdown(df)
