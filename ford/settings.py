@@ -393,12 +393,10 @@ class VehicleSettings:
   # 7D0-05-01 - xxxx - #### - xxxx - Rear Track
   # 7D0-05-01 - xxxx - xxxx - ##xx - Wheel Base
   # 7D0-05-02 - ##xx - Wheel Base (cont.)
-
   # Front Track (Inches) (HEX = DEC X .01 = VALUE)
   # RearTrack (Inches) (HEX = DEC X .01 = VALUE)
   # Wheel Base (Inches) (HEX=DECx0.01+0=Value)
   # This is the value of 7D0-05-01 ####-####-XX## and 7D0-05-01 XX##. (HEX=XXXX)
-
   apim_front_track = VehicleSetting(
     comment='Front Track',
     ecu=FordEcu.AccessoryProtocolInterfaceModule,
@@ -423,6 +421,36 @@ class VehicleSettings:
     bit_mask=0xFF,
     value_map={},
   )
+  # 7D0-07-01 - ##xx - xxxx - xxxx - Vehicle Weight (Kg)
+  # HEX=DECx100+0=Value (Kg)/0.45359237=Value (Lbs)
+
+  # 7D0-07-01 - xxx# - xxxx - xxxx - ECO Route Curve
+  # HEX=DECx1+1=Value (unitless)
+  # 7D0-07-01 - xxxx - ##xx - xxxx - Powertrain Efficiency (%)
+  # HEX=DECx0.39215+0=Value (%)
+  # 7D0-07-01 - xxxx - xx## - xxxx - Regenerative Braking Efficiency Highway (%)
+  # HEX=DECx0.39215+0=Value (%)
+  # 7D0-07-01 - xxxx - xxxx - ##xx - Regenerative Braking Efficiency City (%)
+  # HEX=DECx0.39215+0=Value (%)
+
+  # 7D0-07-02 - #### - xxxx - xxxx - Install Angle of APIM for Accelerometer X (Deg)
+  # HEX=DECx0.006+0=Value (degrees)
+  # 7D0-07-02 - xxxx - #### - xxxx - Install Angle of APIM for Accelerometer Y (Deg)
+  # HEX=DECx0.006+0=Value (degrees)
+  # 7D0-07-02 - xxxx - xxxx - ##xx - Install Angle of APIM for Accelerometer Z (Deg)
+  # HEX=DECx0.006+0=Value (degrees)
+
+  # 7D0-07-03 - ##xx - xxxx - xxxx - Install Angle of APIM for Accelerometer Z (Deg) cont.
+  # 7D0-07-03 - xx## - xxxx - xxxx - Wheel Ticks to Revolution Front
+  # HEX=DECx1+40=Value (unitless)
+  # 7D0-07-03 - xxxx - ##xx - xxxx - Wheel Ticks to Revolution Rear
+  # HEX=DECx1+40=Value (unitless)
+  # 7D0-07-03 - xxxx - xx## - xxxx - Tire Circumference (cm)
+  # HEX=DECx1+100=Value (cm) x0.393701=Value (in)
+  # 7D0-07-03 - xxxx - xxxx - ##xx - Distance from IP to Rear Axle (cm)
+  # HEX=DECx1+100=Value (cm) x0.393701=Value (in)
+
+  # 7D0-07-04 - ##xx - Distance from IP to Rear Axle (cm) cont.
   # 7D0-09-01: *xxx-xxxx-xx
   apim_adaptive_cruise_menu = VehicleSetting(
     comment='ACC Menu',
