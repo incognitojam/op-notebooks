@@ -32,21 +32,214 @@ class VehicleSettings:
     address='01-01',
     byte_index=1,
     value_map={
-      0x4: 'CD391 (Fusion)',
-      0x6: 'Mustang',
-      0x7: 'C519 (Focus)',
-      0x8: 'Expedition',
-      0x9: 'Expedition',
-      0xB: 'Tourneo/Transit Custom Small',
-      0xC: 'Tourneo/Transit Custom Large',
-      0xD: 'Tourneo/Transit Connect',
-      0xE: 'CD539 (Edge)',
-      # 0x1A: 'Transit',
-      0x26: 'CX482 (Escape/Kuga)',
-      0x27: 'CX483 (Corsair)',
-      0x28: 'U611 (Aviator)',
-      0x29: 'U625 (Explorer)',
-      0x3B: 'CX430 (Bronco Sport)',
+      0: 'None',
+      1: 'B479 (Fiesta)',
+      2: 'B479 (Fiesta ST)',
+      3: 'B515 (EcoSport)',
+      4: 'CD391 (Fusion)',  # B562 (Ka)
+      6: 'S550 (Mustang LHD)',
+      7: 'C519 (Focus)',
+      8: 'U553 (Expedition SBW)',
+      9: 'U553 (Expedition LWB)',
+      10: 'V408 (Transit Connect SWB LHD)',
+      11: 'V362 (Tourneo SWB)',
+      12: 'V362 (Tourneo LWB)',
+      13: 'V408 (Transit Connect LWB LHD)',
+      14: 'CD539 (Edge)',
+      15: 'Lincoln MKX / Nautilus',
+      16: 'CD391E (Mondeo)',
+      17: 'C519 (Focus ST)',
+      18: 'P552 (F-150 LWB)',
+      19: 'P552 (F-150 SVT SWB)',
+      20: 'P552 (F-150 SVT LWB)',
+      21: 'P552 (F-150 SVT SWB)',
+      22: 'P552 (F-150 SVT LWB)',
+      23: 'U554 (Lincoln Navigator SWB)',
+      24: 'U554 (Lincoln Navigator LWB)',
+      25: 'B479 (Fiesta ALine)',
+      26: 'V363 (Transit MCA)',
+      27: 'V363 (Transit VKB LWB)',
+      28: 'V363 (Transit Chassis SWB)',
+      29: 'Transit',
+      30: 'V363 (Transit Chassis MWB2)',
+      31: 'V363 (Transit Chassis LWB)',
+      32: 'C519 (Focus ALine)',
+      33: 'P375 (Ranger Wave1)',
+      34: '375 (Everest Wave1)',
+      35: 'P375 (Ranger Redback Wave1)',
+      36: 'P375 (Ranger Wave2)',
+      37: 'D568 (Taurus)',
+      38: 'CX482 (Escape/Kuga)',
+      39: 'CX483 (Lincoln Corsair)',
+      40: 'U611 (Lincoln Aviator)',
+      41: 'U625 (Explorer)',
+      42: 'CD539C (Edge)',
+      43: 'CD539E (Edge)',
+      44: 'CD390 (Galaxy)',
+      45: 'S550 (Mustang RHD)',
+      46: 'V408 (Transit Connect SWB RHD)',
+      47: 'V408 (Transit Connect LWB RHD)',
+      48: 'P558 (F-Series MCA SWB SRW)',
+      49: 'P558 (F-Series MCA SWB DRW)',
+      50: 'P558 (F-Series MCA MWB SRW)',
+      51: 'P558 (F-Series MCA MWB DRW)',
+      52: 'P558 (F-Series MCA LWB SRW)',
+      53: 'P558 (F-Series MCA LWB DRW)',
+      54: 'P558 (F-Series MCA Chassis SWB SRW)',
+      55: 'P558 (F-Series MCA Chassis SWB DRW)',
+      56: 'P558 (F-Series MCA Chassis MWB SRW)',
+      57: 'P558 (F-Series MCA Chassis MWB DRW)',
+      58: 'P558 (F-Series MCA Chassis LWB DRW)',
+      59: 'CX430 (Bronco Sport OnRoad)',
+      60: 'CX430 (Bronco Sport OffRoad)',
+      61: 'CX482 (Escape/Kuga RHD)',
+      62: 'VN127 (E-Series SWB)',
+      63: 'VN127 (E-Series MWB)',
+      64: 'VN127 (E-Series LWB)',
+      65: 'H567 (F-650/750 LD)',
+      66: 'H567 (F-650/750 MD)',
+      67: 'H567 (F-650/750 HD)',
+      68: 'F59 (LD)',
+      69: 'F59 (HD)',
+      75: 'U725 (Bronco)',
+      77: 'P758 (Maverick)',
+      80: 'CX733 (Mustang Mach-E)',
+      88: 'P702 (F-150 Lightning)',
+      89: 'U553 (Expedition)',
+      90: 'CX483 (Lincoln Corsair)',
+    },
+  )
+  ipma_distance_alert = VehicleSetting(
+    comment='Distance Alert',
+    ecu=FordEcu.ImageProcessingModuleA,
+    address='01-01',
+    byte_index=2,
+    bit_mask=0b11000000,
+    value_map={
+      0x0: 'Undefined',
+      0x1: 'Off',
+      0x2: 'On',
+    },
+  )
+  ipma_fcw_hud = VehicleSetting(
+    comment='Forward Collision Warning HUD',
+    ecu=FordEcu.ImageProcessingModuleA,
+    address='01-01',
+    byte_index=2,
+    bit_mask=0b00110000,
+    value_map={
+      0x0: 'Undefined',
+      0x1: 'Off',
+      0x2: 'On',
+      0x3: 'Advanced',
+    },
+  )
+  ipma_high_beam = VehicleSetting(
+    comment='High Beam',
+    ecu=FordEcu.ImageProcessingModuleA,
+    address='01-01',
+    byte_index=2,
+    bit_mask=0b00001100,
+    value_map={
+      0x0: 'Undefined',
+      0x1: 'Off',
+      0x2: 'AHBC',
+      0x3: 'GFHB',
+    },
+  )
+  ipma_ldw = VehicleSetting(
+    comment='Lane Departure Warning',
+    ecu=FordEcu.ImageProcessingModuleA,
+    address='01-01',
+    byte_index=2,
+    bit_mask=0b00000001,
+    value_map={
+      0x0: 'Off',
+      0x1: 'On',
+    },
+  )
+  ipma_lka = VehicleSetting(
+    comment='Lane Keeping Aid',
+    ecu=FordEcu.ImageProcessingModuleA,
+    address='01-01',
+    byte_index=3,
+    bit_mask=0b10000000,
+    value_map={
+      0x0: 'Off',
+      0x1: 'On',
+    },
+  )
+  ipma_driver_alert_system = VehicleSetting(
+    comment='Driver Alert System',
+    ecu=FordEcu.ImageProcessingModuleA,
+    address='01-01',
+    byte_index=3,
+    bit_mask=0b01100000,
+    value_map={
+      0x0: 'Undefined',
+      0x1: 'Off',
+      0x2: 'On',
+    },
+  )
+  ipma_traffic_sign_recognition = VehicleSetting(
+    comment='Traffic Sign Recognition',
+    ecu=FordEcu.ImageProcessingModuleA,
+    address='01-01',
+    byte_index=3,
+    bit_mask=0b00010000,
+    value_map={
+      0x0: 'Off',
+      0x1: 'On',
+    },
+  )
+  ipma_traffic_sign_recognition_mode = VehicleSetting(
+    comment='Traffic Sign Recognition Mode',
+    ecu=FordEcu.ImageProcessingModuleA,
+    address='01-01',
+    byte_index=3,
+    bit_mask=0b00001000,
+    value_map={
+      0x0: 'Camera Only',
+      0x1: 'Fusion',
+    },
+  )
+  ipma_traffic_sign_recognition_feature = VehicleSetting(
+    comment='Traffic Sign Recognition Feature',
+    ecu=FordEcu.ImageProcessingModuleA,
+    address='01-01',
+    byte_index=3,
+    bit_mask=0b00000011,
+    value_map={
+      0x0: 'Undefined',
+      0x1: 'Off',
+      0x2: 'SLOIF',
+      0x3: 'SLIF',
+    },
+  )
+  ipma_lks_switch = VehicleSetting(
+    comment='LKS Switch',
+    ecu=FordEcu.ImageProcessingModuleA,
+    address='01-01',
+    byte_index=4,
+    bit_mask=0b11000000,
+    value_map={
+      0x0: 'Undefined',
+      0x1: 'Direct',
+      0x2: 'Network',
+      0x3: 'No Switch',
+    },
+  )
+  ipma_pre_collision_assist_type = VehicleSetting(
+    comment='Pre-Collision Assist Type',
+    ecu=FordEcu.ImageProcessingModuleA,
+    address='01-01',
+    byte_index=4,
+    bit_mask=0b00110000,
+    value_map={
+      0x0: 'Undefined',
+      0x1: 'Off',
+      0x2: 'Radar Fusion',
+      0x3: 'Camera Only',
     },
   )
   ipma_enable_adaptive_cruise = VehicleSetting(
@@ -55,18 +248,30 @@ class VehicleSettings:
     address='01-01',
     byte_index=4,
     bit_mask=0b00001100,
-    # TODO: shift values?
     value_map={
       0x0: 'Undefined',
       0x1: 'Off',
       0x2: 'RadarFusion',
     },
-    # bit_mask=0b00000011,
-    # value_map={
-    #   0b00: 'Undefined',
-    #   0b01: 'Off',
-    #   0b10: 'RadarFusion',
-    # },
+  )
+  ipma_driving_side = VehicleSetting(
+    comment='Driving Side',
+    ecu=FordEcu.ImageProcessingModuleA,
+    address='01-01',
+    byte_index=4,
+    bit_mask=0b00000011,
+    value_map={
+      0x0: 'Undefined',
+      0x1: 'Right',
+      0x2: 'Left',
+    },
+  )
+  ipma_region_country = VehicleSetting(
+    comment='Region and Country',
+    ecu=FordEcu.ImageProcessingModuleA,
+    address='01-02',
+    byte_index=0,
+    bit_mask=0xFFF,
   )
   # bdycm_enable_adaptive_cruise = VehicleSetting(
   #   ecu=FordEcu.BodyControlModule,
@@ -86,9 +291,59 @@ class VehicleSettings:
     byte_index=1,
     bit_mask=0b00000011,
     value_map={
-      0b00: 'Undefined',
-      0b01: 'Off',
-      0b10: 'On',
+      0x0: 'Undefined',
+      0x1: 'Off',
+      0x2: 'On',
+    },
+  )
+  ipma_windshield_type = VehicleSetting(
+    comment='Windshield Type',
+    ecu=FordEcu.ImageProcessingModuleA,
+    address='01-02',
+    byte_index=2,
+    bit_mask=0b00000110,
+    value_map={
+      0x0: 'Undefined',
+      0x1: 'Base',
+      0x2: 'Acoustic',
+      0x3: 'IR Coated',
+    },
+  )
+  ipma_lks_actuator = VehicleSetting(
+    comment='LKS Actuator',
+    ecu=FordEcu.ImageProcessingModuleA,
+    address='01-02',
+    byte_index=2,
+    bit_mask=0b0000000110000000,
+    value_map={
+      0x0: 'Undefined',
+      0x1: 'Haptic Motor',
+      0x2: 'EPAS',
+      0x3: 'AFS',
+    },
+  )
+  ipma_shift_by_wire = VehicleSetting(
+    comment='Shift by Wire',
+    ecu=FordEcu.ImageProcessingModuleA,
+    address='01-02',
+    byte_index=3,
+    bit_mask=0b00001100,
+    value_map={
+      0x0: 'Undefined',
+      0x1: 'Off',
+      0x2: 'On',
+    },
+  )
+  ipma_speed_limit_sign_unit = VehicleSetting(
+    comment='Speed Limit Sign Unit',
+    ecu=FordEcu.ImageProcessingModuleA,
+    address='01-02',
+    byte_index=4,
+    bit_mask=0b00001100,
+    value_map={
+      0x0: 'Undefined',
+      0x1: 'KPH',
+      0x2: 'MPH',
     },
   )
   # 760-02-01: *xxx-xxxx-xx
@@ -116,9 +371,9 @@ class VehicleSettings:
     byte_index=1,
     bit_mask=0b00000011,
     value_map={
-      0b00: 'Reserved',
-      0b01: 'EPAS 17:1',
-      0b10: 'EPAS 21:1',
+      0x0: 'Reserved',
+      0x1: 'EPAS 17:1',
+      0x2: 'EPAS 21:1',
     },
   )
   # 760-02-02: x*xx-xxxx-xx
