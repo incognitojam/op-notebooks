@@ -1,3 +1,4 @@
+import math
 from collections import defaultdict
 from dataclasses import dataclass
 from functools import cache
@@ -6,6 +7,7 @@ from pathlib import Path
 from bs4 import BeautifulSoup
 from tqdm import tqdm
 
+from coding import get_data
 from download_asbuilt import download
 from ecu import FordEcu, get_ford_ecu
 from settings import VehicleSetting
@@ -67,26 +69,24 @@ class AsBuiltData:
     return self.ecus[ecu].configuration
 
   def get_setting_data(self, setting: VehicleSetting) -> int:
+    if setting.ecu not in self.ecus:
+      raise ValueError(f'Missing ECU: {setting.ecu}')
     configuration = self.get_configuration(setting.ecu)
     if configuration is None:
-      raise ValueError(f'No configuration for ECU: {setting}')
+      raise ValueError(f'Missing configuration for ECU: {setting.ecu}')
     code = configuration.get(setting.address, None)
     if code is None:
       raise ValueError(f'No configuration for address: {setting}')
     if setting.byte_index < 0 or setting.byte_index >= len(code):
       raise KeyError(f'Invalid byte index: {setting}')
-    mask = setting.bit_mask
-    if mask > 0xFF:
-      raise ValueError(f'Invalid bit mask: {setting}')
-    data = code[setting.byte_index]
-    value = data & mask
+    value = get_data(code, setting.byte_index, setting.bit_mask)
     # print('get_setting_data', setting)
     # print(f'data={bin(data)} ({hex(data)}) mask={bin(mask)} value={bin(value)}')
     return value
 
   def get_setting_value(self, setting: VehicleSetting) -> str:
     value = self.get_setting_data(setting)
-    return setting.value_map.get(value, 'Unknown')
+    return setting.value_map.get(value, f'Unknown (0x{value:02X})')
 
   @staticmethod
   @cache

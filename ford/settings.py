@@ -33,9 +33,9 @@ class VehicleSettings:
     bit_mask=0b00001100,
     # TODO: shift values?
     value_map={
-      0b0: 'Undefined',
-      0b100: 'Off',
-      0b1000: 'RadarFusion',
+      0x0: 'Undefined',
+      0x1: 'Off',
+      0x2: 'RadarFusion',
     },
     # bit_mask=0b00000011,
     # value_map={
@@ -73,15 +73,15 @@ class VehicleSettings:
     ecu=FordEcu.AntiLockBrakeSystem,
     address='02-01',
     byte_index=0,
-    bit_mask=0b01110000,
+    bit_mask=0xF0,
     value_map={
-      0b0000: 'Reserved',
-      0b0001: '122in',
-      0b0010: '141in',
-      0b0011: '145in',
-      0b0100: '157in',
-      0b0101: '163in',
-      0b0111: '133in',
+      0x0: 'Reserved',
+      0x1: '122in',
+      0x2: '141in',
+      0x3: '145in',
+      0x4: '157in',
+      0x5: '163in',
+      0x7: '133in',
     },
   )
   # 760-02-01: xxx*-xxxx-xx
@@ -97,18 +97,30 @@ class VehicleSettings:
       0b10: 'EPAS 21:1',
     },
   )
-  # 760-03-01: *xxx-xx
-  abs_adaptive_cruise = VehicleSetting(
-    comment='ACC',
+  # 760-02-02: x*xx-xxxx-xx
+  abs_cruise_control_mode = VehicleSetting(
+    comment='Cruise Control Mode',
     ecu=FordEcu.AntiLockBrakeSystem,
-    address='03-01',
+    address='02-02',
     byte_index=0,
-    bit_mask=0b10000000,
+    bit_mask=0xF,
     value_map={
-      0b0: 'Without',
-      0b1: 'With',
+      0x2: 'Normal',
+      0x3: 'Adaptive',
     },
   )
+  # 760-03-01: *xxx-xx
+  # abs_adaptive_cruise = VehicleSetting(
+  #   comment='ACC',
+  #   ecu=FordEcu.AntiLockBrakeSystem,
+  #   address='03-01',
+  #   byte_index=0,
+  #   bit_mask=0b10000000,
+  #   value_map={
+  #     0b0: 'Without',
+  #     0b1: 'With',
+  #   },
+  # )
   # 760-03-01: *xxx-xx
   abs_collision_mitigation = VehicleSetting(
     comment='Collision Mitigation by Braking (CMbB)',
@@ -421,36 +433,61 @@ class VehicleSettings:
     bit_mask=0xFF,
     value_map={},
   )
-  # 7D0-07-01 - ##xx - xxxx - xxxx - Vehicle Weight (Kg)
-  # HEX=DECx100+0=Value (Kg)/0.45359237=Value (Lbs)
+  # 7D0-07-01 - ##xx - xxxx - xx - Vehicle Weight (Kg)
+  # HEX=DECx100+0=Value (Kg)
+  apim_vehicle_weight = VehicleSetting(
+    comment='Vehicle Weight',
+    ecu=FordEcu.AccessoryProtocolInterfaceModule,
+    address='07-01',
+    byte_index=0,
+    bit_mask=0xFF,
+    value_map={},
+  )
 
-  # 7D0-07-01 - xxx# - xxxx - xxxx - ECO Route Curve
+  # 7D0-07-01: xxx# - xxxx - xx - ECO Route Curve
   # HEX=DECx1+1=Value (unitless)
-  # 7D0-07-01 - xxxx - ##xx - xxxx - Powertrain Efficiency (%)
+  # 7D0-07-01: xxxx - ##xx - xx - Powertrain Efficiency (%)
   # HEX=DECx0.39215+0=Value (%)
-  # 7D0-07-01 - xxxx - xx## - xxxx - Regenerative Braking Efficiency Highway (%)
+  # 7D0-07-01: xxxx - xx## - xx - Regenerative Braking Efficiency Highway (%)
   # HEX=DECx0.39215+0=Value (%)
-  # 7D0-07-01 - xxxx - xxxx - ##xx - Regenerative Braking Efficiency City (%)
+  # 7D0-07-01: xxxx - xxxx - ## - Regenerative Braking Efficiency City (%)
   # HEX=DECx0.39215+0=Value (%)
 
-  # 7D0-07-02 - #### - xxxx - xxxx - Install Angle of APIM for Accelerometer X (Deg)
+  # 7D0-07-02: ####-xxxx-xx - Install Angle of APIM for Accelerometer X (Deg)
   # HEX=DECx0.006+0=Value (degrees)
-  # 7D0-07-02 - xxxx - #### - xxxx - Install Angle of APIM for Accelerometer Y (Deg)
+  # 7D0-07-02: xxxx-####-xx - Install Angle of APIM for Accelerometer Y (Deg)
   # HEX=DECx0.006+0=Value (degrees)
-  # 7D0-07-02 - xxxx - xxxx - ##xx - Install Angle of APIM for Accelerometer Z (Deg)
+  # 7D0-07-02: xxxx-xxxx-## - Install Angle of APIM for Accelerometer Z (Deg)
   # HEX=DECx0.006+0=Value (degrees)
 
-  # 7D0-07-03 - ##xx - xxxx - xxxx - Install Angle of APIM for Accelerometer Z (Deg) cont.
-  # 7D0-07-03 - xx## - xxxx - xxxx - Wheel Ticks to Revolution Front
+  # 7D0-07-03: ##xx-xxxx-xx - Install Angle of APIM for Accelerometer Z (Deg) cont.
+  # 7D0-07-03: xx##-xxxx-xx - Wheel Ticks to Revolution Front
   # HEX=DECx1+40=Value (unitless)
-  # 7D0-07-03 - xxxx - ##xx - xxxx - Wheel Ticks to Revolution Rear
+  # 7D0-07-03: xxxx-##xx-xx - Wheel Ticks to Revolution Rear
   # HEX=DECx1+40=Value (unitless)
-  # 7D0-07-03 - xxxx - xx## - xxxx - Tire Circumference (cm)
-  # HEX=DECx1+100=Value (cm) x0.393701=Value (in)
-  # 7D0-07-03 - xxxx - xxxx - ##xx - Distance from IP to Rear Axle (cm)
+  # 7D0-07-03: xxxx-xx##-xx - Tire Circumference (cm)
   # HEX=DECx1+100=Value (cm) x0.393701=Value (in)
 
-  # 7D0-07-04 - ##xx - Distance from IP to Rear Axle (cm) cont.
+  # 7D0-07-03: xxxx-xxxx-** - Distance from IP to Rear Axle (cm)
+  # 7D0-07-04: ** - Distance from IP to Rear Axle (cm) cont.
+  # HEX=DECx1+100=Value (cm) x0.393701=Value (in)
+  apim_distance_from_ip_to_rear_axle = VehicleSetting(
+    comment='Distance from IP to Rear Axle',
+    ecu=FordEcu.AccessoryProtocolInterfaceModule,
+    address='07-03',
+    byte_index=4,
+    bit_mask=0xFF,
+    value_map={},
+  )
+  apim_distance_from_ip_to_rear_axle_cont = VehicleSetting(
+    comment='Distance from IP to Rear Axle (cont.)',
+    ecu=FordEcu.AccessoryProtocolInterfaceModule,
+    address='07-04',
+    byte_index=0,
+    bit_mask=0xFF,
+    value_map={},
+  )
+
   # 7D0-09-01: *xxx-xxxx-xx
   apim_adaptive_cruise_menu = VehicleSetting(
     comment='ACC Menu',
@@ -578,3 +615,5 @@ class VehicleSettings:
       0b11: 'High, Normal, Low',
     },
   )
+
+VEHICLE_SETTINGS = list(filter(lambda x: isinstance(x, VehicleSetting), VehicleSettings.__dict__.values()))
