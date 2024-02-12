@@ -81,7 +81,8 @@ class AsBuiltData:
       # raise ValueError(f'No configuration for address: {setting}')
       return None
     if setting.byte_index < 0 or setting.byte_index >= len(code):
-      raise KeyError(f'Invalid byte index: {setting}')
+      # raise KeyError(f'Invalid byte index: {code=} {setting}')
+      return None
     value = get_data(code, setting.byte_index, setting.bit_mask)
     # print('get_setting_data', setting)
     # print(f'data={bin(data)} ({hex(data)}) mask={bin(mask)} value={bin(value)}')

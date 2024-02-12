@@ -26,6 +26,29 @@ class VehicleSettings:
   #   },
   #   comment='ABS: Cruise Control Type',
   # )
+  ipma_vehicle = VehicleSetting(
+    comment='Vehicle',
+    ecu=FordEcu.ImageProcessingModuleA,
+    address='01-01',
+    byte_index=1,
+    value_map={
+      0x4: 'CD391 (Fusion)',
+      0x6: 'Mustang',
+      0x7: 'C519 (Focus)',
+      0x8: 'Expedition',
+      0x9: 'Expedition',
+      0xB: 'Tourneo/Transit Custom Small',
+      0xC: 'Tourneo/Transit Custom Large',
+      0xD: 'Tourneo/Transit Connect',
+      0xE: 'CD539 (Edge)',
+      # 0x1A: 'Transit',
+      0x26: 'CX482 (Escape/Kuga)',
+      0x27: 'CX483 (Corsair)',
+      0x28: 'U611 (Aviator)',
+      0x29: 'U625 (Explorer)',
+      0x3B: 'CX430 (Bronco Sport)',
+    },
+  )
   ipma_enable_adaptive_cruise = VehicleSetting(
     comment='Enable ACC',
     ecu=FordEcu.ImageProcessingModuleA,
