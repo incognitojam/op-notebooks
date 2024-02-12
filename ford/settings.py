@@ -339,7 +339,7 @@ class VehicleSettings:
     ecu=FordEcu.ImageProcessingModuleA,
     address='01-02',
     byte_index=4,
-    bit_mask=0b00001100,
+    bit_mask=0b11000000,
     value_map={
       0x0: 'Undefined',
       0x1: 'KPH',
@@ -693,14 +693,8 @@ class VehicleSettings:
       0x42: 'Ford F-600',
     },
   )
-  # 7D0-05-01 - #### - xxxx - xxxx - Front Track
-  # 7D0-05-01 - xxxx - #### - xxxx - Rear Track
-  # 7D0-05-01 - xxxx - xxxx - ##xx - Wheel Base
-  # 7D0-05-02 - ##xx - Wheel Base (cont.)
+  # 7D0-05-01: ****-xxxx-xx
   # Front Track (Inches) (HEX = DEC X .01 = VALUE)
-  # RearTrack (Inches) (HEX = DEC X .01 = VALUE)
-  # Wheel Base (Inches) (HEX=DECx0.01+0=Value)
-  # This is the value of 7D0-05-01 ####-####-XX## and 7D0-05-01 XX##. (HEX=XXXX)
   apim_front_track = VehicleSetting(
     comment='Front Track',
     ecu=FordEcu.AccessoryProtocolInterfaceModule,
@@ -709,6 +703,7 @@ class VehicleSettings:
     bit_mask=0xFFFF,
     value_map=lambda value: f'{value * 0.01:.2f} in',
   )
+  # 7D0-05-01: xxxx-****-xx
   apim_rear_track = VehicleSetting(
     comment='Rear Track',
     ecu=FordEcu.AccessoryProtocolInterfaceModule,
@@ -717,13 +712,21 @@ class VehicleSettings:
     bit_mask=0xFFFF,
     value_map=lambda value: f'{value * 0.01:.2f} in',
   )
+  # 7D0-05-01: xxxx-xxxx-**
   apim_wheel_base = VehicleSetting(
     comment='Wheel Base',
     ecu=FordEcu.AccessoryProtocolInterfaceModule,
     address='05-01',
     byte_index=4,
-    bit_mask=0xFF,
-    value_map=lambda value: f'{value * 0.01:.2f} in',
+    value_map=lambda value: f'{(value << 8) * 0.01:.2f} in',
+  )
+  # 7D0-05-02: **
+  apim_wheel_base_cont = VehicleSetting(
+    comment='Wheel Base (cont.)',
+    ecu=FordEcu.AccessoryProtocolInterfaceModule,
+    address='05-02',
+    byte_index=0,
+    value_map=lambda value: f'+ {value * 0.01:.2f} in',
   )
   # 7D0-07-01 - ##xx - xxxx - xx - Vehicle Weight (Kg)
   # HEX=DECx100+0=Value (Kg)
