@@ -467,7 +467,7 @@ class VehicleSettings:
     comment='Fuel Type',
     ecu=FordEcu.AccessoryProtocolInterfaceModule,
     address='01-02',
-    byte_index=3,
+    byte_index=2,
     bit_mask=0b11000000,
     value_map={
       0b00: 'Gasoline',
