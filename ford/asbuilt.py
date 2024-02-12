@@ -97,7 +97,7 @@ class AsBuiltData:
       return f'0x{value:02X}'
     if isinstance(value_map, dict):
       return value_map.get(value, f'Unknown (0x{value:02X})')
-    if isinstance(value_map, callable):
+    if callable(value_map):
       return value_map(value)
     raise ValueError(f'Invalid value_map: {value_map=}')
 

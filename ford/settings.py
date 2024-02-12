@@ -452,7 +452,7 @@ class VehicleSettings:
     address='05-01',
     byte_index=0,
     bit_mask=0xFFFF,
-    value_map={},
+    value_map=lambda value: f'{value * 0.01:.2f} in',
   )
   apim_rear_track = VehicleSetting(
     comment='Rear Track',
@@ -460,7 +460,7 @@ class VehicleSettings:
     address='05-01',
     byte_index=2,
     bit_mask=0xFFFF,
-    value_map={},
+    value_map=lambda value: f'{value * 0.01:.2f} in',
   )
   apim_wheel_base = VehicleSetting(
     comment='Wheel Base',
@@ -468,7 +468,7 @@ class VehicleSettings:
     address='05-01',
     byte_index=4,
     bit_mask=0xFF,
-    value_map={},
+    value_map=lambda value: f'{value * 0.01:.2f} in',
   )
   # 7D0-07-01 - ##xx - xxxx - xx - Vehicle Weight (Kg)
   # HEX=DECx100+0=Value (Kg)
@@ -478,7 +478,7 @@ class VehicleSettings:
     address='07-01',
     byte_index=0,
     bit_mask=0xFF,
-    value_map={},
+    value_map=lambda value: f'{value * 100} kg',
   )
 
   # 7D0-07-01: xxx# - xxxx - xx - ECO Route Curve
