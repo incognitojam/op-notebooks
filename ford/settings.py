@@ -1,5 +1,4 @@
-from dataclasses import field
-from typing import NamedTuple
+from typing import Any, Callable, NamedTuple
 
 from ecu import FordEcu
 
@@ -10,9 +9,10 @@ class VehicleSetting(NamedTuple):
   address: str
   byte_index: int
   bit_mask: int = 0xFF
-  value_map: dict[int, str] = field(default_factory=dict)
+  value_map: dict[int, Any] | Callable[[int], Any] | None = None
 
 
+# TODO: different ECU versions have different addresses/maps
 class VehicleSettings:
   # cruise_control_type = VehicleSetting(
   #   ecu=FordEcu.AntiLockBrakeSystem,

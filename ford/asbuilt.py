@@ -92,7 +92,14 @@ class AsBuiltData:
     value = self.get_setting_data(setting)
     if value is None:
       return 'Missing'
-    return setting.value_map.get(value, f'Unknown (0x{value:02X})')
+    value_map = setting.value_map
+    if value_map is None:
+      return f'0x{value:02X}'
+    if isinstance(value_map, dict):
+      return value_map.get(value, f'Unknown (0x{value:02X})')
+    if isinstance(value_map, callable):
+      return value_map(value)
+    raise ValueError(f'Invalid value_map: {value_map=}')
 
   @staticmethod
   @cache
