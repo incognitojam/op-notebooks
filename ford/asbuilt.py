@@ -68,15 +68,18 @@ class AsBuiltData:
   def get_configuration(self, ecu: FordEcu) -> dict[str, bytes] | None:
     return self.ecus[ecu].configuration
 
-  def get_setting_data(self, setting: VehicleSetting) -> int:
+  def get_setting_data(self, setting: VehicleSetting) -> int | None:
     if setting.ecu not in self.ecus:
-      raise ValueError(f'Missing ECU: {setting.ecu}')
+      # raise ValueError(f'Missing ECU: {setting.ecu}')
+      return None
     configuration = self.get_configuration(setting.ecu)
     if configuration is None:
-      raise ValueError(f'Missing configuration for ECU: {setting.ecu}')
+      # raise ValueError(f'Missing configuration for ECU: {setting.ecu}')
+      return None
     code = configuration.get(setting.address, None)
     if code is None:
-      raise ValueError(f'No configuration for address: {setting}')
+      # raise ValueError(f'No configuration for address: {setting}')
+      return None
     if setting.byte_index < 0 or setting.byte_index >= len(code):
       raise KeyError(f'Invalid byte index: {setting}')
     value = get_data(code, setting.byte_index, setting.bit_mask)
@@ -86,6 +89,8 @@ class AsBuiltData:
 
   def get_setting_value(self, setting: VehicleSetting) -> str:
     value = self.get_setting_data(setting)
+    if value is None:
+      return 'Missing'
     return setting.value_map.get(value, f'Unknown (0x{value:02X})')
 
   @staticmethod
