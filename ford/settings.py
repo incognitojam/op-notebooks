@@ -1,3 +1,4 @@
+from dataclasses import field
 from typing import NamedTuple
 
 from ecu import FordEcu
@@ -8,8 +9,8 @@ class VehicleSetting(NamedTuple):
   ecu: FordEcu
   address: str
   byte_index: int
-  bit_mask: int
-  value_map: dict[int, str]
+  bit_mask: int = 0xFF
+  value_map: dict[int, str] = field(default_factory=dict)
 
 
 class VehicleSettings:
@@ -234,18 +235,31 @@ class VehicleSettings:
     },
   )
   # 7D0-02-01: ****-xxxx-xx
-  apim_country_code = VehicleSetting(
-    comment='Country Code',
+  apim_country_code_first_letter = VehicleSetting(
+    comment='Country Code (First Letter)',
     ecu=FordEcu.AccessoryProtocolInterfaceModule,
     address='02-01',
     byte_index=0,
-    bit_mask=0xFFFF,
+    bit_mask=0xFF,
     value_map={
-      0x474D: 'Germany (GM)',
-      0x554B: 'United Kingdom (UK)',
-      0x5553: 'United States of America (US)',
-      0x5457: 'Taiwan (TW)',
-    },
+      value: character for value, character in zip(
+        range(0x41, 0x5A + 1),
+        'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+      )
+    }
+  )
+  apim_country_code_second_letter = VehicleSetting(
+    comment='Country Code (Second Letter)',
+    ecu=FordEcu.AccessoryProtocolInterfaceModule,
+    address='02-01',
+    byte_index=1,
+    bit_mask=0xFF,
+    value_map={
+      value: character for value, character in zip(
+        range(0x41, 0x5A + 1),
+        'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
+      )
+    }
   )
   # 7D0-02-01: xxxx-xx**-xx
   apim_vehicle_style = VehicleSetting(
