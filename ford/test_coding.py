@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import pytest
 
-from coding import get_data
+from coding import convert_forscan_label_to_block_id_and_offset, get_data
 
 TEST_CODE = b'\x0A\x1B\x2C\x3D\x4E'
 
@@ -26,6 +26,13 @@ def test_get_data_shift():
 
 def test_get_data_complex():
   assert get_data(TEST_CODE, 0, 0xFFFFF) == 0xA1B2C
+
+
+def test_convert_forscan_label():
+  assert convert_forscan_label_to_block_id_and_offset('01-01') == (0, 0)
+  assert convert_forscan_label_to_block_id_and_offset('01-02') == (0, 5)
+  assert convert_forscan_label_to_block_id_and_offset('02-01') == (1, 0)
+  assert convert_forscan_label_to_block_id_and_offset('02-03') == (1, 10)
 
 
 if __name__ == '__main__':
