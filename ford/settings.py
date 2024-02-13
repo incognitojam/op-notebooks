@@ -365,8 +365,8 @@ class VehicleSettings:
     }
   )
   # 760-02-01: *xxx-xxxx-xx
-  abs_wheel_base_preset = VehicleSetting(
-    comment='Wheel base preset',
+  abs_wheel_base = VehicleSetting(
+    comment='Wheel Base',
     ecu=FordEcu.AntiLockBrakeSystem,
     address='02-01',
     byte_index=0,
@@ -381,6 +381,19 @@ class VehicleSettings:
       0x7: '133in',
     },
   )
+  abs_payload = VehicleSetting(
+    comment='Payload',
+    ecu=FordEcu.AntiLockBrakeSystem,
+    address='02-01',
+    byte_index=0,
+    bit_mask=0x0F,
+    value_map={
+      0x0: 'Reserved',
+      0x1: 'Base Payload',
+      0x2: 'Mid Payload Upgrade',
+      0x3: 'Heavy Duty Payload Upgrade',
+    },
+  )
   # 760-02-01: xxx*-xxxx-xx
   abs_steering_gear = VehicleSetting(
     comment='Steering Gear',
@@ -392,6 +405,19 @@ class VehicleSettings:
       0x0: 'Reserved',
       0x1: 'EPAS 17:1',
       0x2: 'EPAS 21:1',
+    },
+  )
+  abs_tire_size = VehicleSetting(
+    comment='Tire Size',
+    ecu=FordEcu.AntiLockBrakeSystem,
+    address='02-01',
+    byte_index=2,
+    bit_mask=0xF0,
+    value_map={
+      0x0: 'Reserved',
+      0x1: '17/18in',
+      0x2: '20in',
+      0x3: '22in',
     },
   )
   # 760-02-02: x*xx-xxxx-xx
