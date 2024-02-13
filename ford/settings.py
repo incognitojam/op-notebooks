@@ -324,6 +324,17 @@ class VehicleSettings:
       0x2: 'MPH',
     },
   )
+  ipc_display_units = VehicleSetting(
+    comment='Display Units',
+    ecu=FordEcu.InstrumentPanelCluster,
+    address='04-02',
+    byte_index=2,
+    bit_mask=0b10000000,
+    value_map={
+      0x0: 'MPH',
+      0x1: 'KPH',
+    },
+  )
   pscm_lane_departure_warning = VehicleSetting(
     comment='Lane Departure Warning',
     ecu=FordEcu.PowerSteeringControlModule,
