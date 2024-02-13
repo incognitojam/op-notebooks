@@ -1,12 +1,15 @@
+from pathlib import Path
+
 import pandas as pd
 
-from asbuilt import check_asbuilt
+from notebooks.ford.asbuilt import check_asbuilt
 
+DATA_DIR = Path(__file__).parent / 'data'
 PR_EXCLUDE_VALUES = ['skip', 'country-uk', 'not-built']
 
 
 def load_vins(filter_comment: str | None = None, include_openpilot = False) -> set[str]:
-  df_vins = pd.read_csv('vins.csv', dtype={'pr': 'str'})
+  df_vins = pd.read_csv(DATA_DIR / 'vins.csv', dtype={'pr': 'str'})
 
   duplicates = df_vins[df_vins.duplicated(subset=['vin'], keep=False)]
   if len(duplicates):

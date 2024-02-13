@@ -1,4 +1,3 @@
-import math
 from collections import defaultdict
 from dataclasses import dataclass
 from functools import cache
@@ -7,10 +6,10 @@ from pathlib import Path
 from bs4 import BeautifulSoup
 from tqdm import tqdm
 
-from coding import get_data
-from download_asbuilt import download
-from ecu import FordEcu, get_ford_ecu
-from settings import VehicleSetting
+from notebooks.ford.coding import get_data
+from notebooks.ford.download_asbuilt import download
+from notebooks.ford.ecu import FordEcu, get_ford_ecu
+from notebooks.ford.settings import VehicleSetting
 
 EcuData = dict[int, str]
 

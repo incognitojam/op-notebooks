@@ -1,6 +1,6 @@
 from typing import Any, Callable, NamedTuple
 
-from ecu import FordEcu
+from notebooks.ford.ecu import FordEcu
 
 
 class VehicleSetting(NamedTuple):
