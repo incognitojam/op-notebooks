@@ -14,18 +14,7 @@ class VehicleSetting(NamedTuple):
 
 # TODO: different ECU versions have different addresses/maps
 class VehicleSettings:
-  # cruise_control_type = VehicleSetting(
-  #   ecu=FordEcu.AntiLockBrakeSystem,
-  #   address='02-02',
-  #   byte_index=1,
-  #   bit_mask=0b00000011,
-  #   value_map={
-  #     0b00: 'Undefined',
-  #     0b01: 'Standard',
-  #     0b10: 'Adaptive',
-  #   },
-  #   comment='ABS: Cruise Control Type',
-  # )
+  # FIXME: IPMA settings are different on Q4
   ipma_vehicle = VehicleSetting(
     comment='Vehicle',
     ecu=FordEcu.ImageProcessingModuleA,
@@ -273,17 +262,6 @@ class VehicleSettings:
     byte_index=0,
     bit_mask=0xFFF,
   )
-  # bdycm_enable_adaptive_cruise = VehicleSetting(
-  #   ecu=FordEcu.BodyControlModule,
-  #   address='726-04-06',
-  #   byte_index=1,
-  #   bit_mask=0b00000100,
-  #   value_map={
-  #     0b0: 'Undefined',
-  #     0b100: 'Off',
-  #   },
-  #   comment='BdyCM: Enable ACC',
-  # )
   ipma_enable_traffic_jam_assist = VehicleSetting(
     comment='Enable TJA',
     ecu=FordEcu.ImageProcessingModuleA,
@@ -346,6 +324,46 @@ class VehicleSettings:
       0x2: 'MPH',
     },
   )
+  pscm_lane_departure_warning = VehicleSetting(
+    comment='Lane Departure Warning',
+    ecu=FordEcu.PowerSteeringControlModule,
+    address='02-02',
+    byte_index=0,
+    value_map={
+      0x0: 'Disabled',
+      0xFF: 'Enabled',
+    }
+  )
+  pscm_lane_keeping_aid = VehicleSetting(
+    comment='Lane Keeping Aid',
+    ecu=FordEcu.PowerSteeringControlModule,
+    address='02-02',
+    byte_index=1,
+    value_map={
+      0x0: 'Disabled',
+      0xFF: 'Enabled',
+    }
+  )
+  pscm_traffic_jam_assist = VehicleSetting(
+    comment='Traffic Jam Assist',
+    ecu=FordEcu.PowerSteeringControlModule,
+    address='02-02',
+    byte_index=2,
+    value_map={
+      0x0: 'Disabled',
+      0xFF: 'Enabled',
+    }
+  )
+  pscm_lane_centering_assist = VehicleSetting(
+    comment='Lane Centering Assist',
+    ecu=FordEcu.PowerSteeringControlModule,
+    address='02-02',
+    byte_index=3,
+    value_map={
+      0x0: 'Disabled',
+      0xFF: 'Enabled',
+    }
+  )
   # 760-02-01: *xxx-xxxx-xx
   abs_wheel_base_preset = VehicleSetting(
     comment='Wheel base preset',
@@ -389,17 +407,17 @@ class VehicleSettings:
     },
   )
   # 760-03-01: *xxx-xx
-  # abs_adaptive_cruise = VehicleSetting(
-  #   comment='ACC',
-  #   ecu=FordEcu.AntiLockBrakeSystem,
-  #   address='03-01',
-  #   byte_index=0,
-  #   bit_mask=0b10000000,
-  #   value_map={
-  #     0b0: 'Without',
-  #     0b1: 'With',
-  #   },
-  # )
+  abs_stop_and_go = VehicleSetting(
+    comment='Stop and Go',
+    ecu=FordEcu.AntiLockBrakeSystem,
+    address='03-01',
+    byte_index=0,
+    bit_mask=0b10000000,
+    value_map={
+      0b0: 'Without',
+      0b1: 'With',
+    },
+  )
   # 760-03-01: *xxx-xx
   abs_collision_mitigation = VehicleSetting(
     comment='Collision Mitigation by Braking (CMbB)',
