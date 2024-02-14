@@ -1,3 +1,4 @@
+import string
 from enum import IntEnum
 from typing import Annotated, Literal, Union
 
@@ -117,16 +118,39 @@ from panda.python.uds import SERVICE_TYPE, SESSION_TYPE, RESET_TYPE, ACCESS_TYPE
 # 93 Voltage too low
 
 
+def has_printable_string(data: bytes, min_length: int = 4) -> bool:
+  printable_chars = set(string.printable.encode())
+  count = 0
+
+  for byte in data:
+    if byte in printable_chars:
+      count += 1
+      if count >= min_length:
+        return True
+    else:
+      count = 0
+
+  return False
+
+
 def parse_uds(data: bytes) -> dict:
   if data[0] == 0x7F:
-    return {
+    resp = {
       'type': 'negative_response',
-      'data': data[1:].hex(),
+      'data': data[1:],
+      'hex': data[1:].hex(),
     }
-  
-  response = (data[0] & 0x40) == 0x40
-  return {
-    'type': 'positive_response' if response else 'request',
-    'service': SERVICE_TYPE(data[0] & (0xFF - 0x40)).name,
-    'data': data[1:].hex(),
-  }
+
+  else:
+    response = (data[0] & 0x40) == 0x40
+    resp = {
+      'type': 'positive_response' if response else 'request',
+      'service': SERVICE_TYPE(data[0] & (0xFF - 0x40)).name,
+      'data': data[1:],
+      'hex': data[1:].hex(),
+    }
+
+  if len(resp['data']) < 4 or not has_printable_string(resp['data']):
+    del resp['data']
+
+  return resp
