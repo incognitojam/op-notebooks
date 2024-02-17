@@ -20,8 +20,12 @@ from notebooks.ford.vins import search_vins
 
 def transform_drive_type(row):
   return {
+    '': 'Unknown',
     '4WD/4-Wheel Drive/4x4': '4WD',
     '4x2': '2WD',
+    'AWD/All-Wheel Drive': 'AWD',
+    'FWD/Front-Wheel Drive': 'FWD',
+    'RWD/Rear-Wheel Drive': 'RWD',
   }.get(row['DriveType'], row['DriveType'])
 
 
