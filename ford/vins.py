@@ -5,7 +5,6 @@ import pandas as pd
 from notebooks.ford.asbuilt import check_asbuilt
 
 DATA_DIR = Path(__file__).parent / 'data'
-PR_EXCLUDE_VALUES = ['skip', 'country-uk', 'not-built']
 
 
 def load_vins(filter_comment: str | None = None, include_openpilot = False) -> set[str]:
@@ -14,19 +13,19 @@ def load_vins(filter_comment: str | None = None, include_openpilot = False) -> s
   duplicates = df_vins[df_vins.duplicated(subset=['vin'], keep=False)]
   if len(duplicates):
     raise RuntimeError(f'Duplicate VINs: {set(duplicates["vin"].tolist())}')
+  
+  if filter_comment:
+    df_vins = df_vins[df_vins['comment'].str.lower().str.contains(filter_comment.lower())]
 
   count = len(df_vins)
 
-  if include_openpilot:
-    df_vins = df_vins[~df_vins['pr'].isin(PR_EXCLUDE_VALUES)]
-  else:
-    # remove rows with non-empty 'pr' column (these were added in openpilot PRs)
+  # TODO: make configurable
+  df_vins = df_vins[df_vins['skip'].isnull()]
+
+  if not include_openpilot:
     df_vins = df_vins[df_vins['pr'].isnull()]
 
   skipped = count - len(df_vins)
-
-  if filter_comment:
-    df_vins = df_vins[df_vins['comment'].str.lower().str.contains(filter_comment.lower())]
 
   df_vins.drop(columns=['pr', 'identifiers'], inplace=True)
   df_vins.reset_index(drop=True, inplace=True)
@@ -35,5 +34,20 @@ def load_vins(filter_comment: str | None = None, include_openpilot = False) -> s
   vins = list(df_vins['vin'])
 
   check_asbuilt(vins)
+
+  return vins
+
+
+def search_vins(
+  searches: list[str] | None = None,
+  include_openpilot = False,
+) -> set[str]:
+  vins = set()
+
+  if searches:
+    for filter_comment in searches:
+      vins.update(load_vins(filter_comment=filter_comment, include_openpilot=include_openpilot))
+  else:
+    vins.update(load_vins(include_openpilot=include_openpilot))
 
   return vins
