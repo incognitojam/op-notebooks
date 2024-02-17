@@ -1,3 +1,4 @@
+import random
 from collections import defaultdict
 from dataclasses import dataclass
 from functools import cache
@@ -28,21 +29,23 @@ def get_missing(vins: list[str]) -> list[str]:
 
 
 def check_asbuilt(vins: list[str]):
+  vins = vins.copy()
+  random.shuffle(vins)
+  for vin in tqdm(vins, desc='Downloading AsBuilt data'):
+    asbuilt_path = get_asbuilt_path(vin)
+    if asbuilt_path.is_file():
+      continue
+    try:
+      asbuilt_xml = download(vin)
+      with open(get_asbuilt_path(vin), 'w') as f:
+        f.write(asbuilt_xml)
+    except Exception as e:
+      print(f'Failed to download {vin}: {e}')
+
   missing = get_missing(vins)
-
   if len(missing) > 0:
-    for vin in tqdm(missing, desc='Downloading AsBuilt data'):
-      try:
-        asbuilt_xml = download(vin)
-        with open(get_asbuilt_path(vin), 'w') as f:
-          f.write(asbuilt_xml)
-      except Exception as e:
-        print(f'Failed to download {vin}: {e}')
-
-    missing = get_missing(vins)
-    if len(missing) > 0:
-      print('Download from https://www.motorcraftservice.com/AsBuilt')
-      raise ValueError(f'Missing AsBuilt data ({len(missing)}): {missing}')
+    print('Download from https://www.motorcraftservice.com/AsBuilt')
+    raise ValueError(f'Missing AsBuilt data ({len(missing)}): {missing}')
 
   print(f'Loaded AsBuilt data for {len(vins)} VINs')
 

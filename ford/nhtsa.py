@@ -1,4 +1,5 @@
 import json
+import random
 import requests
 from pathlib import Path
 
@@ -34,7 +35,10 @@ def decode_nhtsa_vin_values(vin: str) -> dict[str, str] | None:
   return data
 
 
-def decode_vins(vins: list[str]) -> pd.DataFrame:
+def decode_vins(vins: set[str]) -> pd.DataFrame:
+  vins = list(vins)
+  random.shuffle(vins)
+
   rows = []
   for vin in tqdm(vins, desc='Decoding VINs'):
     rows.append(decode_nhtsa_vin_values(vin))
