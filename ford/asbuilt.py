@@ -61,13 +61,14 @@ class AsBuiltData:
   vin: str
   ecus: dict[FordEcu, ModuleAsBuiltData]
 
-  def get_identifiers(self, ecu: FordEcu) -> dict[int, str]:
-    return self.ecus[ecu].identifiers
-
   def get_identifier(self, ecu: FordEcu, identifier: int) -> str | None:
-    return self.get_identifiers(ecu).get(identifier, None)
+    if ecu not in self.ecus:
+      return None
+    return self.ecus[ecu].identifiers.get(identifier, None)
 
   def get_configuration(self, ecu: FordEcu) -> dict[str, bytes] | None:
+    if ecu not in self.ecus:
+      return None
     return self.ecus[ecu].configuration
 
   def get_setting_data(self, setting: VehicleSetting) -> int | None:
