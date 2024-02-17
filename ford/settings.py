@@ -270,8 +270,8 @@ class VehicleSettings:
     bit_mask=0b00000011,
     value_map={
       0x0: 'Undefined',
-      0x1: 'Off',
-      0x2: 'On',
+      0x1: 'Disabled',
+      0x2: 'Enabled',
     },
   )
   ipma_windshield_type = VehicleSetting(
