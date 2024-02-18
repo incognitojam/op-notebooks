@@ -91,12 +91,9 @@ def print_breakdown(df: pd.DataFrame) -> None:
   max_columns, max_rows = pd.get_option('display.max_columns'), pd.get_option('display.max_rows')
   pd.set_option('display.max_columns', None)
   pd.set_option('display.max_rows', None)
-  groups = ['Model', 'ModelYear']
-  if 'Series' in df.columns:
-    groups.append('Series')
-  if 'Trim' in df.columns:
-    groups.append('Trim')
-  print(df.groupby(by=groups).size())
+  print(df.groupby(by=['Model']).size())
+  print()
+  print(df.groupby(by=['Model', 'ModelYear']).size())
   pd.set_option('display.max_columns', max_columns)
   pd.set_option('display.max_rows', max_rows)
 
