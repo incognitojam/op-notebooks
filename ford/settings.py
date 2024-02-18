@@ -1,11 +1,11 @@
 from typing import Any, Callable, NamedTuple
 
-from notebooks.ford.ecu import FordEcu
+from notebooks.ford.ecu import FordEcu, FordPart
 
 
 class VehicleSetting(NamedTuple):
   comment: str
-  ecu: FordEcu
+  ecu: FordEcu | tuple[FordEcu, FordPart]
   address: str
   byte_index: int
   bit_mask: int = 0xFF
@@ -322,6 +322,48 @@ class VehicleSettings:
       0x0: 'Undefined',
       0x1: 'KPH',
       0x2: 'MPH',
+    },
+  )
+  ipma_vehicle_cfg_engine = VehicleSetting(
+    comment='VehicleCfg_Engine',
+    ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
+    address='18-01',
+    byte_index=0,
+    value_map={
+      0x0: 'Undefined',
+      0x1: 'I3_NA',
+      0x2: 'I3_TC_or_SC',
+      0x3: 'I4_NA',
+      0x4: 'I4_TC_or_SC',
+      0x5: 'I5_NA',
+      0x6: 'I5_TC_or_SC',
+      0x7: 'V6_NA',
+      0x8: 'V6_TC_or_SC',
+      0x9: 'V8_NA',
+      0xA: 'V8_TC_or_SC',
+      0xB: 'HEV',
+      0xC: 'PHEV',
+      0xD: 'BEV',
+      0xE: 'Not Used',
+    },
+  )
+  ipma_vehicle_cfg_steering_ratio = VehicleSetting(
+    comment='VehicleCfg_SteeringRatio',
+    ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
+    address='18-01',
+    byte_index=1,
+    bit_mask=0xFFF0,
+    # TODO: value_map
+  )
+  ipma_vehicle_cfg_start_stop = VehicleSetting(
+    comment='VehicleCfg_StartStop',
+    ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
+    address='18-01',
+    byte_index=3,
+    bit_mask=0x8,
+    value_map={
+      0x0: 'Not Present',
+      0x1: 'Present',
     },
   )
   ipc_display_units = VehicleSetting(

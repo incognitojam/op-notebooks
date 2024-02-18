@@ -1,4 +1,4 @@
-from enum import IntEnum
+from enum import IntEnum, StrEnum
 
 
 class FordEcu(IntEnum):
@@ -94,6 +94,11 @@ class FordEcu(IntEnum):
   Unknown = 0x787
   UnknownBattery = 0x6F5
   UnknownBatteryB = 0x7E7
+
+
+class FordPart(StrEnum):
+  IPMA_Q3 = '14F403'
+  IPMA_Q4 = '14H107'
 
 
 def get_ford_ecu(addr: int) -> FordEcu | None:
