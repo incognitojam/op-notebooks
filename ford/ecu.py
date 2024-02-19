@@ -99,6 +99,8 @@ class FordEcu(IntEnum):
 class FordPart(StrEnum):
   IPMA_Q3 = '14F403'
   IPMA_Q4 = '14H107'
+  APIM_SYNC3 = '14G380'
+  APIM_SYNC4 = '14G681'
 
 
 def get_ford_ecu(addr: int) -> FordEcu | None:

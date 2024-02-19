@@ -808,7 +808,7 @@ class VehicleSettings:
   # 7D0-01-01: xxxx-xxx*-xx
   apim_steering_wheel_angle_sensor = VehicleSetting(
     comment='Steering Wheel Angle Sensor (SWAS)',
-    ecu=FordEcu.AccessoryProtocolInterfaceModule,
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
     address='01-01',
     byte_index=3,
     bit_mask=0b00000010,
@@ -820,7 +820,7 @@ class VehicleSettings:
   # 7D0-01-02: *xxx-xxxx-xx
   apim_brand = VehicleSetting(
     comment='Brand Identification',
-    ecu=FordEcu.AccessoryProtocolInterfaceModule,
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
     address='01-02',
     byte_index=0,
     bit_mask=0b11000000,
@@ -834,7 +834,7 @@ class VehicleSettings:
   # 7D0-01-02: *xxx-xxxx-xx
   apim_hybrid = VehicleSetting(
     comment='Hybrid (HEV)',
-    ecu=FordEcu.AccessoryProtocolInterfaceModule,
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
     address='01-02',
     byte_index=0,
     bit_mask=0b00100000,
@@ -846,7 +846,7 @@ class VehicleSettings:
   # 7D0-01-02: xx*x-xxxx-xx
   apim_transmission_type = VehicleSetting(
     comment='Transmission Type',
-    ecu=FordEcu.AccessoryProtocolInterfaceModule,
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
     address='01-02',
     byte_index=1,
     bit_mask=0b00010000,
@@ -858,7 +858,7 @@ class VehicleSettings:
   # 7D0-01-02: xxxx-*xxx-xx
   apim_fuel_type = VehicleSetting(
     comment='Fuel Type',
-    ecu=FordEcu.AccessoryProtocolInterfaceModule,
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
     address='01-02',
     byte_index=2,
     bit_mask=0b11000000,
@@ -872,7 +872,7 @@ class VehicleSettings:
   # 7D0-01-02: xxxx-xx*x-xx
   apim_phev = VehicleSetting(
     comment='Plug-in Hybrid (PHEV)',
-    ecu=FordEcu.AccessoryProtocolInterfaceModule,
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
     address='01-02',
     byte_index=3,
     bit_mask=0b10000000,
@@ -884,7 +884,7 @@ class VehicleSettings:
   # 7D0-01-02: xxxx-xxxx-*x
   apim_cgea_version = VehicleSetting(
     comment='Common Global Electrical Architecture (CGEA)',
-    ecu=FordEcu.AccessoryProtocolInterfaceModule,
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
     address='01-02',
     byte_index=4,
     bit_mask=0b10000000,
@@ -896,7 +896,7 @@ class VehicleSettings:
   # 7D0-01-02: xxxx-xxxx-*x
   apim_heated_windshield = VehicleSetting(
     comment='Heated Windshield',
-    ecu=FordEcu.AccessoryProtocolInterfaceModule,
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
     address='01-02',
     byte_index=4,
     bit_mask=0b01000000,
@@ -908,7 +908,7 @@ class VehicleSettings:
   # 7D0-02-01: ****-xxxx-xx
   apim_country_code_first_letter = VehicleSetting(
     comment='Country Code (First Letter)',
-    ecu=FordEcu.AccessoryProtocolInterfaceModule,
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
     address='02-01',
     byte_index=0,
     bit_mask=0xFF,
@@ -921,7 +921,7 @@ class VehicleSettings:
   )
   apim_country_code_second_letter = VehicleSetting(
     comment='Country Code (Second Letter)',
-    ecu=FordEcu.AccessoryProtocolInterfaceModule,
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
     address='02-01',
     byte_index=1,
     bit_mask=0xFF,
@@ -935,7 +935,7 @@ class VehicleSettings:
   # 7D0-02-01: xxxx-xx**-xx
   apim_vehicle_style = VehicleSetting(
     comment='Vehicle Style',
-    ecu=FordEcu.AccessoryProtocolInterfaceModule,
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
     address='02-01',
     byte_index=3,
     bit_mask=0xFF,
@@ -962,7 +962,7 @@ class VehicleSettings:
   # 7D0-03-01: x*xx-xxxx-xx
   apim_gps_mount = VehicleSetting(
     comment='GPS Antenna Location/Mount Type',
-    ecu=FordEcu.AccessoryProtocolInterfaceModule,
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
     address='03-01',
     byte_index=0,
     bit_mask=0x0F,
@@ -977,7 +977,7 @@ class VehicleSettings:
   # 7D0-03-01: xx**-xxxx-xx
   apim_electric_vehicle = VehicleSetting(
     comment='Electric Vehicle',
-    ecu=FordEcu.AccessoryProtocolInterfaceModule,
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
     address='03-01',
     byte_index=1,
     bit_mask=0xFF,
@@ -996,7 +996,7 @@ class VehicleSettings:
   # 7D0-03-01: xxxx-xx**-xx
   apim_drivetrain = VehicleSetting(
     comment='Drivetrain Type',
-    ecu=FordEcu.AccessoryProtocolInterfaceModule,
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
     address='03-01',
     byte_index=3,
     bit_mask=0xFF,
@@ -1012,7 +1012,7 @@ class VehicleSettings:
   # 7D0-04-01: xxxx-xxxx-**
   apim_bluetooth_name = VehicleSetting(
     comment='Bluetooth Vehicle Nameplate ID',
-    ecu=FordEcu.AccessoryProtocolInterfaceModule,
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
     address='04-01',
     byte_index=4,
     bit_mask=0xFF,
@@ -1090,7 +1090,7 @@ class VehicleSettings:
   # Front Track (Inches) (HEX = DEC X .01 = VALUE)
   apim_front_track = VehicleSetting(
     comment='Front Track',
-    ecu=FordEcu.AccessoryProtocolInterfaceModule,
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
     address='05-01',
     byte_index=0,
     bit_mask=0xFFFF,
@@ -1099,7 +1099,7 @@ class VehicleSettings:
   # 7D0-05-01: xxxx-****-xx
   apim_rear_track = VehicleSetting(
     comment='Rear Track',
-    ecu=FordEcu.AccessoryProtocolInterfaceModule,
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
     address='05-01',
     byte_index=2,
     bit_mask=0xFFFF,
@@ -1108,7 +1108,7 @@ class VehicleSettings:
   # 7D0-05-01: xxxx-xxxx-**
   apim_wheel_base = VehicleSetting(
     comment='Wheel Base',
-    ecu=FordEcu.AccessoryProtocolInterfaceModule,
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
     address='05-01',
     byte_index=4,
     value_map=lambda value: f'{(value << 8) * 0.01:.2f} in',
@@ -1116,7 +1116,7 @@ class VehicleSettings:
   # 7D0-05-02: **
   apim_wheel_base_cont = VehicleSetting(
     comment='Wheel Base (cont.)',
-    ecu=FordEcu.AccessoryProtocolInterfaceModule,
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
     address='05-02',
     byte_index=0,
     value_map=lambda value: f'+ {value * 0.01:.2f} in',
@@ -1125,7 +1125,7 @@ class VehicleSettings:
   # HEX=DECx100+0=Value (Kg)
   apim_vehicle_weight = VehicleSetting(
     comment='Vehicle Weight',
-    ecu=FordEcu.AccessoryProtocolInterfaceModule,
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
     address='07-01',
     byte_index=0,
     bit_mask=0xFF,
@@ -1161,7 +1161,7 @@ class VehicleSettings:
   # HEX=DECx1+100=Value (cm) x0.393701=Value (in)
   apim_distance_from_ip_to_rear_axle = VehicleSetting(
     comment='Distance from IP to Rear Axle',
-    ecu=FordEcu.AccessoryProtocolInterfaceModule,
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
     address='07-03',
     byte_index=4,
     bit_mask=0xFF,
@@ -1169,7 +1169,7 @@ class VehicleSettings:
   )
   apim_distance_from_ip_to_rear_axle_cont = VehicleSetting(
     comment='Distance from IP to Rear Axle (cont.)',
-    ecu=FordEcu.AccessoryProtocolInterfaceModule,
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
     address='07-04',
     byte_index=0,
     bit_mask=0xFF,
@@ -1179,7 +1179,7 @@ class VehicleSettings:
   # 7D0-09-01: *xxx-xxxx-xx
   apim_adaptive_cruise_menu = VehicleSetting(
     comment='ACC Menu',
-    ecu=FordEcu.AccessoryProtocolInterfaceModule,
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
     address='09-01',
     byte_index=0,
     bit_mask=0b00100000,
@@ -1191,7 +1191,7 @@ class VehicleSettings:
   # 7D0-09-01: xxxx-*xxx-xx
   apim_forward_collision_warning = VehicleSetting(
     comment='Forward Collision Warning',
-    ecu=FordEcu.AccessoryProtocolInterfaceModule,
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
     address='09-01',
     byte_index=3,
     bit_mask=0b01100000,
@@ -1205,7 +1205,7 @@ class VehicleSettings:
   # 7D0-09-02: *xxx-xxxx-xx
   apim_fcw_menu = VehicleSetting(
     comment='FCW Menu',
-    ecu=FordEcu.AccessoryProtocolInterfaceModule,
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
     address='09-02',
     byte_index=0,
     bit_mask=0b01000000,
@@ -1217,7 +1217,7 @@ class VehicleSettings:
   # 7D0-09-02: xx*x-xxxx-xx
   apim_fcw_braking = VehicleSetting(
     comment='FCW Braking',
-    ecu=FordEcu.AccessoryProtocolInterfaceModule,
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
     address='09-02',
     byte_index=1,
     bit_mask=0b01000000,
@@ -1229,7 +1229,7 @@ class VehicleSettings:
   # 7D0-09-02: xxx*-xxxx-xx
   apim_evasive_steering_assist = VehicleSetting(
     comment='Evasive Steering Assist (ESA)',
-    ecu=FordEcu.AccessoryProtocolInterfaceModule,
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
     address='09-02',
     byte_index=1,
     bit_mask=0b00001000,
@@ -1241,7 +1241,7 @@ class VehicleSettings:
   # 7D0-09-02: xxxx-*xxx-xx
   apim_lane_change_assist = VehicleSetting(
     comment='Lane Change Assist (LCA)',
-    ecu=FordEcu.AccessoryProtocolInterfaceModule,
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
     address='09-02',
     byte_index=2,
     bit_mask=0b11000000,
@@ -1255,7 +1255,7 @@ class VehicleSettings:
   # 7D0-09-02: xxxx-*xxx-xx
   apim_lane_keeping_sensitivity = VehicleSetting(
     comment='Lane Keeping Sensitivity',
-    ecu=FordEcu.AccessoryProtocolInterfaceModule,
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
     address='09-02',
     byte_index=2,
     bit_mask=0b00100000,
@@ -1267,7 +1267,7 @@ class VehicleSettings:
   # 7D0-09-02: xxxx-x*xx-xx
   apim_adaptive_cruise_mode = VehicleSetting(
     comment='ACC Mode',
-    ecu=FordEcu.AccessoryProtocolInterfaceModule,
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
     address='09-02',
     byte_index=2,
     bit_mask=0b00000010,
@@ -1279,7 +1279,7 @@ class VehicleSettings:
   # 7D0-09-03: **xx-xxxx-xx
   apim_lane_assist_ncap_aid = VehicleSetting(
     comment='Lane Assist NCAP Aid',
-    ecu=FordEcu.AccessoryProtocolInterfaceModule,
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
     address='09-03',
     byte_index=0,
     bit_mask=0b01100000,
@@ -1292,7 +1292,7 @@ class VehicleSettings:
   )
   apim_lane_assist_ncap_alert = VehicleSetting(
     comment='Lane Assist NCAP Alert',
-    ecu=FordEcu.AccessoryProtocolInterfaceModule,
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
     address='09-03',
     byte_index=0,
     bit_mask=0b00011000,
