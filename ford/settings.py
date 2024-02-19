@@ -17,7 +17,7 @@ class VehicleSettings:
   # FIXME: IPMA settings are different on Q4
   ipma_vehicle = VehicleSetting(
     comment='Vehicle',
-    ecu=FordEcu.ImageProcessingModuleA,
+    ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q3),
     address='01-01',
     byte_index=1,
     value_map={
@@ -100,7 +100,7 @@ class VehicleSettings:
   )
   ipma_distance_alert = VehicleSetting(
     comment='Distance Alert',
-    ecu=FordEcu.ImageProcessingModuleA,
+    ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q3),
     address='01-01',
     byte_index=2,
     bit_mask=0b11000000,
@@ -112,7 +112,7 @@ class VehicleSettings:
   )
   ipma_fcw_hud = VehicleSetting(
     comment='Forward Collision Warning HUD',
-    ecu=FordEcu.ImageProcessingModuleA,
+    ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q3),
     address='01-01',
     byte_index=2,
     bit_mask=0b00110000,
@@ -125,7 +125,7 @@ class VehicleSettings:
   )
   ipma_high_beam = VehicleSetting(
     comment='High Beam',
-    ecu=FordEcu.ImageProcessingModuleA,
+    ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q3),
     address='01-01',
     byte_index=2,
     bit_mask=0b00001100,
@@ -138,7 +138,7 @@ class VehicleSettings:
   )
   ipma_ldw = VehicleSetting(
     comment='Lane Departure Warning',
-    ecu=FordEcu.ImageProcessingModuleA,
+    ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q3),
     address='01-01',
     byte_index=2,
     bit_mask=0b00000001,
@@ -149,7 +149,7 @@ class VehicleSettings:
   )
   ipma_lka = VehicleSetting(
     comment='Lane Keeping Aid',
-    ecu=FordEcu.ImageProcessingModuleA,
+    ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q3),
     address='01-01',
     byte_index=3,
     bit_mask=0b10000000,
@@ -160,7 +160,7 @@ class VehicleSettings:
   )
   ipma_driver_alert_system = VehicleSetting(
     comment='Driver Alert System',
-    ecu=FordEcu.ImageProcessingModuleA,
+    ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q3),
     address='01-01',
     byte_index=3,
     bit_mask=0b01100000,
@@ -172,7 +172,7 @@ class VehicleSettings:
   )
   ipma_traffic_sign_recognition = VehicleSetting(
     comment='Traffic Sign Recognition',
-    ecu=FordEcu.ImageProcessingModuleA,
+    ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q3),
     address='01-01',
     byte_index=3,
     bit_mask=0b00010000,
@@ -183,7 +183,7 @@ class VehicleSettings:
   )
   ipma_traffic_sign_recognition_mode = VehicleSetting(
     comment='Traffic Sign Recognition Mode',
-    ecu=FordEcu.ImageProcessingModuleA,
+    ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q3),
     address='01-01',
     byte_index=3,
     bit_mask=0b00001000,
@@ -194,7 +194,7 @@ class VehicleSettings:
   )
   ipma_traffic_sign_recognition_feature = VehicleSetting(
     comment='Traffic Sign Recognition Feature',
-    ecu=FordEcu.ImageProcessingModuleA,
+    ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q3),
     address='01-01',
     byte_index=3,
     bit_mask=0b00000011,
@@ -207,7 +207,7 @@ class VehicleSettings:
   )
   ipma_lks_switch = VehicleSetting(
     comment='LKS Switch',
-    ecu=FordEcu.ImageProcessingModuleA,
+    ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q3),
     address='01-01',
     byte_index=4,
     bit_mask=0b11000000,
@@ -220,7 +220,7 @@ class VehicleSettings:
   )
   ipma_pre_collision_assist_type = VehicleSetting(
     comment='Pre-Collision Assist Type',
-    ecu=FordEcu.ImageProcessingModuleA,
+    ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q3),
     address='01-01',
     byte_index=4,
     bit_mask=0b00110000,
@@ -233,7 +233,7 @@ class VehicleSettings:
   )
   ipma_enable_adaptive_cruise = VehicleSetting(
     comment='Enable ACC',
-    ecu=FordEcu.ImageProcessingModuleA,
+    ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q3),
     address='01-01',
     byte_index=4,
     bit_mask=0b00001100,
@@ -245,7 +245,7 @@ class VehicleSettings:
   )
   ipma_driving_side = VehicleSetting(
     comment='Driving Side',
-    ecu=FordEcu.ImageProcessingModuleA,
+    ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q3),
     address='01-01',
     byte_index=4,
     bit_mask=0b00000011,
@@ -257,14 +257,14 @@ class VehicleSettings:
   )
   ipma_region_country = VehicleSetting(
     comment='Region and Country',
-    ecu=FordEcu.ImageProcessingModuleA,
+    ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q3),
     address='01-02',
     byte_index=0,
     bit_mask=0xFFF,
   )
   ipma_enable_traffic_jam_assist = VehicleSetting(
     comment='Enable TJA',
-    ecu=FordEcu.ImageProcessingModuleA,
+    ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q3),
     address='01-02',
     byte_index=1,
     bit_mask=0b00000011,
@@ -276,7 +276,7 @@ class VehicleSettings:
   )
   ipma_windshield_type = VehicleSetting(
     comment='Windshield Type',
-    ecu=FordEcu.ImageProcessingModuleA,
+    ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q3),
     address='01-02',
     byte_index=2,
     bit_mask=0b00000110,
@@ -289,7 +289,7 @@ class VehicleSettings:
   )
   ipma_lks_actuator = VehicleSetting(
     comment='LKS Actuator',
-    ecu=FordEcu.ImageProcessingModuleA,
+    ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q3),
     address='01-02',
     byte_index=2,
     bit_mask=0b0000000110000000,
@@ -302,7 +302,7 @@ class VehicleSettings:
   )
   ipma_shift_by_wire = VehicleSetting(
     comment='Shift by Wire',
-    ecu=FordEcu.ImageProcessingModuleA,
+    ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q3),
     address='01-02',
     byte_index=3,
     bit_mask=0b00001100,
@@ -314,7 +314,7 @@ class VehicleSettings:
   )
   ipma_speed_limit_sign_unit = VehicleSetting(
     comment='Speed Limit Sign Unit',
-    ecu=FordEcu.ImageProcessingModuleA,
+    ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q3),
     address='01-02',
     byte_index=4,
     bit_mask=0b11000000,
@@ -562,6 +562,9 @@ class VehicleSettings:
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
     address='20-02',
     byte_index=0,
+    value_map={
+      0x7: 'F-150 BEV',  # not confirmed
+    },
   )
   ipma_vehicle_cfg_ccm_vehicle_type = VehicleSetting(
     comment='VehicleCfg_CCM_VehicleType',

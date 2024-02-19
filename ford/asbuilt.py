@@ -64,7 +64,7 @@ class AsBuiltData:
   def get_identifier(self, ecu: FordEcu, identifier: int) -> str | None:
     if ecu not in self.ecus:
       return None
-    return self.ecus[ecu].identifiers.get(identifier, None)
+    return self.ecus[ecu].identifiers.get(identifier)
 
   def get_configuration(self, ecu: FordEcu) -> dict[str, bytes] | None:
     if ecu not in self.ecus:
@@ -72,12 +72,23 @@ class AsBuiltData:
     return self.ecus[ecu].configuration
 
   def get_setting_data(self, setting: VehicleSetting) -> int | None:
-    if setting.ecu not in self.ecus:
+    if type(setting.ecu) is tuple:
+      ecu, pn_core = setting.ecu
+      if ecu not in self.ecus:
+        return None
+      pn = self.ecus[ecu].identifiers.get(0xF111)
+      if pn is None:
+        return None
+      if pn.split('-')[1] != pn_core:
+        return None
+    elif setting.ecu not in self.ecus:
       # raise ValueError(f'Missing ECU: {setting.ecu}')
       return None
-    configuration = self.get_configuration(setting.ecu)
+    else:
+      ecu = setting.ecu
+    configuration = self.get_configuration(ecu)
     if configuration is None:
-      # raise ValueError(f'Missing configuration for ECU: {setting.ecu}')
+      # raise ValueError(f'Missing configuration for ECU: {ecu}')
       return None
     code = configuration.get(setting.address, None)
     if code is None:
