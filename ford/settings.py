@@ -324,6 +324,192 @@ class VehicleSettings:
       0x2: 'MPH',
     },
   )
+  ipma_module_feature_cfg_lks = VehicleSetting(
+    comment='ModuleFeatureCfg_LKS',
+    ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
+    address='01-01',
+    byte_index=0,
+    bit_mask=0b00000110,
+    value_map={
+      0x0: 'Off',
+      0x1: 'LKAlert',
+      0x2: 'LKAlert+LKAid',
+      0x3: 'LKAlert+LKAid+LKWA',
+    },
+  )
+  ipma_module_feature_cfg_tsr = VehicleSetting(
+    comment='ModuleFeatureCfg_TSR',
+    ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
+    address='01-01',
+    byte_index=1,
+    bit_mask=0b0110000,
+    value_map={
+      0x0: 'Off',
+      0x1: 'SLOIF',
+      0x2: 'SLIF',
+    },
+  )
+  ipma_module_feature_cfg_iacc = VehicleSetting(
+    comment='ModuleFeatureCfg_IACC',
+    ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
+    address='01-01',
+    byte_index=1,
+    bit_mask=0b00010000,
+    value_map={
+      0x0: 'Disabled',
+      0x1: 'Enabled',
+    },
+  )
+  ipma_module_feature_cfg_tja = VehicleSetting(
+    comment='ModuleFeatureCfg_TJA',
+    ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
+    address='01-01',
+    byte_index=1,
+    bit_mask=0b00001000,
+    value_map={
+      0x0: 'Disabled',
+      0x1: 'Enabled',
+    },
+  )
+  ipma_module_feature_cfg_blis = VehicleSetting(
+    comment='ModuleFeatureCfg_BLIS',
+    ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
+    address='01-01',
+    byte_index=2,
+    bit_mask=0b00010000,
+    value_map={
+      0x0: 'Enabled',
+      0x1: 'Disabled',
+    },
+  )
+  ipma_module_feature_cfg_hwy_assist = VehicleSetting(
+    comment='ModuleFeatureCfg_HwyAssist',
+    ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
+    address='01-01',
+    byte_index=4,
+    bit_mask=0b00100000,
+    value_map={
+      0x0: 'Disabled',
+      0x1: 'Enabled',
+    },
+  )
+  ipma_market_cfg_driving_side = VehicleSetting(
+    comment='MarketCfg_DrivingSide',
+    ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
+    address='04-01',
+    byte_index=0,
+    bit_mask=0b10000000,
+    value_map={
+      0x0: 'Right Hand Traffic',
+      0x1: 'Left Hand Traffic',
+    },
+  )
+  ipma_market_cfg_region = VehicleSetting(
+    comment='MarketCfg_Region',
+    ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
+    address='04-01',
+    byte_index=0,
+    bit_mask=0b00111100,
+    value_map={
+      0x0: 'Undefined',
+      0x1: 'EU',
+      0x2: 'NA',
+      0x3: 'SA',
+      0x4: 'APA_China',
+      0x5: 'APA',
+      0x6: 'Africa',
+      0x7: 'GCC',
+      0x8: 'Australia_NZ',
+    },
+  )
+  ipma_market_cfg_speed_limit_sign_unit = VehicleSetting(
+    comment='MarketCfg_SpeedLimitSignUnit',
+    ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
+    address='04-01',
+    byte_index=0,
+    bit_mask=0b00000011,
+    value_map={
+      0x0: 'Undefined',
+      0x1: 'KPH',
+      0x2: 'MPH',
+    },
+  )
+  ipma_market_cfg_country = VehicleSetting(
+    comment='MarketCfg_Country',
+    ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
+    address='04-01',
+    byte_index=1,
+    value_map={
+      0x0: 'Rest of World',
+      0x1: 'Europe',
+      0x2: 'Gulf Region',
+      0x3: 'USA',
+      0x4: 'Canada',
+      0x5: 'Japan',
+      0x6: 'China',
+      0x7: 'South Africa',
+      0x8: 'Korea',
+      0x9: 'Australia/Nzl',
+      0xA: 'UK/Ireland',
+    }
+  )
+  ipma_vehicle_cfg_ste_whl_side = VehicleSetting(
+    comment='VehicleCfg_SteWhlSide',
+    ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
+    address='04-01',
+    byte_index=2,
+    bit_mask=0b10000000,
+    value_map={
+      0x0: 'Lefthand Drive',
+      0x1: 'Righthand Drive',
+    },
+  )
+  ipma_vehicle_cfg_transmission_type = VehicleSetting(
+    comment='VehicleCfg_TransmissionType',
+    ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
+    address='14-01',
+    byte_index=0,
+    bit_mask=0b00001000,
+    value_map={
+      0x0: 'Automatic',
+      0x1: 'Manual',
+    },
+  )
+  ipma_vehicle_cfg_acc_type = VehicleSetting(
+    comment='VehicleCfg_ACCType',
+    ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
+    address='16-01',
+    byte_index=0,
+    bit_mask=0b00110000,
+    value_map={
+      0x0: 'Off',
+      0x1: 'RadarFusion',
+    },
+  )
+  ipma_vehicle_cfg_windshield_type = VehicleSetting(
+    comment='VehicleCfg_WindshieldType',
+    ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
+    address='16-01',
+    byte_index=0,
+    bit_mask=0b00000110,
+    value_map={
+      0x0: 'Base',
+      0x1: 'Acoustic',
+      0x2: 'IR_Coated',
+    },
+  )
+  ipma_vehicle_cfg_gear_shift_by_wire = VehicleSetting(
+    comment='VehicleCfg_GearShiftByWire',
+    ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
+    address='16-01',
+    byte_index=1,
+    bit_mask=0b11000000,
+    value_map={
+      0x0: 'Not_By_Wire',
+      0x1: 'Shift_By_Wire',
+      0x2: 'Range_By_Wire',
+    },
+  )
   ipma_vehicle_cfg_engine = VehicleSetting(
     comment='VehicleCfg_Engine',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
@@ -344,7 +530,6 @@ class VehicleSettings:
       0xB: 'HEV',
       0xC: 'PHEV',
       0xD: 'BEV',
-      0xE: 'Not Used',
     },
   )
   ipma_vehicle_cfg_steering_ratio = VehicleSetting(
@@ -353,7 +538,7 @@ class VehicleSettings:
     address='18-01',
     byte_index=1,
     bit_mask=0xFFF0,
-    # TODO: value_map
+    value_map=lambda x: x,
   )
   ipma_vehicle_cfg_start_stop = VehicleSetting(
     comment='VehicleCfg_StartStop',
@@ -365,6 +550,114 @@ class VehicleSettings:
       0x0: 'Not Present',
       0x1: 'Present',
     },
+  )
+  ipma_vehicle_cfg_steer_vehicle_type = VehicleSetting(
+    comment='VehicleCfg_Steer_VehicleType',
+    ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
+    address='18-01',
+    byte_index=4,
+  )
+  ipma_vehicle_cfg_vehicle_type = VehicleSetting(
+    comment='VehicleCfg_VehicleType',
+    ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
+    address='20-02',
+    byte_index=0,
+  )
+  ipma_vehicle_cfg_ccm_vehicle_type = VehicleSetting(
+    comment='VehicleCfg_CCM_VehicleType',
+    ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
+    address='20-02',
+    byte_index=2,
+  )
+  ipma_vehicle_cfg_overall_length = VehicleSetting(
+    comment='VehicleCfg_OverallLength',
+    ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
+    address='21-01',
+    byte_index=0,
+    bit_mask=0xFFFF,
+    value_map=lambda x: x,
+  )
+  ipma_vehicle_cfg_wheelbase = VehicleSetting(
+    comment='VehicleCfg_Wheelbase',
+    ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
+    address='21-01',
+    byte_index=2,
+    bit_mask=0xFFFF,
+    value_map=lambda x: x,
+  )
+  ipma_vehicle_cfg_front_axle_to_bumper = VehicleSetting(
+    comment='VehicleCfg_FrontAxleToBumper',
+    ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
+    address='21-01',
+    byte_index=4,
+    value_map=lambda x: x,
+  )
+  ipma_vehicle_cfg_front_axle_to_bumper_cont = VehicleSetting(
+    comment='VehicleCfg_FrontAxleToBumper (cont.)',
+    ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
+    address='21-02',
+    byte_index=0,
+    value_map=lambda x: x,
+  )
+  ipma_vehicle_cfg_rear_axle_to_bumper = VehicleSetting(
+    comment='VehicleCfg_RearAxleToBumper',
+    ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
+    address='21-02',
+    byte_index=1,
+    bit_mask=0xFFFF,
+    value_map=lambda x: x,
+  )
+  ipma_vehicle_cfg_width = VehicleSetting(
+    comment='VehicleCfg_Width',
+    ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
+    address='21-02',
+    byte_index=3,
+    bit_mask=0xFFFF,
+    value_map=lambda x: x,
+  )
+  ipma_vehicle_cfg_width_with_mirror = VehicleSetting(
+    comment='VehicleCfg_WidthWithMirror',
+    ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
+    address='21-03',
+    byte_index=0,
+    bit_mask=0xFFFF,
+    value_map=lambda x: x,
+  )
+  ipma_vehicle_cfg_frnt_trck_width_center = VehicleSetting(
+    comment='VehicleCfg_FrntTrckWidthCenter',
+    ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
+    address='21-03',
+    byte_index=2,
+    bit_mask=0xFFFF,
+    value_map=lambda x: x,
+  )
+  ipma_vehicle_cfg_frnt_trck_width_outside = VehicleSetting(
+    comment='VehicleCfg_FrntTrckWidthOutside',
+    ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
+    address='21-03',
+    byte_index=4,
+  )
+  ipma_vehicle_cfg_frnt_trck_width_outside_cont = VehicleSetting(
+    comment='VehicleCfg_FrntTrckWidthOutside (cont.)',
+    ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
+    address='21-04',
+    byte_index=0,
+  )
+  ipma_vehicle_cfg_rear_trck_width_center = VehicleSetting(
+    comment='VehicleCfg_RearTrckWidthCenter',
+    ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
+    address='21-04',
+    byte_index=1,
+    bit_mask=0xFFFF,
+    value_map=lambda x: x,
+  )
+  ipma_vehicle_cfg_rear_trck_width_outside = VehicleSetting(
+    comment='VehicleCfg_RearTrckWidthOutside',
+    ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
+    address='21-04',
+    byte_index=3,
+    bit_mask=0xFFFF,
+    value_map=lambda x: x,
   )
   ipc_display_units = VehicleSetting(
     comment='Display Units',
