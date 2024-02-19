@@ -1303,5 +1303,128 @@ class VehicleSettings:
       0b11: 'High, Normal, Low',
     },
   )
+  apim_sync4_steering_angle = VehicleSetting(
+    comment='Steering Angle',
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
+    address='01-02',
+    byte_index=0,
+    bit_mask=0b00010000,
+    value_map={
+      0b0: 'Pinion',
+      0b1: 'Wheel',
+    },
+  )
+  apim_sync4_start_stop_vehicle = VehicleSetting(
+    comment='Start/Stop Vehicle',
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
+    address='01-02',
+    byte_index=2,
+    bit_mask=0b00010000,
+    value_map={
+      0b0: 'Non Start/Stop',
+      0b1: 'Start/Stop',
+    },
+  )
+  apim_sync4_transmission_type = VehicleSetting(
+    comment='Transmission Type',
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
+    address='01-02',
+    byte_index=2,
+    bit_mask=0b00001000,
+    value_map={
+      0b0: 'Automatic',
+      0b1: 'Manual',
+    },
+  )
+  apim_sync4_park_brake_type = VehicleSetting(
+    comment='Park Brake Type',
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
+    address='01-02',
+    byte_index=3,
+    bit_mask=0b00001000,
+    value_map={
+      0b0: 'Mechanical',
+      0b1: 'Electronic',
+    },
+  )
+  apim_sync4_reverse_gear = VehicleSetting(
+    comment='Reverse Gear',
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
+    address='01-02',
+    byte_index=4,
+    bit_mask=0b00001000,
+    value_map={
+      0b0: 'Legacy',
+      0b1: 'New (GearPos_D_Trg)',
+    },
+  )
+  apim_sync4_architecture_version = VehicleSetting(
+    comment='Architecture Version',
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
+    address='01-03',
+    byte_index=1,
+    bit_mask=0b00000011,
+    value_map={
+      0x1: 'FNV2',
+      0x2: 'FNV3',
+    },
+  )
+  apim_sync4_vehicle_driver_location = VehicleSetting(
+    comment='Vehicle Driver Location',
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
+    address='02-01',
+    byte_index=0,
+    bit_mask=0b01000000,
+    value_map={
+      0x0: 'Left Hand Drive',
+      0x1: 'Right Hand Drive',
+    },
+  )
+  apim_sync4_brand = VehicleSetting(
+    comment='Brand',
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
+    address='02-01',
+    byte_index=0,
+    bit_mask=0b00100000,
+    value_map={
+      0x0: 'Ford',
+      0x1: 'Lincoln',
+    },
+  )
+  apim_sync4_hybrid = VehicleSetting(
+    comment='Hybrid (HEV)',
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
+    address='02-02',
+    byte_index=1,
+    bit_mask=0b10000000,
+    value_map={
+      0x0: 'No',
+      0x1: 'Yes',
+    },
+  )
+  apim_sync4_phev = VehicleSetting(
+    comment='Plug-in Hybrid (PHEV)',
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
+    address='02-02',
+    byte_index=1,
+    bit_mask=0b01000000,
+    value_map={
+      0x0: 'No',
+      0x1: 'Yes',
+    },
+  )
+  apim_sync4_other_brand = VehicleSetting(
+    comment='Other Brand',
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
+    address='02-02',
+    byte_index=3,
+    bit_mask=0b00000011,
+    value_map={
+      0x0: 'Standard (Ford/Lincoln)',
+      0x1: 'Other Brand 1',
+      0x2: 'Other Brand 2',
+      0x3: 'Other Brand 3',
+    },
+  )
 
 VEHICLE_SETTINGS = list(filter(lambda x: isinstance(x, VehicleSetting), VehicleSettings.__dict__.values()))
