@@ -69,8 +69,9 @@ def search(
   include_police = False,
   min_model_year: int | None = None,
   max_model_year: int | None = None,
+  skip_missing_asbuilt = False,
 ) -> pd.DataFrame:
-  vins = search_vins(searches, include_openpilot=include_openpilot)
+  vins = search_vins(searches, include_openpilot=include_openpilot, skip_missing_asbuilt=skip_missing_asbuilt)
   df_nhtsa = decode_vins(vins)
 
   for column, func in TRANSFORM_PROPERTIES.items():

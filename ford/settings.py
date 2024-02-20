@@ -141,7 +141,7 @@ class VehicleSettings:
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q3),
     address='01-01',
     byte_index=2,
-    bit_mask=0b00000001,
+    bit_mask=0x01,
     value_map={
       0x0: 'Off',
       0x1: 'On',
@@ -152,7 +152,7 @@ class VehicleSettings:
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q3),
     address='01-01',
     byte_index=3,
-    bit_mask=0b10000000,
+    bit_mask=0x80,
     value_map={
       0x0: 'Off',
       0x1: 'On',
@@ -175,7 +175,7 @@ class VehicleSettings:
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q3),
     address='01-01',
     byte_index=3,
-    bit_mask=0b00010000,
+    bit_mask=0x10,
     value_map={
       0x0: 'Off',
       0x1: 'On',
@@ -186,7 +186,7 @@ class VehicleSettings:
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q3),
     address='01-01',
     byte_index=3,
-    bit_mask=0b00001000,
+    bit_mask=0x08,
     value_map={
       0x0: 'Camera Only',
       0x1: 'Fusion',
@@ -292,7 +292,7 @@ class VehicleSettings:
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q3),
     address='01-02',
     byte_index=2,
-    bit_mask=0b0000000110000000,
+    bit_mask=0b0000000110000000,  # FIXME: is this correct?
     value_map={
       0x0: 'Undefined',
       0x1: 'Haptic Motor',
@@ -354,7 +354,7 @@ class VehicleSettings:
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
     address='01-01',
     byte_index=1,
-    bit_mask=0b00010000,
+    bit_mask=0x10,
     value_map={
       0x0: 'Disabled',
       0x1: 'Enabled',
@@ -365,7 +365,7 @@ class VehicleSettings:
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
     address='01-01',
     byte_index=1,
-    bit_mask=0b00001000,
+    bit_mask=0x08,
     value_map={
       0x0: 'Disabled',
       0x1: 'Enabled',
@@ -376,7 +376,7 @@ class VehicleSettings:
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
     address='01-01',
     byte_index=2,
-    bit_mask=0b00010000,
+    bit_mask=0x10,
     value_map={
       0x0: 'Enabled',
       0x1: 'Disabled',
@@ -387,7 +387,7 @@ class VehicleSettings:
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
     address='01-01',
     byte_index=4,
-    bit_mask=0b00100000,
+    bit_mask=0x20,
     value_map={
       0x0: 'Disabled',
       0x1: 'Enabled',
@@ -398,7 +398,7 @@ class VehicleSettings:
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
     address='04-01',
     byte_index=0,
-    bit_mask=0b10000000,
+    bit_mask=0x80,
     value_map={
       0x0: 'Right Hand Traffic',
       0x1: 'Left Hand Traffic',
@@ -458,7 +458,7 @@ class VehicleSettings:
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
     address='04-01',
     byte_index=2,
-    bit_mask=0b10000000,
+    bit_mask=0x80,
     value_map={
       0x0: 'Lefthand Drive',
       0x1: 'Righthand Drive',
@@ -469,7 +469,7 @@ class VehicleSettings:
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
     address='14-01',
     byte_index=0,
-    bit_mask=0b00001000,
+    bit_mask=0x08,
     value_map={
       0x0: 'Automatic',
       0x1: 'Manual',
@@ -667,7 +667,7 @@ class VehicleSettings:
     ecu=FordEcu.InstrumentPanelCluster,
     address='04-02',
     byte_index=2,
-    bit_mask=0b10000000,
+    bit_mask=0x80,
     value_map={
       0x0: 'MPH',
       0x1: 'KPH',
@@ -721,7 +721,6 @@ class VehicleSettings:
     byte_index=0,
     bit_mask=0xF0,
     value_map={
-      0x0: 'Reserved',
       0x1: '122in',
       0x2: '141in',
       0x3: '145in',
@@ -737,7 +736,6 @@ class VehicleSettings:
     byte_index=0,
     bit_mask=0x0F,
     value_map={
-      0x0: 'Reserved',
       0x1: 'Base Payload',
       0x2: 'Mid Payload Upgrade',
       0x3: 'Heavy Duty Payload Upgrade',
@@ -751,7 +749,6 @@ class VehicleSettings:
     byte_index=1,
     bit_mask=0b00000011,
     value_map={
-      0x0: 'Reserved',
       0x1: 'EPAS 17:1',
       0x2: 'EPAS 21:1',
     },
@@ -763,7 +760,6 @@ class VehicleSettings:
     byte_index=2,
     bit_mask=0xF0,
     value_map={
-      0x0: 'Reserved',
       0x1: '17/18in',
       0x2: '20in',
       0x3: '22in',
@@ -787,7 +783,7 @@ class VehicleSettings:
     ecu=FordEcu.AntiLockBrakeSystem,
     address='03-01',
     byte_index=0,
-    bit_mask=0b10000000,
+    bit_mask=0x80,
     value_map={
       0b0: 'Without',
       0b1: 'With',
@@ -799,7 +795,7 @@ class VehicleSettings:
     ecu=FordEcu.AntiLockBrakeSystem,
     address='03-01',
     byte_index=0,
-    bit_mask=0b01000000,
+    bit_mask=0x40,
     value_map={
       0b0: 'Without',
       0b1: 'With',
@@ -811,7 +807,7 @@ class VehicleSettings:
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
     address='01-01',
     byte_index=3,
-    bit_mask=0b00000010,
+    bit_mask=0x02,
     value_map={
       0b0: 'Relative',
       0b1: 'Absolute',
@@ -826,7 +822,6 @@ class VehicleSettings:
     bit_mask=0b11000000,
     value_map={
       0b00: 'Ford',
-      0b01: 'Reserved',
       0b10: 'Lincoln',
       0b11: 'Configurable',
     },
@@ -837,7 +832,7 @@ class VehicleSettings:
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
     address='01-02',
     byte_index=0,
-    bit_mask=0b00100000,
+    bit_mask=0x20,
     value_map={
       0b0: 'No',
       0b1: 'Yes',
@@ -849,7 +844,7 @@ class VehicleSettings:
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
     address='01-02',
     byte_index=1,
-    bit_mask=0b00010000,
+    bit_mask=0x10,
     value_map={
       0b0: 'Automatic',
       0b1: 'Manual',
@@ -875,7 +870,7 @@ class VehicleSettings:
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
     address='01-02',
     byte_index=3,
-    bit_mask=0b10000000,
+    bit_mask=0x80,
     value_map={
       0b0: 'No',
       0b1: 'Yes',
@@ -887,7 +882,7 @@ class VehicleSettings:
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
     address='01-02',
     byte_index=4,
-    bit_mask=0b10000000,
+    bit_mask=0x80,
     value_map={
       0b0: 'CGEA 1.2 or C1MCA',
       0b1: 'CGEA 1.3',
@@ -899,7 +894,7 @@ class VehicleSettings:
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
     address='01-02',
     byte_index=4,
-    bit_mask=0b01000000,
+    bit_mask=0x40,
     value_map={
       0b0: 'No',
       0b1: 'Yes',
@@ -1155,7 +1150,14 @@ class VehicleSettings:
   # HEX=DECx1+40=Value (unitless)
   # 7D0-07-03: xxxx-xx##-xx - Tire Circumference (cm)
   # HEX=DECx1+100=Value (cm) x0.393701=Value (in)
-
+  apim_tire_circumference = VehicleSetting(
+    comment='Tire Circumference',
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
+    address='07-03',
+    byte_index=3,
+    bit_mask=0xFF,
+    value_map=lambda value: f'{(value + 100) * 0.393701:.2f} in',
+  )
   # 7D0-07-03: xxxx-xxxx-** - Distance from IP to Rear Axle (cm)
   # 7D0-07-04: ** - Distance from IP to Rear Axle (cm) cont.
   # HEX=DECx1+100=Value (cm) x0.393701=Value (in)
@@ -1182,7 +1184,7 @@ class VehicleSettings:
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
     address='09-01',
     byte_index=0,
-    bit_mask=0b00100000,
+    bit_mask=0x20,
     value_map={
       0b0: 'Disabled',
       0b1: 'Enabled',
@@ -1208,7 +1210,7 @@ class VehicleSettings:
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
     address='09-02',
     byte_index=0,
-    bit_mask=0b01000000,
+    bit_mask=0x40,
     value_map={
       0b0: 'Disabled',
       0b1: 'Enabled',
@@ -1220,7 +1222,7 @@ class VehicleSettings:
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
     address='09-02',
     byte_index=1,
-    bit_mask=0b01000000,
+    bit_mask=0x40,
     value_map={
       0b0: 'Disabled',
       0b1: 'Enabled',
@@ -1232,7 +1234,7 @@ class VehicleSettings:
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
     address='09-02',
     byte_index=1,
-    bit_mask=0b00001000,
+    bit_mask=0x08,
     value_map={
       0b0: 'Disabled',
       0b1: 'Enabled',
@@ -1249,7 +1251,6 @@ class VehicleSettings:
       0b00: 'Disabled',
       0b01: 'Enabled',
       0b10: 'Euro NCAP',
-      0b11: 'Reserved',
     },
   )
   # 7D0-09-02: xxxx-*xxx-xx
@@ -1258,7 +1259,7 @@ class VehicleSettings:
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
     address='09-02',
     byte_index=2,
-    bit_mask=0b00100000,
+    bit_mask=0x20,
     value_map={
       0b00: 'Disabled',
       0b01: 'Enabled',
@@ -1270,7 +1271,7 @@ class VehicleSettings:
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
     address='09-02',
     byte_index=2,
-    bit_mask=0b00000010,
+    bit_mask=0x02,
     value_map={
       0b0: 'Disabled',
       0b1: 'Enabled',
@@ -1295,7 +1296,7 @@ class VehicleSettings:
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
     address='09-03',
     byte_index=0,
-    bit_mask=0b00011000,
+    bit_mask=0x18,
     value_map={
       0b00: 'Disabled',
       0b01: 'High, Normal, Low, Off',
@@ -1308,7 +1309,7 @@ class VehicleSettings:
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
     address='01-02',
     byte_index=0,
-    bit_mask=0b00010000,
+    bit_mask=0x10,
     value_map={
       0b0: 'Pinion',
       0b1: 'Wheel',
@@ -1319,7 +1320,7 @@ class VehicleSettings:
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
     address='01-02',
     byte_index=2,
-    bit_mask=0b00010000,
+    bit_mask=0x10,
     value_map={
       0b0: 'Non Start/Stop',
       0b1: 'Start/Stop',
@@ -1330,7 +1331,7 @@ class VehicleSettings:
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
     address='01-02',
     byte_index=2,
-    bit_mask=0b00001000,
+    bit_mask=0x08,
     value_map={
       0b0: 'Automatic',
       0b1: 'Manual',
@@ -1341,7 +1342,7 @@ class VehicleSettings:
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
     address='01-02',
     byte_index=3,
-    bit_mask=0b00001000,
+    bit_mask=0x08,
     value_map={
       0b0: 'Mechanical',
       0b1: 'Electronic',
@@ -1352,7 +1353,7 @@ class VehicleSettings:
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
     address='01-02',
     byte_index=4,
-    bit_mask=0b00001000,
+    bit_mask=0x08,
     value_map={
       0b0: 'Legacy',
       0b1: 'New (GearPos_D_Trg)',
@@ -1374,7 +1375,7 @@ class VehicleSettings:
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
     address='02-01',
     byte_index=0,
-    bit_mask=0b01000000,
+    bit_mask=0x40,
     value_map={
       0x0: 'Left Hand Drive',
       0x1: 'Right Hand Drive',
@@ -1385,7 +1386,7 @@ class VehicleSettings:
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
     address='02-01',
     byte_index=0,
-    bit_mask=0b00100000,
+    bit_mask=0x20,
     value_map={
       0x0: 'Ford',
       0x1: 'Lincoln',
@@ -1396,7 +1397,7 @@ class VehicleSettings:
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
     address='02-02',
     byte_index=1,
-    bit_mask=0b10000000,
+    bit_mask=0x80,
     value_map={
       0x0: 'No',
       0x1: 'Yes',
@@ -1407,7 +1408,7 @@ class VehicleSettings:
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
     address='02-02',
     byte_index=1,
-    bit_mask=0b01000000,
+    bit_mask=0x40,
     value_map={
       0x0: 'No',
       0x1: 'Yes',
@@ -1424,6 +1425,512 @@ class VehicleSettings:
       0x1: 'Other Brand 1',
       0x2: 'Other Brand 2',
       0x3: 'Other Brand 3',
+    },
+  )
+  apim_sync4_country_code_first_letter = VehicleSetting(
+    comment='Country Code (First Letter)',
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
+    address='03-01',
+    byte_index=0,
+    value_map=lambda value: chr(value),
+  )
+  apim_sync4_country_code_second_letter = VehicleSetting(
+    comment='Country Code (Second Letter)',
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
+    address='03-01',
+    byte_index=1,
+    value_map=lambda value: chr(value),
+  )
+  apim_sync4_splash_screen = VehicleSetting(
+    comment='Splash Screen',
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
+    address='03-01',
+    byte_index=2,
+  )
+  apim_symc4_vehicle_style = VehicleSetting(
+    comment='Vehicle Style',
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
+    address='03-01',
+    byte_index=3,
+    value_map={
+      0x00: 'Undefined',
+      0x01: 'Sedan - PDC_Generic_Car',
+      0x02: 'Coupe/Convertible',
+      0x03: 'Pickup Truck - PDC_Truck',
+      0x04: 'SUV/CUV',
+      0x05: 'Large Van - PDC_Lg_Comm_Van',
+      0x06: 'Hatchback',
+      0x07: 'Wagon',
+      0x08: 'Small Commuter Van - PDC_Sm_Comm_Van',
+      0x09: 'EcoSport - PDC_EcoSport',
+      0x0A: 'Fiesta - PDC_Fiesta',
+      0x0B: 'Focus - PDC_Focus',
+      0x0C: 'Bronco',
+      0x0D: 'Muscle Car',
+      0x0E: 'Pickup Chassis Cab',
+      0x0F: 'Pickup Box Delete',
+      0x10: 'Van Chassis Cab',
+    },
+  )
+  apim_symc4_vehicle = VehicleSetting(
+    comment='Vehicle',
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
+    address='03-02',
+    byte_index=0,
+    value_map={
+      0x00: 'Undefined',
+      0x01: 'C344',
+      0x02: 'C346/C519',
+      0x03: 'CD391',
+      0x04: 'CD533',
+      0x05: 'U611',
+      0x06: 'U625',
+      0x07: 'CX482',
+      0x08: 'CX483',
+      0x09: 'CX727',
+      0x0A: 'P758',
+      0x0B: 'P702',
+      0x0C: 'CD539',
+      0x0D: 'U725',
+      0x0E: 'U540',
+      0x0F: 'CX482N',
+      0x10: 'P558',
+      0x11: 'P702 ICA (Raptor)',
+      0x12: 'U553',
+      0x13: 'U554',
+      0x14: 'CD542',
+      0x15: 'V363',
+      0x16: 'P702 BEV',
+      0x17: 'U704',
+      0x18: 'P703',
+      0x19: 'V713',
+      0x1A: 'CX727 GT',
+      0x1B: 'J73',
+      0x1C: 'J74',
+      0x1D: 'P702 Police',
+      0x1E: 'P702 Raptor DTP',
+      0x1F: 'P702 KCAP',
+      0x20: 'U725 Raptor',
+      0x21: 'P703 Raptor',
+      0x22: 'P708',
+      0x23: 'S650',
+      0x24: 'V710',
+      0x25: 'CDX707',
+      0x26: 'CDX746',
+      0x27: 'CDX747',
+      0x28: 'U717',
+      0x29: 'U718',
+      0x2A: 'BX726',
+      0x2B: 'CX430',
+      0x2C: 'V769',
+      0x2F: 'P758V',
+      0x30: 'CX748',
+      0x31: 'CX482AV',
+      0x32: 'P702 MCA (ICE/FHEV)',
+      0x33: 'P702 MCA (Raptor)',
+      0x34: 'P702 MCA (BEV)',
+      0x35: 'V363 ICA',
+      0x36: 'U625 ST',
+      0x37: 'P703 SA (South Africa)',
+      0x38: 'U725 CSAT',
+    }
+  )
+  apim_sync4_fuel_type = VehicleSetting(
+    comment='Fuel Type',
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
+    address='05-01',
+    byte_index=0,
+    bit_mask=0b00001100,
+    value_map={
+      0x0: 'Gasoline',
+      0x1: 'Diesel',
+      0x2: 'CNG',
+      0x3: 'Electric (BEV)',
+    },
+  )
+  apim_sync4_gps_mount_type = VehicleSetting(
+    comment='GPS Mount Type',
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
+    address='05-02',
+    byte_index=0,
+    bit_mask=0x0F,
+    value_map={
+      0x0: 'Roof Mount',
+      0x1: 'Intrument Panel Mount (Non-heated Windscreen)',
+      0x2: 'Intrument Panel Mount (Heated Windscreen)',
+      0x3: 'Windshield Mount (Non-heated)',
+      0x4: 'Windshield Mount (Heated)',
+    },
+  )
+  apim_sync4_drive_type = VehicleSetting(
+    comment='Drive Type',
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
+    address='05-02',
+    byte_index=1,
+    bit_mask=0xFF,
+    value_map={
+      0x00: 'FWD',
+      0x01: 'RWD',
+      0x02: 'AWD',
+      0x03: '4WD',
+      0x04: 'Dually 2WD',
+      0x05: 'Dually 4WD',
+    },
+  )
+  apim_sync4_vehicle_length = VehicleSetting(
+    comment='Vehicle Length',
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
+    address='05-02',
+    byte_index=2,
+    bit_mask=0xFFFFFF,
+    value_map=lambda value: f'{value * 0.01:.2f} m',
+  )
+  apim_sync4_vehicle_height = VehicleSetting(
+    comment='Vehicle Height',
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
+    address='05-03',
+    byte_index=0,
+    bit_mask=0xFFFF,
+    value_map=lambda value: f'{value * 0.01:.2f} m',
+  )
+  apim_sync4_front_track = VehicleSetting(
+    comment='Front Track',
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
+    address='06-01',
+    byte_index=0,
+    bit_mask=0xFFFF,
+    value_map=lambda value: f'{value} in',
+  )
+  apim_sync4_rear_track = VehicleSetting(
+    comment='Rear Track',
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
+    address='06-01',
+    byte_index=2,
+    bit_mask=0xFFFF,
+    value_map=lambda value: f'{value} in',
+  )
+  apim_sync4_wheel_base = VehicleSetting(
+    comment='Wheel Base',
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
+    address='06-01',
+    byte_index=4,
+    bit_mask=0xFF,
+    value_map=lambda x: x << 8,
+  )
+  apim_sync4_wheel_base_cont = VehicleSetting(
+    comment='Wheel Base (cont.)',
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
+    address='06-02',
+    byte_index=0,
+    bit_mask=0xFF,
+    value_map=lambda x: x,
+  )
+  apim_sync4_vehicle_weight = VehicleSetting(
+    comment='Vehicle Weight',
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
+    address='07-01',
+    byte_index=0,
+    bit_mask=0xFF,
+    value_map=lambda value: f'{value} kg',
+  )
+  apim_sync4_eco_route_curve = VehicleSetting(
+    comment='ECO Route Curve',
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
+    address='07-01',
+    byte_index=1,
+    bit_mask=0xFF,
+    value_map=lambda value: value,
+  )
+  apim_sync4_powertrain_efficiency = VehicleSetting(
+    comment='Powertrain Efficiency',
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
+    address='07-01',
+    byte_index=2,
+    bit_mask=0xFF,
+    value_map=lambda value: f'{value * (1/255):.2f}%',
+  )
+  apim_sync4_regenerative_braking_efficiency_highway = VehicleSetting(
+    comment='Regenerative Braking Efficiency Highway',
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
+    address='07-01',
+    byte_index=3,
+    bit_mask=0xFF,
+    value_map=lambda value: f'{value * (1/255):.2f}%',
+  )
+  apim_sync4_regenerative_braking_efficiency_city = VehicleSetting(
+    comment='Regenerative Braking Efficiency City',
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
+    address='07-01',
+    byte_index=4,
+    bit_mask=0xFF,
+    value_map=lambda value: f'{value * (1/255):.2f}%',
+  )
+  apim_sync4_install_angle_of_apim_for_accelerometer_x = VehicleSetting(
+    comment='Install Angle of APIM for Accelerometer X',
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
+    address='07-02',
+    byte_index=0,
+    bit_mask=0xFFFF,
+    value_map=lambda value: f'{value * 0.006:.2f}°',
+  )
+  apim_sync4_install_angle_of_apim_for_accelerometer_y = VehicleSetting(
+    comment='Install Angle of APIM for Accelerometer Y',
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
+    address='07-02',
+    byte_index=2,
+    bit_mask=0xFFFF,
+    value_map=lambda value: f'{value * 0.006:.2f}°',
+  )
+  apim_sync4_install_angle_of_apim_for_accelerometer_z = VehicleSetting(
+    comment='Install Angle of APIM for Accelerometer Z',
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
+    address='07-02',
+    byte_index=4,
+    bit_mask=0xFF,
+    value_map=lambda x: x << 8,
+  )
+  apim_sync4_install_angle_of_apim_for_accelerometer_z_cont = VehicleSetting(
+    comment='Install Angle of APIM for Accelerometer Z (cont.)',
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
+    address='07-03',
+    byte_index=0,
+    bit_mask=0xFF,
+    value_map=lambda x: x,
+  )
+  apim_sync4_wheel_ticks_to_revolution_front = VehicleSetting(
+    comment='Wheel Ticks to Revolution Front',
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
+    address='07-03',
+    byte_index=1,
+    bit_mask=0xFF,
+    value_map=lambda value: value,
+  )
+  apim_sync4_wheel_ticks_to_revolution_rear = VehicleSetting(
+    comment='Wheel Ticks to Revolution Rear',
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
+    address='07-03',
+    byte_index=2,
+    bit_mask=0xFF,
+    value_map=lambda value: value,
+  )
+  apim_sync4_tire_circumference = VehicleSetting(
+    comment='Tire Circumference',
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
+    address='07-03',
+    byte_index=3,
+    bit_mask=0xFF,
+    # HEX=DECx1+100=Value (cm)
+    value_map=lambda value: f'{value * 0.393701:.2f} in',
+  )
+  apim_sync4_distance_from_ip_to_rear_axle = VehicleSetting(
+    comment='Distance from IP to Rear Axle',
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
+    address='07-03',
+    byte_index=4,
+    bit_mask=0xFF,
+    value_map=lambda x: x << 8,
+  )
+  apim_sync4_distance_from_ip_to_rear_axle_cont = VehicleSetting(
+    comment='Distance from IP to Rear Axle (cont.)',
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
+    address='07-04',
+    byte_index=0,
+    bit_mask=0xFF,
+    value_map=lambda x: x,
+  )
+  apim_sync4_steering_wheel_angle_sensor = VehicleSetting(
+    comment='Steering Wheel Angle Sensor',
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
+    address='08-01',
+    byte_index=0,
+    bit_mask=0x40,
+    value_map={
+      0b0: 'Relative',
+      0b1: 'Absolute',
+    },
+  )
+  apim_sync4_parking_assistance = VehicleSetting(
+    comment='Parking Assistance',
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
+    address='08-01',
+    byte_index=3,
+    bit_mask=0x0F,
+    value_map={
+      0x0: 'No PDC/PSCM/SAPP',
+      0x1: 'Rear PDC',
+      0x2: 'Rear/Front PDC',
+      0x3: 'Rear/Front PDC/SAPP (NA HMI)',
+      0x4: 'Rear/SAPP (NA HMI)',
+      0x5: 'Rear/Front PDC/SAPP (EU HMI)',
+      0x6: 'FAPA with RePA Adjust with APA Delux to Parking Assistance',
+      0x7: 'Rear/Front PDC with APA',
+      0x8: 'APA Lite',
+      0x9: '12 Channel Park Aid w/o APA',
+      0xA: 'APACSI',
+      0xB: 'FAPA',
+      0xC: 'SAPP with APA Deluxe',
+      0xD: 'FAPA with APA Deluxe',
+      0xE: 'FAPA with RePA with APA Deluxe',
+    },
+  )
+  apim_sync4_acc_menu = VehicleSetting(
+    comment='ACC Menu',
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
+    address='09-01',
+    byte_index=0,
+    bit_mask=0x20,
+    value_map={
+      0b0: 'Disabled',
+      0b1: 'Enabled',
+    },
+  )
+  apim_sync4_forward_collision_warning = VehicleSetting(
+    comment='Forward Collision Warning',
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
+    address='09-01',
+    byte_index=2,
+    bit_mask=0b01100000,
+    value_map={
+      0b00: 'None',
+      0b01: 'FCW',
+      0b10: 'FCW + FDA',
+    },
+  )
+  apim_sync4_forward_collision_warning_braking_on_off = VehicleSetting(
+    comment='Forward Collision Warning Braking On/Off',
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
+    address='09-02',
+    byte_index=1,
+    bit_mask=0x40,
+    value_map={
+      0b0: 'Disabled',
+      0b1: 'Enabled',
+    },
+  )
+  apim_sync4_evasive_steering_assist = VehicleSetting(
+    comment='Evasive Steering Assist (ESA)',
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
+    address='09-02',
+    byte_index=1,
+    bit_mask=0x08,
+    value_map={
+      0b0: 'Disabled',
+      0b1: 'Enabled',
+    },
+  )
+  apim_sync4_lane_assist_haptic_intensity = VehicleSetting(
+    comment='Lane Assist Haptic Intensity',
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
+    address='09-02',
+    byte_index=1,
+    bit_mask=0b00000100,
+    value_map={
+      0b0: 'Disabled',
+      0b1: 'Enabled',
+    },
+  )
+  apim_sync4_intelligent_adaptive_cruise_control = VehicleSetting(
+    comment='Intelligent Adaptive Cruise Control',
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
+    address='09-02',
+    byte_index=1,
+    bit_mask=0x02,
+    value_map={
+      0b0: 'Disabled',
+      0b1: 'Enabled',
+    },
+  )
+  apim_sync4_lane_change_assist = VehicleSetting(
+    comment='Lane Change Assist',
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
+    address='09-02',
+    byte_index=2,
+    bit_mask=0b11000000,
+    value_map={
+      0b00: 'Disabled',
+      0b01: 'Enabled',
+      0b10: 'Euro NCAP',
+    },
+  )
+  apim_sync4_lane_keeping_sensitivity = VehicleSetting(
+    comment='Lane Keeping Sensitivity',
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
+    address='09-02',
+    byte_index=2,
+    bit_mask=0x20,
+    value_map={
+      0b00: 'Disabled',
+      0b01: 'Enabled',
+    },
+  )
+  apim_sync4_adaptive_cruise = VehicleSetting(
+    comment='Adaptive Cruise',
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
+    address='09-02',
+    byte_index=2,
+    bit_mask=0x02,
+    value_map={
+      0b0: 'Disabled',
+      0b1: 'Enabled',
+    },
+  )
+  apim_sync4_traffic_sign_recognition = VehicleSetting(
+    comment='Traffic Sign Recognition',
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
+    address='09-02',
+    byte_index=4,
+    bit_mask=0x08,
+    value_map={
+      0b0: 'Disabled',
+      0b1: 'Enabled',
+    },
+  )
+  apim_sync4_lane_centering = VehicleSetting(
+    comment='Lane Centering',
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
+    address='09-04',
+    byte_index=4,
+    bit_mask=0x20,
+    value_map={
+      0b0: 'Disabled',
+      0b1: 'Enabled',
+    },
+  )
+  apim_sync4_steering_gear_ratio = VehicleSetting(
+    comment='Steering Gear Ratio',
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
+    address='09-05',
+    byte_index=2,
+    bit_mask=0x10,
+    value_map={
+      0b0: '17:1',
+      0b1: '20:1',
+    },
+  )
+  apim_sync4_assisted_lane_change = VehicleSetting(
+    comment='Assisted Lane Change',
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
+    address='10-02',
+    byte_index=4,
+    bit_mask=0x10,
+    value_map={
+      0b0: 'Disabled',
+      0b1: 'Enabled',
+    },
+  )
+  apim_sync4_bench_setup = VehicleSetting(
+    comment='Bench Setup',
+    ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
+    address='10-04',
+    byte_index=0,
+    bit_mask=0x0F,
+    value_map={
+      0x0: 'Vehicle',
+      0x1: 'TDK Smart Bench',
+      0x2: 'Mini Bench',
+      0x3: 'Extended Mini Bench',
+      0x4: 'Full Bench',
+      0x5: 'Breadboard',
     },
   )
 

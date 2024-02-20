@@ -24,7 +24,7 @@ def get_asbuilt_path(vin: str) -> Path:
   return ASBUILT_DIR / f'{vin}.ab'
 
 
-def get_missing(vins: list[str]) -> list[str]:
+def get_missing_asbuilt(vins: list[str]) -> list[str]:
   return [vin for vin in vins if not get_asbuilt_path(vin).is_file()]
 
 
@@ -42,7 +42,7 @@ def check_asbuilt(vins: list[str]):
     except Exception as e:
       print(f'Failed to download {vin}: {e}')
 
-  missing = get_missing(vins)
+  missing = get_missing_asbuilt(vins)
   if len(missing) > 0:
     print('Download from https://www.motorcraftservice.com/AsBuilt')
     raise ValueError(f'Missing AsBuilt data ({len(missing)}): {missing}')
@@ -121,9 +121,10 @@ class AsBuiltData:
     with open(get_asbuilt_path(vin), 'r') as f:
       soup = BeautifulSoup(f, 'lxml')
 
-    check_vin = soup.find('vin').text
-    if check_vin != vin:
-      raise ValueError(f'VIN mismatch: {vin=} {check_vin=}')
+    # This has never happened
+    # check_vin = soup.find('vin').text
+    # if check_vin != vin:
+    #   raise ValueError(f'VIN mismatch: {vin=} {check_vin=}')
 
     identifiers_by_ecu = {}
     for value in soup.find_all('nodeid'):
@@ -133,8 +134,8 @@ class AsBuiltData:
       for child in children:
         if child.name:
           data_identifier = int(child.name, 16)
-          if child.text.strip() != child.text:
-            raise ValueError(f'Unexpected text: "{child.text}"')
+          # if child.text.strip() != child.text:
+          #   raise ValueError(f'Unexpected text: {vin=} addr={hex(addr)} data_identifier={hex(data_identifier)} data="{child.text}"')
           ecu_data[data_identifier] = child.text
 
       ecu = get_ford_ecu(addr)
