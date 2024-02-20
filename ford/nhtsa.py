@@ -26,7 +26,13 @@ def decode_nhtsa_vin_values(vin: str) -> dict[str, str] | None:
     url=f'https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValuesExtended/{vin}?format=json',
   )
   data = resp.json()['Results'][0]
-  if 'ErrorCode' in data and data['ErrorCode'] != '0':
+  error_codes = data['ErrorCode'].split(',') if 'ErrorCode' in data else []
+  if '3' in error_codes:
+    suggested_vin = data['SuggestedVIN']
+    print(f'VIN corrected: {vin=} {suggested_vin=}')
+  elif '1' in error_codes:
+    print(f'WARNING: Check digit failed for {vin=}')
+  elif '0' not in error_codes:
     raise ValueError(f'Failed to decode VIN {vin}: code={data["ErrorCode"]}\n{data["ErrorText"]}\n{data["AdditionalErrorText"]}')
 
   with open(path, 'w') as f:
