@@ -673,8 +673,103 @@ class VehicleSettings:
       0x1: 'KPH',
     },
   )
+  pscm_tuning_variant_coding = VehicleSetting(
+    comment='Tuning Variant Coding',
+    ecu=FordEcu.PowerSteeringControlModule,
+    address='01-01',
+    byte_index=1,
+    value_map={
+      0x0: 'No Variant Selected (default)',
+      0x1: 'Variant1',
+      0x2: 'Variant2',
+    },
+  )
+  pscm_can_multi_identity = VehicleSetting(
+    comment='CAN Multi-Identity',
+    ecu=FordEcu.PowerSteeringControlModule,
+    address='01-01',
+    byte_index=2,
+    value_map={
+      0x0: 'CADS 3.5 (default)',
+      0x1: 'DAT 2.0',
+    },
+  )
+  pscm_esc_abs_non_abs = VehicleSetting(
+    comment='ESC / ABS / Non-ABS',
+    ecu=FordEcu.PowerSteeringControlModule,
+    address='01-01',
+    byte_index=4,
+    value_map={
+      0x0: 'Vehicle without ABS',
+      0x1: 'Vehicle with ABS only',
+      0x2: 'Vehicle with ESC and ABS',
+    },
+  )
+  pscm_active_front_steering_equipped = VehicleSetting(
+    comment='Active Front Steering Equipped',
+    ecu=FordEcu.PowerSteeringControlModule,
+    address='01-02',
+    byte_index=0,
+    value_map={
+      0x0: 'Not Present',
+      0x1: 'Present',
+    },
+  )
+  pscm_engine_torque_class = VehicleSetting(
+    comment='Engine Torque Class',
+    ecu=FordEcu.PowerSteeringControlModule,
+    address='01-02',
+    byte_index=1,
+    value_map={
+      0x0: 'Lowest',
+      0x1: 'Low',
+      0x2: 'Medium',
+      0x3: 'High',
+      0x4: 'Highest',
+    },
+  )
+  pscm_active_nibble_control = VehicleSetting(
+    comment='Active Nibble Control (ANC)',
+    ecu=FordEcu.PowerSteeringControlModule,
+    address='02-01',
+    byte_index=1,
+    value_map={
+      0x00: 'Disabled',
+      0xFF: 'Enabled',
+    },
+  )
+  pscm_pull_drift_compensation = VehicleSetting(
+    comment='Pull Drift Compensation (PDC)',
+    ecu=FordEcu.PowerSteeringControlModule,
+    address='02-01',
+    byte_index=2,
+    value_map={
+      0x00: 'Disabled',
+      0xFF: 'Enabled',
+    },
+  )
+  pscm_torque_steer_compensation = VehicleSetting(
+    comment='Torque Steer Compensation (TSC)',
+    ecu=FordEcu.PowerSteeringControlModule,
+    address='02-01',
+    byte_index=3,
+    value_map={
+      0x00: 'Disabled',
+      0xFF: 'Enabled',
+    },
+  )
+  pscm_bpr = VehicleSetting(
+    comment='BPR',
+    ecu=FordEcu.PowerSteeringControlModule,
+    address='02-01',
+    byte_index=4,
+    value_map={
+      0x00: 'Disabled',
+      0xFF: 'Enabled',
+    },
+  )
   pscm_lane_departure_warning = VehicleSetting(
-    comment='Lane Departure Warning',
+    comment='Lane Departure Warning (LDW)',
     ecu=FordEcu.PowerSteeringControlModule,
     address='02-02',
     byte_index=0,
@@ -684,7 +779,7 @@ class VehicleSettings:
     }
   )
   pscm_lane_keeping_aid = VehicleSetting(
-    comment='Lane Keeping Aid',
+    comment='Lane Keeping Aid (LKA)',
     ecu=FordEcu.PowerSteeringControlModule,
     address='02-02',
     byte_index=1,
@@ -694,7 +789,7 @@ class VehicleSettings:
     }
   )
   pscm_traffic_jam_assist = VehicleSetting(
-    comment='Traffic Jam Assist',
+    comment='Traffic Jam Assist (TJA)',
     ecu=FordEcu.PowerSteeringControlModule,
     address='02-02',
     byte_index=2,
@@ -704,7 +799,7 @@ class VehicleSettings:
     }
   )
   pscm_lane_centering_assist = VehicleSetting(
-    comment='Lane Centering Assist',
+    comment='Lane Centering Assist (LCA)',
     ecu=FordEcu.PowerSteeringControlModule,
     address='02-02',
     byte_index=3,
@@ -712,6 +807,113 @@ class VehicleSettings:
       0x0: 'Disabled',
       0xFF: 'Enabled',
     }
+  )
+  pscm_trailer_backup_assist = VehicleSetting(
+    comment='Trailer Backup Assist (TBA)',
+    # TRG = Trailer Reverse Guidance
+    ecu=FordEcu.PowerSteeringControlModule,
+    address='02-02',
+    byte_index=4,
+    value_map={
+      0x0: 'Disabled',
+      0x1: 'Standard',
+      0x2: 'TBA w/ 5th Wheel Enabled',
+      0x3: 'TBA w/ TRG Enabled',
+      0x4: 'TBA w/ 5th Wheel & TRG Enabled',
+    }
+  )
+  pscm_evasive_steering_assist = VehicleSetting(
+    comment='Evasive Steering Assist (ESA)',
+    ecu=FordEcu.PowerSteeringControlModule,
+    address='02-03',
+    byte_index=0,
+    value_map={
+      0x0: 'Disabled',
+      0xFF: 'Enabled',
+    },
+  )
+  pscm_had = VehicleSetting(
+    comment='HAD',
+    ecu=FordEcu.PowerSteeringControlModule,
+    address='02-03',
+    byte_index=1,
+    value_map={
+      0x0: 'Disabled',
+      0xFF: 'Enabled',
+    },
+  )
+  pscm_rf = VehicleSetting(
+    comment='RF',
+    ecu=FordEcu.PowerSteeringControlModule,
+    address='02-05',
+    byte_index=3,
+    value_map={
+      0x0: 'Disabled',
+      0xFF: 'Enabled',
+    },
+  )
+  pscm_active_park_assist = VehicleSetting(
+    comment='SAPP / APA',
+    # SAPP = Semi-Automatic Parallel Parking
+    # APA = Active Park Assist
+    ecu=FordEcu.PowerSteeringControlModule,
+    address='03-01',
+    byte_index=1,
+    value_map={
+      0x0: 'Disabled',
+      0xFF: 'Enabled',
+    },
+  )
+  pscm_active_return = VehicleSetting(
+    comment='Active Return',
+    ecu=FordEcu.PowerSteeringControlModule,
+    address='03-01',
+    byte_index=2,
+    value_map={
+      0x0: 'Disabled',
+      0xFF: 'Enabled',
+    },
+  )
+  pscm_soft_end_stops = VehicleSetting(
+    comment='Soft End Stops',
+    ecu=FordEcu.PowerSteeringControlModule,
+    address='03-01',
+    byte_index=3,
+    value_map={
+      0x0: 'Disabled',
+      0xFF: 'Enabled',
+    },
+  )
+  pscm_start_stop = VehicleSetting(
+    comment='Start/Stop',
+    ecu=FordEcu.PowerSteeringControlModule,
+    address='03-01',
+    byte_index=4,
+    value_map={
+      0x0: 'Disabled',
+      0x1: 'Enabled, Angle Inhibit Enabled',
+      0x2: 'Enabled, Angle Inhibit Disabled',
+    },
+  )
+  pscm_dsr = VehicleSetting(
+    comment='DSR',
+    ecu=FordEcu.PowerSteeringControlModule,
+    address='03-02',
+    byte_index=0,
+    value_map={
+      0x0: 'Disabled',
+      0xFF: 'Enabled',
+    },
+  )
+  pscm_sdm_equipped = VehicleSetting(
+    comment='SDM Equipped',
+    ecu=FordEcu.PowerSteeringControlModule,
+    address='03-02',
+    byte_index=1,
+    value_map={
+      0x0: 'Not Present',
+      0x1: 'Present',
+    },
   )
   # 760-02-01: *xxx-xxxx-xx
   abs_wheel_base = VehicleSetting(

@@ -9,7 +9,7 @@ from tqdm import tqdm
 
 from notebooks.ford.coding import get_data
 from notebooks.ford.download_asbuilt import download
-from notebooks.ford.ecu import FordEcu, get_ford_ecu
+from notebooks.ford.ecu import FordEcu, FordPart, get_ford_ecu
 from notebooks.ford.settings import VehicleSetting
 
 EcuData = dict[int, str]
@@ -60,6 +60,17 @@ class ModuleAsBuiltData:
 class AsBuiltData:
   vin: str
   ecus: dict[FordEcu, ModuleAsBuiltData]
+
+  def is_present(self, ecu: FordEcu | tuple[FordEcu, FordPart]) -> bool:
+    if type(ecu) is tuple:
+      ecu, pn_core = ecu
+      if ecu not in self.ecus:
+        return False
+      pn = self.ecus[ecu].identifiers.get(0xF111)
+      if pn is None:
+        return False
+      return pn.split('-')[1] == pn_core
+    return ecu in self.ecus
 
   def get_identifier(self, ecu: FordEcu, identifier: int) -> str | None:
     if ecu not in self.ecus:
