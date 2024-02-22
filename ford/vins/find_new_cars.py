@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from notebooks.ford.vins import load_csv
-from notebooks.vins.cars_com import Make, Model, search_cars, SortBy, StockType
+from notebooks.ford.vins.cars_com import Make, Model, search_cars, SortBy, StockType
 
 
 def find_new_cars():

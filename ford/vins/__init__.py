@@ -1,11 +1,10 @@
-import re
 from pathlib import Path
 
 import pandas as pd
 
 from notebooks.ford.asbuilt import check_asbuilt, get_missing_asbuilt
 
-DATA_DIR = Path(__file__).parent / 'data'
+DATA_DIR = Path(__file__).parent.parent / 'data'
 
 
 def load_csv() -> pd.DataFrame:
