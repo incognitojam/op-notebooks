@@ -32,7 +32,8 @@ def decode_nhtsa_vin_values(vin: str) -> dict[str, str] | None:
     print(f'VIN corrected: {vin=} {suggested_vin=}')
   elif '1' in error_codes:
     print(f'WARNING: Check digit failed for {vin=}')
-  elif '0' not in error_codes:
+
+  if '0' not in error_codes:
     raise ValueError(f'Failed to decode VIN {vin}: code={data["ErrorCode"]}\n{data["ErrorText"]}\n{data["AdditionalErrorText"]}')
 
   with open(path, 'w') as f:
