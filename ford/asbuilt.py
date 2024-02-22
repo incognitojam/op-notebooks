@@ -1,3 +1,4 @@
+import pickle
 import random
 from collections import defaultdict
 from dataclasses import dataclass
@@ -50,10 +51,17 @@ def check_asbuilt(vins: list[str]):
   print(f'Loaded AsBuilt data for {len(vins)} VINs')
 
 
+def get_asbuilt_processed_path(vin: str) -> Path:
+  return ASBUILT_DIR / f'{vin}.pkl'
+
+
 @dataclass
 class ModuleAsBuiltData:
   identifiers: dict[int, str]
   configuration: dict[str, bytes] | None
+
+
+AS_BUILT_DATA_VERSION = 1
 
 
 @dataclass
@@ -129,6 +137,15 @@ class AsBuiltData:
   @staticmethod
   @cache
   def from_vin(vin: str) -> 'AsBuiltData':
+    abp = get_asbuilt_processed_path(vin)
+    if abp.is_file():
+      try:
+        version, abd = AsBuiltData.load_from_file(abp)
+        if version == AS_BUILT_DATA_VERSION:
+          return abd
+      except Exception as e:
+        print(f'Failed to load {abp}: {e}')
+
     with open(get_asbuilt_path(vin), 'r') as f:
       soup = BeautifulSoup(f, 'lxml')
 
@@ -184,4 +201,19 @@ class AsBuiltData:
     for ecu, identifiers in identifiers_by_ecu.items():
       ecus[ecu] = ModuleAsBuiltData(identifiers, configuration_by_ecu.get(ecu, None))
 
-    return AsBuiltData(vin, ecus)
+    abd = AsBuiltData(vin, ecus)
+    abd.save_to_file(abp)
+    return abd
+
+  def save_to_file(self, path: Path):
+    with open(path, 'wb') as f:
+      data = (AS_BUILT_DATA_VERSION, self)
+      pickle.dump(data, f)
+
+  @staticmethod
+  def load_from_file(path: Path) -> tuple[int, 'AsBuiltData']:
+    with open(path, 'rb') as f:
+      data = pickle.load(f)
+      if type(data) is tuple:
+        return data
+      return 1, data
