@@ -33,6 +33,8 @@ def test_convert_forscan_label():
   assert convert_forscan_label_to_block_id_and_offset('01-02') == (0, 5)
   assert convert_forscan_label_to_block_id_and_offset('02-01') == (1, 0)
   assert convert_forscan_label_to_block_id_and_offset('02-03') == (1, 10)
+  assert convert_forscan_label_to_block_id_and_offset('02-10') == (1, 45)
+  assert convert_forscan_label_to_block_id_and_offset('10-01') == (9, 0)
 
 
 if __name__ == '__main__':

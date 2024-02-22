@@ -1,11 +1,11 @@
-def get_data(code: bytes, byte_index: int, mask: int) -> int:
-  if byte_index < 0 or byte_index >= len(code):
-    raise KeyError(f'Invalid byte index: {byte_index}')
+def get_data(code: bytes, offset: int, mask: int) -> int:
+  if offset < 0 or offset >= len(code):
+    raise KeyError(f'Invalid offset: {offset}')
   if mask == 0:
     raise ValueError('Mask cannot be 0')
 
   byte_length = (mask.bit_length() + 7) // 8
-  data = int.from_bytes(code[byte_index:byte_index + byte_length], 'big')
+  data = int.from_bytes(code[offset:offset + byte_length], 'big')
   masked_data = data & mask
 
   shift_amount = (mask ^ (mask - 1)).bit_length() - 1
@@ -20,6 +20,6 @@ def convert_forscan_label_to_block_id_and_offset(label: str) -> tuple[int, int]:
   from data identifier 0xDE + 0x00 and the second field begins at the 5th byte.
   """
   block, field = label.split('-')
-  block = int(block, 16) - 1
-  field = int(field, 16) - 1
+  block = int(block, 10) - 1
+  field = int(field, 10) - 1
   return block, field * 5
