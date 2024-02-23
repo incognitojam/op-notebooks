@@ -105,6 +105,6 @@ class FordPart(StrEnum):
 
 def get_ford_ecu(addr: int) -> FordEcu | None:
   if addr not in FordEcu.__members__.values():
-    print(f'Unknown ECU address: {addr} ({hex(addr)})')
+    # print(f'Unknown ECU address: {addr} ({hex(addr)})')
     return None
   return FordEcu(addr)
