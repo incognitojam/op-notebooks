@@ -163,11 +163,19 @@ class AsBuiltData:
       addr = int(str(next(children)).strip(), 16)
       ecu_data = {}
       for child in children:
-        if child.name:
-          data_identifier = int(child.name, 16)
-          # if child.text.strip() != child.text:
+        if not child.name:
+          continue
+        data_identifier = child.name.upper()
+        if data_identifier == 'F1XC':
+          print(f'Non-standard identifier: F1XC {vin=} addr={hex(addr)}')
+          data_identifier = 'F18C'
+        try:
+          data_identifier = int(data_identifier, 16)
+        except ValueError as e:
+          raise ValueError(f'Failed to parse {vin=} addr={hex(addr)} data_identifier="{child.name}"') from e
+        # if child.text.strip() != child.text:
           #   raise ValueError(f'Unexpected text: {vin=} addr={hex(addr)} data_identifier={hex(data_identifier)} data="{child.text}"')
-          ecu_data[data_identifier] = child.text
+        ecu_data[data_identifier] = child.text
 
       ecu = get_ford_ecu(addr)
       if ecu is None:
