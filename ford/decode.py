@@ -42,6 +42,13 @@ def transform_series(row):
   return series
 
 
+def fix_model(row):
+  model, electrification_level = row['Model'], row['ElectrificationLevel']
+  if model == 'F-150' and electrification_level == 'BEV':
+    return 'F-150 Lightning'
+  return model
+
+
 TRANSFORM_PROPERTIES = {
   'DisplacementL': lambda x: round(float(x['DisplacementL']), 1) if x['DisplacementL'] else None,
   # 'DriveType': lambda x: '4WD' if '4WD' in x else 'RWD',
@@ -49,6 +56,7 @@ TRANSFORM_PROPERTIES = {
   'ElectrificationLevel': transform_electrification_level,
   'ModelYear': lambda x: int(x['ModelYear']),
   'Series': transform_series,
+  'Model': fix_model,
 }
 
 
@@ -63,7 +71,6 @@ async def search(
   vins = await search_vins(searches, include_openpilot=include_openpilot, skip_missing_asbuilt=skip_missing_asbuilt)
   df_nhtsa = await decode_vins(vins)
 
-  # TODO: change F-150 BEV to F-150 Lightning
   for column, func in TRANSFORM_PROPERTIES.items():
     df_nhtsa[column] = df_nhtsa.apply(func, axis=1)
 
