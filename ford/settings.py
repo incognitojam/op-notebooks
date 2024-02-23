@@ -474,7 +474,7 @@ class VehicleSettings:
   ipma_vehicle_cfg_transmission_type = VehicleSetting(
     comment='VehicleCfg_TransmissionType',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
-    block_id=19,
+    block_id=13,
     offset=0,
     bit_mask=0x08,
     value_map={
@@ -485,7 +485,7 @@ class VehicleSettings:
   ipma_vehicle_cfg_acc_type = VehicleSetting(
     comment='VehicleCfg_ACCType',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
-    block_id=21,
+    block_id=15,
     offset=0,
     bit_mask=0b00110000,
     value_map={
@@ -496,7 +496,7 @@ class VehicleSettings:
   ipma_vehicle_cfg_windshield_type = VehicleSetting(
     comment='VehicleCfg_WindshieldType',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
-    block_id=21,
+    block_id=15,
     offset=0,
     bit_mask=0b00000110,
     value_map={
@@ -508,7 +508,7 @@ class VehicleSettings:
   ipma_vehicle_cfg_gear_shift_by_wire = VehicleSetting(
     comment='VehicleCfg_GearShiftByWire',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
-    block_id=21,
+    block_id=15,
     offset=1,
     bit_mask=0b11000000,
     value_map={
@@ -520,7 +520,7 @@ class VehicleSettings:
   ipma_vehicle_cfg_engine = VehicleSetting(
     comment='VehicleCfg_Engine',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
-    block_id=23,
+    block_id=17,
     offset=0,
     value_map={
       0x0: 'Undefined',
@@ -542,7 +542,7 @@ class VehicleSettings:
   ipma_vehicle_cfg_steering_ratio = VehicleSetting(
     comment='VehicleCfg_SteeringRatio',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
-    block_id=23,
+    block_id=17,
     offset=1,
     bit_mask=0xFFF0,
     value_map=lambda x: x,
@@ -550,7 +550,7 @@ class VehicleSettings:
   ipma_vehicle_cfg_start_stop = VehicleSetting(
     comment='VehicleCfg_StartStop',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
-    block_id=23,
+    block_id=17,
     offset=3,
     bit_mask=0x08,
     value_map={
@@ -561,13 +561,13 @@ class VehicleSettings:
   ipma_vehicle_cfg_steer_vehicle_type = VehicleSetting(
     comment='VehicleCfg_Steer_VehicleType',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
-    block_id=23,
+    block_id=17,
     offset=4,
   )
   ipma_vehicle_cfg_vehicle_type = VehicleSetting(
     comment='VehicleCfg_VehicleType',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
-    block_id=31,
+    block_id=19,
     offset=5,
     value_map={
       0x7: 'F-150 BEV',  # not confirmed
@@ -576,13 +576,13 @@ class VehicleSettings:
   ipma_vehicle_cfg_ccm_vehicle_type = VehicleSetting(
     comment='VehicleCfg_CCM_VehicleType',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
-    block_id=31,
+    block_id=19,
     offset=7,
   )
   ipma_vehicle_cfg_overall_length = VehicleSetting(
     comment='VehicleCfg_OverallLength',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
-    block_id=32,
+    block_id=20,
     offset=0,
     bit_mask=0xFFFF,
     value_map=lambda x: x,
@@ -590,7 +590,7 @@ class VehicleSettings:
   ipma_vehicle_cfg_wheelbase = VehicleSetting(
     comment='VehicleCfg_Wheelbase',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
-    block_id=32,
+    block_id=20,
     offset=2,
     bit_mask=0xFFFF,
     value_map=lambda x: x,
@@ -598,7 +598,7 @@ class VehicleSettings:
   ipma_vehicle_cfg_front_axle_to_bumper = VehicleSetting(
     comment='VehicleCfg_FrontAxleToBumper',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
-    block_id=32,
+    block_id=20,
     offset=4,
     bit_mask=0xFFFF,
     value_map=lambda x: x,
@@ -606,7 +606,7 @@ class VehicleSettings:
   ipma_vehicle_cfg_rear_axle_to_bumper = VehicleSetting(
     comment='VehicleCfg_RearAxleToBumper',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
-    block_id=32,
+    block_id=20,
     offset=6,
     bit_mask=0xFFFF,
     value_map=lambda x: x,
@@ -614,7 +614,7 @@ class VehicleSettings:
   ipma_vehicle_cfg_width = VehicleSetting(
     comment='VehicleCfg_Width',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
-    block_id=32,
+    block_id=20,
     offset=8,
     bit_mask=0xFFFF,
     value_map=lambda x: x,
@@ -622,7 +622,7 @@ class VehicleSettings:
   ipma_vehicle_cfg_width_with_mirror = VehicleSetting(
     comment='VehicleCfg_WidthWithMirror',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
-    block_id=32,
+    block_id=20,
     offset=10,
     bit_mask=0xFFFF,
     value_map=lambda x: x,
@@ -630,7 +630,7 @@ class VehicleSettings:
   ipma_vehicle_cfg_frnt_trck_width_center = VehicleSetting(
     comment='VehicleCfg_FrntTrckWidthCenter',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
-    block_id=32,
+    block_id=20,
     offset=12,
     bit_mask=0xFFFF,
     value_map=lambda x: x,
@@ -638,14 +638,14 @@ class VehicleSettings:
   ipma_vehicle_cfg_frnt_trck_width_outside = VehicleSetting(
     comment='VehicleCfg_FrntTrckWidthOutside',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
-    block_id=32,
+    block_id=20,
     offset=14,
     bit_mask=0xFFFF,
   )
   ipma_vehicle_cfg_rear_trck_width_center = VehicleSetting(
     comment='VehicleCfg_RearTrckWidthCenter',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
-    block_id=32,
+    block_id=20,
     offset=16,
     bit_mask=0xFFFF,
     value_map=lambda x: x,
@@ -653,7 +653,7 @@ class VehicleSettings:
   ipma_vehicle_cfg_rear_trck_width_outside = VehicleSetting(
     comment='VehicleCfg_RearTrckWidthOutside',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
-    block_id=32,
+    block_id=20,
     offset=18,
     bit_mask=0xFFFF,
     value_map=lambda x: x,
@@ -2001,7 +2001,7 @@ class VehicleSettings:
   apim_sync4_bench_setup = VehicleSetting(
     comment='Bench Setup',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
-    block_id=15,
+    block_id=9,
     offset=15,
     bit_mask=0x0F,
     value_map={
