@@ -44,8 +44,11 @@ def transform_series(row):
 
 def fix_model(row):
   model, electrification_level = row['Model'], row['ElectrificationLevel']
-  if model == 'F-150' and electrification_level == 'BEV':
-    return 'F-150 Lightning'
+  if electrification_level == 'BEV':
+    if model == 'F-150':
+      return 'F-150 Lightning'
+    if model == 'Transit':
+      return 'E-Transit'
   return model
 
 
