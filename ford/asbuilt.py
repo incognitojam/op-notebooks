@@ -75,6 +75,8 @@ class ModuleAsBuiltData:
 
 AS_BUILT_DATA_VERSION = 2
 
+DATA_IDENTIFIER_PART_NUMBER = 0xF111
+
 
 @dataclass
 class AsBuiltData:
@@ -86,10 +88,12 @@ class AsBuiltData:
       ecu, pn_core = ecu
       if ecu not in self.ecus:
         return None
-      pn = self.ecus[ecu].identifiers.get(0xF111)
+      pn = self.ecus[ecu].identifiers.get(DATA_IDENTIFIER_PART_NUMBER)
       if pn is None:
         return None
-      return pn.split('-')[1] == pn_core
+      if pn.split('-')[1] != pn_core:
+        return None
+      return ecu
     if ecu not in self.ecus:
       return None
     return ecu
