@@ -13,9 +13,6 @@ if not NHTSA_DIR.is_dir():
   NHTSA_DIR.mkdir(exist_ok=True)
 
 
-semaphore = asyncio.Semaphore(5)
-
-
 def get_nhtsa_path(vin: str) -> Path:
   return NHTSA_DIR / f'{vin}.json'
 
@@ -26,10 +23,10 @@ async def decode_nhtsa_vin_values(vin: str, session: aiohttp.ClientSession) -> d
     with open(path, 'r') as f:
       return json.load(f)
 
-  async with semaphore:
-    async with session.get(f'https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValuesExtended/{vin}?format=json') as response:
-      response.raise_for_status()
-      data = await response.json()
+  async with session.get(f'https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValuesExtended/{vin}?format=json') as response:
+    await asyncio.sleep(random.random() * 60)
+    response.raise_for_status()
+    data = await response.json()
 
   data = data['Results'][0]
   error_codes = data['ErrorCode'].split(',') if 'ErrorCode' in data else []
