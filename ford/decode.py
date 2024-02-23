@@ -77,13 +77,14 @@ async def search(
   return df_nhtsa
 
 
-def print_breakdown(df: pd.DataFrame) -> None:
+def print_breakdown(df: pd.DataFrame, include_model_year=True) -> None:
   max_columns, max_rows = pd.get_option('display.max_columns'), pd.get_option('display.max_rows')
   pd.set_option('display.max_columns', None)
   pd.set_option('display.max_rows', None)
   print(df.groupby(by=['Model']).size())
-  print()
-  print(df.groupby(by=['Model', 'ModelYear']).size())
+  if include_model_year:
+    print()
+    print(df.groupby(by=['Model', 'ModelYear']).size())
   pd.set_option('display.max_columns', max_columns)
   pd.set_option('display.max_rows', max_rows)
 

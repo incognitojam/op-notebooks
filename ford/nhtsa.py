@@ -74,5 +74,4 @@ async def decode_vins(vins: set[str]) -> pd.DataFrame:
     errors='ignore',
   )
 
-  print(f'Decoded {len(df)} VINs')
   return df

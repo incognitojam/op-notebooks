@@ -91,7 +91,10 @@ class AsBuiltData:
       pn = self.ecus[ecu].identifiers.get(DATA_IDENTIFIER_PART_NUMBER)
       if pn is None:
         return None
-      if pn.split('-')[1] != pn_core:
+      parts = pn.split('-')
+      if len(parts) < 3:
+        return None
+      if parts[1] != pn_core:
         return None
       return ecu
     if ecu not in self.ecus:
