@@ -63,6 +63,7 @@ async def search(
   vins = await search_vins(searches, include_openpilot=include_openpilot, skip_missing_asbuilt=skip_missing_asbuilt)
   df_nhtsa = await decode_vins(vins)
 
+  # TODO: change F-150 BEV to F-150 Lightning
   for column, func in TRANSFORM_PROPERTIES.items():
     df_nhtsa[column] = df_nhtsa.apply(func, axis=1)
 
