@@ -1,3 +1,6 @@
+from collections import defaultdict
+
+
 def get_data(code: bytes, offset: int, mask: int) -> int:
   if offset < 0 or offset >= len(code):
     raise KeyError(f'Invalid offset: {offset}')
@@ -23,3 +26,22 @@ def convert_forscan_label_to_block_id_and_offset(label: str) -> tuple[int, int]:
   block = int(block, 10) - 1
   field = int(field, 10) - 1
   return block, field * 5
+
+
+def convert_forscan_dict_to_blocks(data: dict[str, bytes]) -> list[bytes]:
+  blocks = defaultdict(dict)
+
+  for label, value in data.items():
+    block, offset = convert_forscan_label_to_block_id_and_offset(label)
+    blocks[block][offset] = value
+
+  result = []
+  for block_id, block in sorted(blocks.items()):
+    assert block_id >= len(result), f'expected {block_id=} to be greater than or equal to {len(result)}'
+    block_data = bytearray()
+    for offset, value in sorted(block.items()):
+      assert offset == len(block_data), f'expected {offset=} to be {len(block_data)}'
+      block_data += value
+    result.append(bytes(block_data))
+
+  return result

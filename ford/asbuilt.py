@@ -8,7 +8,7 @@ from pathlib import Path
 from bs4 import BeautifulSoup
 from tqdm import tqdm
 
-from notebooks.ford.coding import get_data
+from notebooks.ford.coding import get_data, convert_forscan_dict_to_blocks
 from notebooks.ford.download_asbuilt import download
 from notebooks.ford.ecu import FordEcu, FordPart, get_ford_ecu
 from notebooks.ford.settings import VehicleSetting
@@ -58,10 +58,10 @@ def get_asbuilt_processed_path(vin: str) -> Path:
 @dataclass
 class ModuleAsBuiltData:
   identifiers: dict[int, str]
-  configuration: dict[str, bytes] | None
+  configuration: list[bytes] | None
 
 
-AS_BUILT_DATA_VERSION = 1
+AS_BUILT_DATA_VERSION = 2
 
 
 @dataclass
@@ -69,16 +69,21 @@ class AsBuiltData:
   vin: str
   ecus: dict[FordEcu, ModuleAsBuiltData]
 
-  def is_present(self, ecu: FordEcu | tuple[FordEcu, FordPart]) -> bool:
+  def get_ecu(self, ecu: FordEcu | tuple[FordEcu, FordPart]) -> FordEcu | None:
     if type(ecu) is tuple:
       ecu, pn_core = ecu
       if ecu not in self.ecus:
-        return False
+        return None
       pn = self.ecus[ecu].identifiers.get(0xF111)
       if pn is None:
-        return False
+        return None
       return pn.split('-')[1] == pn_core
-    return ecu in self.ecus
+    if ecu not in self.ecus:
+      return None
+    return ecu
+
+  def is_present(self, ecu: FordEcu | tuple[FordEcu, FordPart]) -> bool:
+    return self.get_ecu(ecu) is not None
 
   def get_identifier(self, ecu: FordEcu, identifier: int) -> str | None:
     if ecu not in self.ecus:
@@ -91,32 +96,14 @@ class AsBuiltData:
     return self.ecus[ecu].configuration
 
   def get_setting_data(self, setting: VehicleSetting) -> int | None:
-    if type(setting.ecu) is tuple:
-      ecu, pn_core = setting.ecu
-      if ecu not in self.ecus:
-        return None
-      pn = self.ecus[ecu].identifiers.get(0xF111)
-      if pn is None:
-        return None
-      if pn.split('-')[1] != pn_core:
-        return None
-    elif setting.ecu not in self.ecus:
-      # raise ValueError(f'Missing ECU: {setting.ecu}')
+    ecu = self.get_ecu(setting.ecu)
+    if ecu is None:
       return None
-    else:
-      ecu = setting.ecu
     configuration = self.get_configuration(ecu)
-    if configuration is None:
-      # raise ValueError(f'Missing configuration for ECU: {ecu}')
+    if configuration is None or setting.block_id >= len(configuration):
       return None
-    code = configuration.get(setting.address, None)
-    if code is None:
-      # raise ValueError(f'No configuration for address: {setting}')
-      return None
-    if setting.byte_index < 0 or setting.byte_index >= len(code):
-      # raise KeyError(f'Invalid byte index: {code=} {setting}')
-      return None
-    value = get_data(code, setting.byte_index, setting.bit_mask)
+    block = configuration[setting.block_id]
+    value = get_data(block, setting.offset, setting.bit_mask)
     # print('get_setting_data', setting)
     # print(f'data={bin(data)} ({hex(data)}) mask={bin(mask)} value={bin(value)}')
     return value
@@ -168,7 +155,7 @@ class AsBuiltData:
 
       ecu = get_ford_ecu(addr)
       if ecu is None:
-        print(hex(addr), ecu_data)
+        # print(hex(addr), ecu_data)
         continue
       identifiers_by_ecu[ecu] = ecu_data
 
@@ -189,17 +176,25 @@ class AsBuiltData:
         continue
 
       # note: last byte is usually checksum
-      codes = [code.text for code in data.find_all('code')]
-      data = bytearray.fromhex(''.join(codes))
-
-      configuration_by_ecu[ecu][label] = data
+      try:
+        codes = [code.text for code in data.find_all('code')]
+        block = ''.join(codes)
+        if block.startswith('BLANK'):
+          print(f'Blank block: {vin=} {ecu=} {label=}')
+          data = b''
+        else:
+          data = bytearray.fromhex(block)
+        configuration_by_ecu[ecu][label] = data[:-1]
+      except Exception as e:
+        raise ValueError(f'Failed to parse {vin=} {ecu=} {label=} {codes=}') from e
 
     if len(configuration_by_ecu) == 0:
       raise ValueError(f'No configuration data for {vin=}')
 
     ecus = {}
     for ecu, identifiers in identifiers_by_ecu.items():
-      ecus[ecu] = ModuleAsBuiltData(identifiers, configuration_by_ecu.get(ecu, None))
+      blocks = configuration_by_ecu.get(ecu, None)
+      ecus[ecu] = ModuleAsBuiltData(identifiers, convert_forscan_dict_to_blocks(blocks) if blocks else None)
 
     abd = AsBuiltData(vin, ecus)
     abd.save_to_file(abp)
