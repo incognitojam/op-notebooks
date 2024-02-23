@@ -17,12 +17,19 @@ def get_settings(vin: str) -> pd.DataFrame:
       first = False
     else:
       rows.append(['', ''])
+      rows.append(['', ''])
 
-    ecu_name = f'{ecu[0].name} ({ecu[1]})' if type(ecu) is tuple else ecu.name
+    if type(ecu) is tuple:
+      ecu_name = f'{ecu[0].name} ({ecu[1]})'
+    else:
+      ecu_name = ecu.name
 
     if not abd.is_present(ecu):
       rows.append([ecu_name, 'not present'])
       continue
+
+    if type(ecu) is tuple:
+      ecu = ecu[0]
 
     rows.append([ecu_name, ''])
     rows.append(['part', abd.get_identifier(ecu, 0xF111)])
