@@ -545,7 +545,7 @@ class VehicleSettings:
     block_id=17,
     offset=1,
     bit_mask=0xFFF0,
-    value_map=lambda x: x,
+    value_map=lambda x: x * 0.01,
   )
   ipma_vehicle_cfg_start_stop = VehicleSetting(
     comment='VehicleCfg_StartStop',
@@ -593,7 +593,7 @@ class VehicleSettings:
     block_id=20,
     offset=2,
     bit_mask=0xFFFF,
-    value_map=lambda x: x,
+    value_map=lambda x: f'{x * 0.001:.2f} m',
   )
   ipma_vehicle_cfg_front_axle_to_bumper = VehicleSetting(
     comment='VehicleCfg_FrontAxleToBumper',
@@ -918,12 +918,12 @@ class VehicleSettings:
     offset=0,
     bit_mask=0xF0,
     value_map={
-      0x1: '122in',
-      0x2: '141in',
-      0x3: '145in',
-      0x4: '157in',
-      0x5: '163in',
-      0x7: '133in',
+      0x1: f'{122 * 0.0254:.2f} m',
+      0x2: f'{141 * 0.0254:.2f} m',
+      0x3: f'{145 * 0.0254:.2f} m',
+      0x4: f'{157 * 0.0254:.2f} m',
+      0x5: f'{163 * 0.0254:.2f} m',
+      0x7: f'{133 * 0.0254:.2f} m',
     },
   )
   abs_payload = VehicleSetting(
@@ -1254,14 +1254,13 @@ class VehicleSettings:
       0x42: 'Ford F-600',
     },
   )
-  # Front Track (Inches) (HEX = DEC X .01 = VALUE)
   apim_front_track = VehicleSetting(
     comment='Front Track',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
     block_id=4,
     offset=0,
     bit_mask=0xFFFF,
-    value_map=lambda value: f'{value * 0.01:.2f} in',
+    value_map=lambda value: f'{value * 0.01 * 0.0254:.2f} m',
   )
   apim_rear_track = VehicleSetting(
     comment='Rear Track',
@@ -1269,7 +1268,7 @@ class VehicleSettings:
     block_id=4,
     offset=2,
     bit_mask=0xFFFF,
-    value_map=lambda value: f'{value * 0.01:.2f} in',
+    value_map=lambda value: f'{value * 0.01 * 0.0254:.2f} m',
   )
   apim_wheel_base = VehicleSetting(
     comment='Wheel Base',
@@ -1277,7 +1276,7 @@ class VehicleSettings:
     block_id=4,
     offset=4,
     bit_mask=0xFFFF,
-    value_map=lambda value: f'{value * 0.01:.2f} in',
+    value_map=lambda value: f'{value * 0.01 * 0.0254:.2f} m',
   )
   apim_vehicle_weight = VehicleSetting(
     comment='Vehicle Weight',
@@ -1291,7 +1290,7 @@ class VehicleSettings:
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
     block_id=6,
     offset=13,
-    value_map=lambda value: f'{(value + 100) * 0.393701:.2f} in',
+    value_map=lambda value: f'{(value + 100) * 0.01:.2f} m',
   )
   apim_distance_from_ip_to_rear_axle = VehicleSetting(
     comment='Distance from IP to Rear Axle',
@@ -1299,7 +1298,7 @@ class VehicleSettings:
     block_id=6,
     offset=14,
     bit_mask=0xFFFF,
-    value_map=lambda value: f'{(value + 100) * 0.393701:.2f} in',
+    value_map=lambda value: f'{(value + 100) * 0.01:.2f} m',
   )
   apim_adaptive_cruise_menu = VehicleSetting(
     comment='ACC Menu',
@@ -1712,7 +1711,7 @@ class VehicleSettings:
     block_id=5,
     offset=0,
     bit_mask=0xFFFF,
-    value_map=lambda value: f'{value} in',
+    value_map=lambda value: f'{value * 0.01 * 0.0254:.2f} m',
   )
   apim_sync4_rear_track = VehicleSetting(
     comment='Rear Track',
@@ -1720,7 +1719,7 @@ class VehicleSettings:
     block_id=5,
     offset=2,
     bit_mask=0xFFFF,
-    value_map=lambda value: f'{value} in',
+    value_map=lambda value: f'{value * 0.01 * 0.0254:.2f} m',
   )
   apim_sync4_wheel_base = VehicleSetting(
     comment='Wheel Base',
@@ -1728,42 +1727,42 @@ class VehicleSettings:
     block_id=5,
     offset=4,
     bit_mask=0xFFFF,
-    value_map=lambda x: x,
+    value_map=lambda value: f'{value * 0.01 * 0.0254:.2f} m',
   )
   apim_sync4_vehicle_weight = VehicleSetting(
     comment='Vehicle Weight',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
     block_id=6,
     offset=0,
-    value_map=lambda value: f'{value} kg',
+    value_map=lambda value: f'{value * 100} kg',
   )
   apim_sync4_eco_route_curve = VehicleSetting(
     comment='ECO Route Curve',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
     block_id=6,
     offset=1,
-    value_map=lambda value: value,
+    value_map=lambda value: value + 1,  # unitless
   )
   apim_sync4_powertrain_efficiency = VehicleSetting(
     comment='Powertrain Efficiency',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
     block_id=6,
     offset=2,
-    value_map=lambda value: f'{value * (1/255):.2f}%',
+    value_map=lambda value: f'{value * 0.39215:.2f}%',
   )
   apim_sync4_regenerative_braking_efficiency_highway = VehicleSetting(
     comment='Regenerative Braking Efficiency Highway',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
     block_id=6,
     offset=3,
-    value_map=lambda value: f'{value * (1/255):.2f}%',
+    value_map=lambda value: f'{value * 0.39215:.2f}%',
   )
   apim_sync4_regenerative_braking_efficiency_city = VehicleSetting(
     comment='Regenerative Braking Efficiency City',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
     block_id=6,
     offset=4,
-    value_map=lambda value: f'{value * (1/255):.2f}%',
+    value_map=lambda value: f'{value * 0.39215:.2f}%',
   )
   apim_sync4_install_angle_of_apim_for_accelerometer_x = VehicleSetting(
     comment='Install Angle of APIM for Accelerometer X',
