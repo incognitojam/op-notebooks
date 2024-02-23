@@ -1,21 +1,10 @@
 #!/usr/bin/env python3
+import asyncio
+
 import pandas as pd
 
 from notebooks.ford.nhtsa import decode_vins
 from notebooks.ford.vins import search_vins
-
-
-# Interesting properties
-# - Make
-# - Model
-# - ModelYear
-# - DriveType (FWD, RWD, 4WD...)
-# - ElectrificationLevel (ICE, HEV, PHEV, BEV)
-# - FuelType (Gasoline, Diesel, Electric, Hydrogen)
-# - TransmissionStyle (Automatic, Manual)
-# - DisplacementL (1.0, 1.5, 2.0...)
-# - Trim
-# - BodyCabType
 
 
 def transform_drive_type(row):
@@ -63,7 +52,7 @@ TRANSFORM_PROPERTIES = {
 }
 
 
-def search(
+async def search(
   searches: list[str] | None = None,
   include_openpilot = False,
   include_police = False,
@@ -71,8 +60,8 @@ def search(
   max_model_year: int | None = None,
   skip_missing_asbuilt = False,
 ) -> pd.DataFrame:
-  vins = search_vins(searches, include_openpilot=include_openpilot, skip_missing_asbuilt=skip_missing_asbuilt)
-  df_nhtsa = decode_vins(vins)
+  vins = await search_vins(searches, include_openpilot=include_openpilot, skip_missing_asbuilt=skip_missing_asbuilt)
+  df_nhtsa = await decode_vins(vins)
 
   for column, func in TRANSFORM_PROPERTIES.items():
     df_nhtsa[column] = df_nhtsa.apply(func, axis=1)
@@ -111,13 +100,13 @@ if __name__ == '__main__':
   parser.add_argument('--max-model-year', type=int)
   args = parser.parse_args()
 
-  df = search(
+  df = asyncio.run(search(
     args.searches,
     include_openpilot=args.include_openpilot,
     include_police=args.include_police,
     min_model_year=args.min_model_year,
     max_model_year=args.max_model_year,
-  )
+  ))
 
   print()
   print_breakdown(df)

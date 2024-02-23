@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
+import asyncio
 import json
+import random
 import urllib.parse
 from enum import StrEnum
 from typing import Literal
 
-import requests
+import aiohttp
 from bs4 import BeautifulSoup
 from pydantic import BaseModel
 
@@ -115,20 +117,20 @@ class Vehicle(BaseModel):
   trim: str | None
   # cat: str
   # customer_id: int
-  stock_type: Literal['New', 'Used']
+  # stock_type: Literal['New', 'Used']
   vin: str
   # seller_type: Literal['dealership']
   # certified_preowned: bool
   # listing_id: str
-  mileage: int | None
+  # mileage: int | None
   sponsored: bool
   # nvi_program: bool
-  exterior_color: str | None
-  fuel_type: Literal['Bio Diesel', 'Diesel', 'Diesel (B20 capa', 'E85 Flex Fuel', 'Electric', 'Flexible Fuel', 'Gasoline', 'Hybrid', 'Plug-In Hybrid'] | None
+  # exterior_color: str | None
+  # fuel_type: Literal['Bio Diesel', 'Diesel', 'Diesel (B20 capa', 'Diesel (B20 capable)', 'E85 Flex Fuel', 'Electric', 'Flexible Fuel', 'Gasoline', 'Hybrid', 'Other', 'Plug-In Hybrid', 'Regular Unleaded'] | None
   # msrp: str | None
   # sponsored_type: Literal['inventory_ad', 'standard']
-  price: int | None
-  bodystyle: Literal['', 'Cargo Van', 'Convertible', 'Coupe', 'Hatchback', 'Passenger Van', 'Pickup Truck', 'Sedan', 'SUV', 'Wagon']
+  # price: int | None
+  # bodystyle: Literal['', 'Cargo Van', 'Convertible', 'Coupe', 'Hatchback', 'Passenger Van', 'Pickup Truck', 'Sedan', 'SUV', 'Wagon']
   # cpo_indicator: bool
   # badges: list[Literal['cpo', 'fair_deal', 'good_deal', 'great_deal', 'hot_car', 'price_drop_in_cents']]
   # stock_sub: str
@@ -138,7 +140,10 @@ class Vehicle(BaseModel):
     return f'Vehicle({self.model_dump()})'
 
 
-def search_cars(
+semaphore = asyncio.Semaphore(8)
+
+
+async def search_cars(
   keyword: str | None = None,
   list_price_max: int | None = None,
   list_price_min: int | None = None,
@@ -154,6 +159,7 @@ def search_cars(
   year_min: int | None = None,
   page_size: int = 20,
   page: int | None = None,
+  session: aiohttp.ClientSession | None = None,
 ):
   params = {
     'keyword': keyword,
@@ -175,22 +181,29 @@ def search_cars(
   query_string = urllib.parse.urlencode({k: v for k, v in params.items() if v is not None}, doseq=True)
   url = f'https://www.cars.com/shopping/results/?{query_string}'
 
-  response = requests.get(url)
-  response.raise_for_status()
+  session = session or aiohttp.ClientSession()
+  async with semaphore:
+    await asyncio.sleep(random.random() * 0.1)
+    async with session.get(url) as response:
+      response.raise_for_status()
+      text = await response.text()
 
-  soup = BeautifulSoup(response.text, 'html.parser')
+  soup = BeautifulSoup(text, 'html.parser')
   element = soup.find('div', id='search-live-content')
 
   # TODO: validate this
   if not element:
     raise ValueError('No search results found')
 
+  vehicles = []
   data_site_activity = json.loads(element.get('data-site-activity'))
   for data in data_site_activity['vehicleArray']:
     vehicle = Vehicle.model_validate(data)
     if vehicle.sponsored:
       continue
-    yield vehicle
+    vehicles.append(vehicle)
+
+  return vehicles
 
 
 def int_or_all(value: str | None) -> int | Literal['all']:
@@ -232,7 +245,7 @@ if __name__ == '__main__':
   if not include:
     exclude = (exclude or []) + ['sponsored']
 
-  cars = list(search_cars(
+  cars = asyncio.run(search_cars(
     keyword=args.keyword,
     list_price_max=args.list_price_max,
     list_price_min=args.list_price_min,

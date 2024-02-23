@@ -1,10 +1,11 @@
+import asyncio
 import json
 import random
-import requests
 from pathlib import Path
 
+import aiohttp
 import pandas as pd
-from tqdm import tqdm
+from tqdm.asyncio import tqdm
 
 NHTSA_DIR = Path(__file__).parent / 'data' / 'nhtsa'
 
@@ -12,20 +13,25 @@ if not NHTSA_DIR.is_dir():
   NHTSA_DIR.mkdir(exist_ok=True)
 
 
+semaphore = asyncio.Semaphore(5)
+
+
 def get_nhtsa_path(vin: str) -> Path:
   return NHTSA_DIR / f'{vin}.json'
 
 
-def decode_nhtsa_vin_values(vin: str) -> dict[str, str] | None:
+async def decode_nhtsa_vin_values(vin: str, session: aiohttp.ClientSession) -> dict[str, str] | None:
   path = get_nhtsa_path(vin)
   if path.is_file():
     with open(path, 'r') as f:
       return json.load(f)
 
-  resp = requests.get(
-    url=f'https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValuesExtended/{vin}?format=json',
-  )
-  data = resp.json()['Results'][0]
+  async with semaphore:
+    async with session.get(f'https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValuesExtended/{vin}?format=json') as response:
+      response.raise_for_status()
+      data = await response.json()
+
+  data = data['Results'][0]
   error_codes = data['ErrorCode'].split(',') if 'ErrorCode' in data else []
   if '3' in error_codes:
     suggested_vin = data['SuggestedVIN']
@@ -42,14 +48,13 @@ def decode_nhtsa_vin_values(vin: str) -> dict[str, str] | None:
   return data
 
 
-def decode_vins(vins: set[str]) -> pd.DataFrame:
+async def decode_vins(vins: set[str]) -> pd.DataFrame:
   vins = list(vins)
   random.shuffle(vins)
 
   rows = []
-  for vin in tqdm(vins, desc='Decoding VINs'):
-    rows.append(decode_nhtsa_vin_values(vin))
-
+  async with aiohttp.ClientSession() as session:
+    rows = await tqdm.gather(*[decode_nhtsa_vin_values(vin, session) for vin in vins], desc='Downloading NHTSA data')
   df = pd.DataFrame.from_records(rows)
 
   # Delete columns with all empty strings

@@ -1,12 +1,12 @@
 import pickle
-import random
 from collections import defaultdict
 from dataclasses import dataclass
 from functools import cache
 from pathlib import Path
 
+import aiohttp
 from bs4 import BeautifulSoup
-from tqdm import tqdm
+from tqdm.asyncio import tqdm
 
 from notebooks.ford.coding import get_data, convert_forscan_dict_to_blocks
 from notebooks.ford.download_asbuilt import download
@@ -25,25 +25,37 @@ def get_asbuilt_path(vin: str) -> Path:
   return ASBUILT_DIR / f'{vin}.ab'
 
 
+def is_missing(vin: str) -> bool:
+  path = get_asbuilt_path(vin)
+  if not path.is_file():
+    return True
+  if path.stat().st_size == 0:
+    path.unlink()
+    return True
+  return False
+
+
 def get_missing_asbuilt(vins: list[str]) -> list[str]:
-  return [vin for vin in vins if not get_asbuilt_path(vin).is_file()]
+  return [vin for vin in vins if is_missing(vin)]
 
 
-def check_asbuilt(vins: list[str]):
-  vins = vins.copy()
-  random.shuffle(vins)
-  for vin in tqdm(vins, desc='Downloading AsBuilt data'):
-    asbuilt_path = get_asbuilt_path(vin)
-    if asbuilt_path.is_file():
-      continue
-    try:
-      asbuilt_xml = download(vin)
-      with open(get_asbuilt_path(vin), 'w') as f:
-        f.write(asbuilt_xml)
-    except Exception as e:
-      print(f'Failed to download {vin}: {e}')
+async def download_asbuilt(vin: str, session: aiohttp.ClientSession) -> None:
+  assert isinstance(vin, str)
+  try:
+    asbuilt_xml = await download(vin, session)
+    with open(get_asbuilt_path(vin), 'w') as f:
+      f.write(asbuilt_xml)
+  except Exception as e:
+    print(f'Failed to download {vin}: {e}')
 
+
+async def check_asbuilt(vins: list[str]):
   missing = get_missing_asbuilt(vins)
+  if len(missing) > 0:
+    async with aiohttp.ClientSession(cookie_jar=aiohttp.DummyCookieJar()) as session:
+      await tqdm.gather(*[download_asbuilt(vin, session) for vin in missing], desc='Downloading AsBuilt data')
+
+  missing = get_missing_asbuilt(missing)
   if len(missing) > 0:
     print('Download from https://www.motorcraftservice.com/AsBuilt')
     raise ValueError(f'Missing AsBuilt data ({len(missing)}): {missing}')
