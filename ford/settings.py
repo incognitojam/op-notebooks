@@ -18,17 +18,6 @@ class VehicleSetting:
     assert self.offset >= 0, 'Offset cannot be negative'
     assert self.bit_mask != 0, 'Mask cannot be 0'
 
-  @property
-  def pretty_bit_mask(self) -> str:
-    # Check each nibble only contains a single 1
-    # otherwise print as binary
-    mask = bin(self.bit_mask)[2:]
-    for idx in range(0, len(mask), 4):
-      nibble = mask[idx:idx + 4]
-      if 1 < nibble.count('1') < 4:
-        return bin(self.bit_mask)
-    return '0x' + hex(self.bit_mask)[2:].upper()
-
 
 # TODO: different ECU versions have different addresses/maps
 class VehicleSettings:

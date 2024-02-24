@@ -3,8 +3,8 @@ import argparse
 from collections import defaultdict
 
 from cereal import car
-from openpilot.selfdrive.car.ford.values import FW_QUERY_CONFIG
 from openpilot.selfdrive.car.ford.fingerprints import FW_VERSIONS
+from notebooks.ford.coding import get_data_access_example
 from notebooks.ford.settings import VehicleSetting, VehicleSettings
 
 Ecu = car.CarParams.Ecu
@@ -39,12 +39,10 @@ from openpilot.selfdrive.car.fw_query_definitions import FwQueryConfig, p16, Req
 DATA_IDENTIFIER_FORD_ASBUILT = 0xDE
 
 def ford_asbuilt_block_request(block_id: int) -> bytes:
-  return bytes([uds.SERVICE_TYPE.READ_DATA_BY_IDENTIFIER]) + \\
-    p16(DATA_IDENTIFIER_FORD_ASBUILT + block_id - 1)
+  return bytes([uds.SERVICE_TYPE.READ_DATA_BY_IDENTIFIER]) + p16(DATA_IDENTIFIER_FORD_ASBUILT + block_id - 1)
 
 def ford_asbuilt_block_response(block_id: int) -> bytes:
-  return bytes([uds.SERVICE_TYPE.READ_DATA_BY_IDENTIFIER + 0x40]) + \\
-    p16(DATA_IDENTIFIER_FORD_ASBUILT + block_id - 1)
+  return bytes([uds.SERVICE_TYPE.READ_DATA_BY_IDENTIFIER + 0x40]) + p16(DATA_IDENTIFIER_FORD_ASBUILT + block_id - 1)
 """)
 
   print("""
@@ -62,7 +60,7 @@ FW_QUERY_CONFIG = FwQueryConfig(
       if openpilot_ecu == 'debug':
         extra_ecus.add(ecu)
 
-      print(f'    # Ecu.{openpilot_ecu}: {setting.comment} (response[{setting.offset}] & {setting.pretty_bit_mask})')
+      print(f'    # Ecu.{openpilot_ecu}: {setting.comment} ({get_data_access_example(setting.offset, setting.bit_mask, data_name="response")})')
 
     print(f"""    Request(
       [StdQueries.TESTER_PRESENT_REQUEST, ford_asbuilt_block_request({block_id})],
