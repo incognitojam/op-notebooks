@@ -5,7 +5,7 @@ import aiohttp
 from tqdm.asyncio import tqdm
 
 from notebooks.ford.vins import check_vin, load_csv
-from notebooks.ford.vins.cars_com import Make, Model, search_cars, SortBy, StockType
+from notebooks.ford.vins.cars_com import Make, Model, SortBy, StockType, search_cars
 
 
 async def find_new_cars():

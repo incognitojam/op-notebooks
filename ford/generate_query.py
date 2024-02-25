@@ -3,9 +3,10 @@ import argparse
 from collections import defaultdict
 
 from cereal import car
-from openpilot.selfdrive.car.ford.fingerprints import FW_VERSIONS
 from notebooks.ford.coding import get_data_access_example
 from notebooks.ford.settings import VehicleSetting, VehicleSettings
+
+from openpilot.selfdrive.car.ford.fingerprints import FW_VERSIONS
 
 Ecu = car.CarParams.Ecu
 

@@ -212,6 +212,7 @@ def int_or_all(value: str | None) -> int | Literal['all']:
 
 if __name__ == '__main__':
   import argparse
+
   import pandas as pd
 
   parser = argparse.ArgumentParser()

@@ -3,6 +3,7 @@ from typing import Annotated, Literal, Union
 
 from pydantic import BaseModel, Field
 
+
 class SingleFrame(BaseModel):
   frame_type: Literal['single'] = 'single'
   size: int

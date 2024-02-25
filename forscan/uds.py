@@ -4,8 +4,7 @@ from typing import Annotated, Literal, Union
 
 from pydantic import BaseModel, Field
 
-from panda.python.uds import SERVICE_TYPE, SESSION_TYPE, RESET_TYPE, ACCESS_TYPE
-
+from panda.python.uds import ACCESS_TYPE, RESET_TYPE, SERVICE_TYPE, SESSION_TYPE
 
 # Request without Sub-Function, or Positive Response
 # <SID> <DATA 0> <DATA 1> ... <DATA N>

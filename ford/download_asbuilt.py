@@ -6,7 +6,6 @@ import xml.etree.ElementTree as ET
 import aiohttp
 from bs4 import BeautifulSoup
 
-
 semaphore = asyncio.Semaphore(16)
 
 

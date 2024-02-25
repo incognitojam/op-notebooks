@@ -102,6 +102,7 @@ def print_breakdown(df: pd.DataFrame, include_model_year=True) -> None:
 
 if __name__ == '__main__':
   import argparse
+
   import pandas as pd
 
   parser = argparse.ArgumentParser()

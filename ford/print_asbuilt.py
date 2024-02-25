@@ -3,9 +3,9 @@ from itertools import groupby
 
 import pandas as pd
 
-from panda.python.uds import DATA_IDENTIFIER_TYPE
 from notebooks.ford.asbuilt import AsBuiltData
 from notebooks.ford.settings import VEHICLE_SETTINGS
+from panda.python.uds import DATA_IDENTIFIER_TYPE
 
 
 def get_settings(vin: str) -> pd.DataFrame:

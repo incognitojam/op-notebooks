@@ -8,7 +8,7 @@ import aiohttp
 from bs4 import BeautifulSoup
 from tqdm.asyncio import tqdm
 
-from notebooks.ford.coding import get_data, convert_forscan_dict_to_blocks
+from notebooks.ford.coding import convert_forscan_dict_to_blocks, get_data
 from notebooks.ford.download_asbuilt import download
 from notebooks.ford.ecu import FordEcu, FordPart, get_ford_ecu
 from notebooks.ford.settings import VehicleSetting

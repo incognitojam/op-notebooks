@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 import pytest
-
 from coding import convert_forscan_label_to_block_id_and_offset, get_data
 
 TEST_CODE = b'\x0A\x1B\x2C\x3D\x4E'
