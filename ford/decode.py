@@ -64,11 +64,11 @@ TRANSFORM_PROPERTIES = {
 
 
 async def search(
-  searches: list[str] | None = None,
+  searches: list[str] = None,
   include_openpilot = False,
   include_police = False,
-  min_model_year: int | None = None,
-  max_model_year: int | None = None,
+  min_model_year: int = None,
+  max_model_year: int = None,
   skip_missing_asbuilt = False,
 ) -> pd.DataFrame:
   vins = await search_vins(searches, include_openpilot=include_openpilot, skip_missing_asbuilt=skip_missing_asbuilt)
