@@ -69,7 +69,7 @@ def load_csv() -> pd.DataFrame:
   return df_vins
 
 
-async def load_vins(filter_comment: str | None = None, include_openpilot = False, skip_missing_asbuilt = False) -> set[str]:
+async def load_vins(filter_comment: str | None = None, include_openpilot = False, skip_missing_asbuilt = False) -> list[str]:
   df_vins = load_csv()
 
   duplicates = df_vins[df_vins.duplicated(subset=['vin'], keep=False)]
