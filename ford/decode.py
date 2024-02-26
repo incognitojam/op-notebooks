@@ -4,7 +4,7 @@ import asyncio
 import pandas as pd
 
 from notebooks.ford.nhtsa import decode_vins
-from notebooks.ford.vins import search_vins
+from notebooks.ford.vins import ALL_SKIP_REASONS, SkipReason, search_vins
 
 
 def transform_drive_type(row):
@@ -65,13 +65,23 @@ TRANSFORM_PROPERTIES = {
 
 async def search(
   searches: list[str] = None,
-  include_openpilot = False,
-  include_police = False,
+  include_openpilot=False,
+  include_police=False,
   min_model_year: int = None,
   max_model_year: int = None,
-  skip_missing_asbuilt = False,
+  skip_reasons: set[str] = ALL_SKIP_REASONS,
+  skip_missing_asbuilt=False,
 ) -> pd.DataFrame:
-  vins = await search_vins(searches, include_openpilot=include_openpilot, skip_missing_asbuilt=skip_missing_asbuilt)
+  assert SkipReason.COUNTRY_UK in skip_reasons, 'Cannot decode UK VINs'
+  assert SkipReason.COUNTRY_UNKNOWN in skip_reasons, 'Cannot decode VINs from unknown countries'
+  assert SkipReason.BAD_VIN in skip_reasons, 'Cannot decode invalid VINs'
+
+  vins = await search_vins(
+    searches,
+    include_openpilot=include_openpilot,
+    skip_reasons=skip_reasons,
+    skip_missing_asbuilt=skip_missing_asbuilt,
+  )
   df_nhtsa = await decode_vins(vins)
 
   for column, func in TRANSFORM_PROPERTIES.items():
@@ -113,13 +123,14 @@ if __name__ == '__main__':
   parser.add_argument('--max-model-year', type=int)
   args = parser.parse_args()
 
-  df = asyncio.run(search(
+  task = search(
     args.searches,
     include_openpilot=args.include_openpilot,
     include_police=args.include_police,
     min_model_year=args.min_model_year,
     max_model_year=args.max_model_year,
-  ))
+  )
+  df = asyncio.run(task)
 
   print()
   print_breakdown(df)

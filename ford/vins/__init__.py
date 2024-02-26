@@ -46,7 +46,7 @@ def _to_values(vin: str) -> list[int]:
 
 def _compute_check_digit(vin: str) -> str:
   values = _to_values(vin)
-  total = sum(a * b for a, b in zip(VIN_FACTORS, values))
+  total = sum(a * b for a, b in zip(VIN_FACTORS, values, strict=True))
   remainder = total % 11
   return str(remainder) if remainder < 10 else 'X'
 
@@ -76,10 +76,16 @@ class SkipReason(StrEnum):
   NO_ASBUILT = 'no-asbuilt'  # no data on motorcraft
   BAD_VIN = 'bad-vin'  # invalid VIN
 
+
 ALL_SKIP_REASONS = set(SkipReason)
 
 
-async def load_vins(filter_comment: str = None, include_openpilot = False, skip_reasons: set[str] = ALL_SKIP_REASONS, skip_missing_asbuilt = False) -> list[str]:
+async def load_vins(
+  filter_comment: str = None,
+  include_openpilot=False,
+  skip_reasons: set[str] = ALL_SKIP_REASONS,
+  skip_missing_asbuilt=False,
+) -> list[str]:
   df_vins = load_csv()
 
   duplicates = df_vins[df_vins.duplicated(subset=['vin'], keep=False)]
@@ -131,15 +137,21 @@ async def load_vins(filter_comment: str = None, include_openpilot = False, skip_
 
 async def search_vins(
   searches: list[str] = None,
-  include_openpilot = False,
-  skip_missing_asbuilt = False,
+  include_openpilot=False,
   skip_reasons: set[str] = ALL_SKIP_REASONS,
+  skip_missing_asbuilt=False,
 ) -> set[str]:
   vins = set()
 
   if searches:
     for filter_comment in searches:
-      vins.update(await load_vins(filter_comment=filter_comment, include_openpilot=include_openpilot, skip_reasons=skip_reasons, skip_missing_asbuilt=skip_missing_asbuilt))
+      part_vins = await load_vins(
+        filter_comment=filter_comment,
+        include_openpilot=include_openpilot,
+        skip_reasons=skip_reasons,
+        skip_missing_asbuilt=skip_missing_asbuilt,
+      )
+      vins.update(part_vins)
   else:
     vins.update(await load_vins(include_openpilot=include_openpilot, skip_reasons=skip_reasons, skip_missing_asbuilt=skip_missing_asbuilt))
 
