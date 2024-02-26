@@ -242,7 +242,7 @@ unknown,,62241b0c7fea4589|2022-10-25--13-40-05--0,2021 Bronco Sport,3FMCR9B61MRA
 ,country-uk,,2019 Ford Focus,WF0PXXGCHPKY65983
 ,,,2018 Ford Focus,1FADP3F24JL324114
 ,,,2023 Ford Explorer Platinum,1FM5K8HC5PGB71921
-,country-uk,,2019 Ford Focus,WF0KXXGCBKBC56448
+,"country-uk,no-asbuilt",,2019 Ford Focus,WF0KXXGCBKBC56448
 ,country-uk,,2019 Ford Focus,WF0NXXGCHNKD75963
 ,country-uk,,2019 Ford Focus,WF0PXXGCHPKJ33593
 ,country-uk,,2017 Ford Kuga,WF0AXXWPMAHG57855
@@ -981,7 +981,7 @@ unknown,,62241b0c7fea4589|2022-10-25--13-40-05--0,2021 Bronco Sport,3FMCR9B61MRA
 ,,,2021 Ford F-250 King Ranch,1FT7W2BT1MED17276
 ,,,2022 Ford F-250 Lariat,1FT7W2BT1NEF37096
 ,,,2023 Ford F-150 Lariat,1FTFW1E87PFC20899
-,missing-asbuilt,,2024 Ford F-150 Raptor,1FTFW1RG9RFA30980
+,no-asbuilt,,2024 Ford F-150 Raptor,1FTFW1RG9RFA30980
 ,,,2023 Ford F-150 Raptor,1FTFW1RG7PFA11776
 ,,,2024 Ford F-150 STX,1FTFW2L51RKD01583
 ,,,2023 Ford F-150 XL,1FTFW1E56PKD22739
@@ -1088,7 +1088,7 @@ unknown,,62241b0c7fea4589|2022-10-25--13-40-05--0,2021 Bronco Sport,3FMCR9B61MRA
 ,,,2022 Ford Mustang Mach-E Select AWD,3FMTK1SS6NMA26551
 ,,,2022 Ford Explorer XLT,1FMSK8DH7NGA47179
 ,,,2023 Ford Explorer XLT,1FMSK8DH8PGA49669
-,missing-asbuilt,,2023 Ford Explorer ST,1FM5K8GC2PGA30239
+,no-asbuilt,,2023 Ford Explorer ST,1FM5K8GC2PGA30239
 ,,,2022 Ford Explorer XLT,1FMSK7DH0NGC29493
 ,,,2022 Ford Explorer XLT,1FMSK7DH2NGB65344
 ,,,2021 Ford Explorer,1FMSK7BH3MGB49817
@@ -1640,15 +1640,15 @@ unknown,,62241b0c7fea4589|2022-10-25--13-40-05--0,2021 Bronco Sport,3FMCR9B61MRA
 ,,,2024 Ford Maverick XL,3FTTW8A30RRA03335
 ,,,2024 Ford Maverick XLT,3FTTW8H32RRA02063
 ,,,2024 Ford Maverick XL,3FTTW8A30RRA00354
-,missing-asbuilt,,2024 Ford Explorer XLT,1FMSK8DH8RGA39789
+,no-asbuilt,,2024 Ford Explorer XLT,1FMSK8DH8RGA39789
 ,,,2024 Ford Explorer XLT,1FMSK8DH3RGA11902
-,missing-asbuilt,,2024 Ford Explorer XLT,1FMSK8DH0RGA40161
+,no-asbuilt,,2024 Ford Explorer XLT,1FMSK8DH0RGA40161
 ,,,2024 Ford Explorer XLT,1FMSK8DH7RGA40240
 ,,,2024 Ford Explorer XLT,1FMSK7DH1RGA10158
 ,,,2024 Ford Explorer ST,1FM5K8GC8RGA15599
 ,,,2024 Ford Explorer ST,1FM5K8GC1RGA18229
 ,,,2024 Ford Explorer Platinum,1FM5K8HC4RGA01231
-,missing-asbuilt,,2024 Ford Explorer XLT,1FMSK8DHXRGA44038
+,no-asbuilt,,2024 Ford Explorer XLT,1FMSK8DHXRGA44038
 ,,,2024 Ford Explorer ST,1FM5K8GC1RGA09109
 ,,,2024 Ford Explorer XLT,1FMSK8DH3RGA39084
 ,,,2024 Ford Explorer King Ranch,1FM5K8LC3RGA00238
@@ -1846,7 +1846,7 @@ unknown,,62241b0c7fea4589|2022-10-25--13-40-05--0,2021 Bronco Sport,3FMCR9B61MRA
 ,,,2024 Ford Transit-250 Base,1FTBR1C82RKA05840
 ,,,2024 Ford Transit-250 Base,1FTBR2CG7RKA10190
 ,,,2024 Ford Transit-150 Base,1FTYE1Y86RKA08576
-,missing-asbuilt,,2024 Ford E-Transit Base,1FTBW9CK7RKA33197
+,no-asbuilt,,2024 Ford E-Transit Base,1FTBW9CK7RKA33197
 ,,,2024 Ford E-Transit Base,1FTBW9CK7RKA03469
 ,,,2023 Ford E-Transit,1FTLW1XK8PKB64457
 ,,,2023 Ford E-Transit Base,1FTBW1XK1PKB56275
@@ -1934,19 +1934,19 @@ unknown,,62241b0c7fea4589|2022-10-25--13-40-05--0,2021 Bronco Sport,3FMCR9B61MRA
 ,,,2024 Ford Mustang Mach-E Premium,3FMTK3R74RMA03790
 ,,,2024 Ford Mustang Mach-E Select,3FMTK1R47RMA03387
 ,,,2024 Ford Mustang Mach-E Select,3FMTK1SU9RMA03398
-,missing-asbuilt,,2024 Ford Mustang Mach-E Premium,3FMTK3SU5RMA06603
+,no-asbuilt,,2024 Ford Mustang Mach-E Premium,3FMTK3SU5RMA06603
 ,,,2024 Ford Mustang Mach-E Select,3FMTK1R47RMA02224
 ,,,2024 Ford Mustang Mach-E Premium,3FMTK3S52RMA03666
 ,,,2024 Ford Mustang Mach-E Select,3FMTK1R44RMA03671
 ,,,2024 Ford Mustang Mach-E Premium,3FMTK3R72RMA03111
 ,,,2024 Ford Mustang Mach-E Premium,3FMTK3SU7RMA02391
 ,,,2024 Ford Mustang Mach-E Select,3FMTK1R48RMA04693
-,missing-asbuilt,,2024 Ford Mustang Mach-E Premium,3FMTK3SU2RMA06476
-,missing-asbuilt,,2024 Ford Mustang Mach-E Select,3FMTK1SU6RMA02449
+,no-asbuilt,,2024 Ford Mustang Mach-E Premium,3FMTK3SU2RMA06476
+,no-asbuilt,,2024 Ford Mustang Mach-E Select,3FMTK1SU6RMA02449
 ,,,2024 Ford Mustang Mach-E Premium,3FMTK3SUXRMA02854
-,missing-asbuilt,,2024 Ford Mustang Mach-E Premium,3FMTK3S57RMA06613
+,no-asbuilt,,2024 Ford Mustang Mach-E Premium,3FMTK3S57RMA06613
 ,,,2024 Ford Mustang Mach-E Select,3FMTK1R42RMA02728
-,missing-asbuilt,,2024 Ford Mustang Mach-E Premium,3FMTK3SU3RMA06888
+,no-asbuilt,,2024 Ford Mustang Mach-E Premium,3FMTK3SU3RMA06888
 ,,,2021 Ford Mustang Mach-E Premium,3FMTK3SU9MMA01249
 ,,,2021 Ford Mustang Mach-E Premium,3FMTK3SU9MMA10825
 ,,,2021 Ford Mustang Mach-E Premium,3FMTK3SS3MMA20247
@@ -2402,8 +2402,8 @@ unknown,,62241b0c7fea4589|2022-10-25--13-40-05--0,2021 Bronco Sport,3FMCR9B61MRA
 ,,,2023 Lincoln Navigator L Reserve,5LMJJ3LG4PEL15868
 ,,,2022 Lincoln Aviator Reserve AWD,5LM5J7XC9NGL15432
 ,,,2022 Lincoln Aviator Grand Touring,5LMYJ8XY7NNL00566
-,missing-asbuilt,,2022 Lincoln Navigator Reserve,5LMJJ2LT1NEL17906
-,missing-asbuilt,,2022 Lincoln Navigator Reserve,5LMJJ2LT3NEL17907
+,no-asbuilt,,2022 Lincoln Navigator Reserve,5LMJJ2LT1NEL17906
+,no-asbuilt,,2022 Lincoln Navigator Reserve,5LMJJ2LT3NEL17907
 ,,,2020 Lincoln Aviator Black Label AWD,5LM5J9XC2LGL29780
 ,,,2022 Lincoln Navigator L Reserve,5LMJJ3LT9NEL15469
 ,,,2021 Lincoln Navigator Reserve,5LMJJ2LT6MEL02932
@@ -3288,7 +3288,7 @@ unknown,,62241b0c7fea4589|2022-10-25--13-40-05--0,2021 Bronco Sport,3FMCR9B61MRA
 ,,,2023 Ford Bronco Sport Big Bend,3FMCR9B6XPRD51383
 ,,,2022 Ford Escape SE,1FMCU9G67NUA62538
 ,,,2023 Ford Escape Active,1FMCU0GN4PUB06808
-,missing-asbuilt,,2023 Ford Escape ST-Line,1FMCU0MZ6PUB32088
+,no-asbuilt,,2023 Ford Escape ST-Line,1FMCU0MZ6PUB32088
 ,,,2023 Ford Explorer XLT,1FMSK8DH6PGB42139
 ,,,2023 Ford Escape Active,1FMCU9GN7PUB34459
 ,,,2023 Ford Mustang Mach-E GT,3FMTK4SE3PMA57285
@@ -3897,14 +3897,14 @@ unknown,,62241b0c7fea4589|2022-10-25--13-40-05--0,2021 Bronco Sport,3FMCR9B61MRA
 ,,,2024 Ford Maverick XLT,3FTTW8J91RRA54587
 ,,,2024 Ford Maverick XL,3FTTW8A32RRA41116
 ,,,2024 Ford Maverick XL,3FTTW8A30RRA39607
-,missing-asbuilt,,2024 Ford Maverick Lariat,3FTTW8M37RRA41723
+,no-asbuilt,,2024 Ford Maverick Lariat,3FTTW8M37RRA41723
 ,,,2024 Ford Maverick Lariat,3FTTW8M33RRA25566
 ,,,2024 Ford Maverick XLT,3FTTW8H34RRA16515
 ,,,2024 Ford Maverick XLT,3FTTW8H35RRA39933
 ,,,2024 Ford Maverick XLT,3FTTW8H39RRA42107
 ,,,2024 Ford Maverick XLT,3FTTW8H30RRA37443
 ,,,2024 Ford Maverick XLT,3FTTW8H33RRA33838
-,missing-asbuilt,,2024 Ford Maverick XLT,3FTTW8H35RRA40578
+,no-asbuilt,,2024 Ford Maverick XLT,3FTTW8H35RRA40578
 ,,,2024 Ford Mustang GT Premium,1FA6P8CF6R5416693
 ,,,2024 Ford Mustang EcoBoost,1FA6P8TH9R5102165
 ,,,2024 Ford Mustang GT Premium,1FA6P8CF8R5416999
@@ -3966,8 +3966,8 @@ unknown,,62241b0c7fea4589|2022-10-25--13-40-05--0,2021 Bronco Sport,3FMCR9B61MRA
 ,,,2024 Ford Mustang GT Premium,1FA6P8CF5R5411520
 ,,,2024 Ford Mustang GT Premium,1FA6P8CFXR5410279
 ,,,2024 Ford Mustang GT,1FA6P8CF3R5410205
-,missing-asbuilt,,2024 Ford Mustang GT Premium,1FA6P8CF4R5421665
-,missing-asbuilt,,2024 Ford Mustang GT,1FA6P8CF4R5422878
+,no-asbuilt,,2024 Ford Mustang GT Premium,1FA6P8CF4R5421665
+,no-asbuilt,,2024 Ford Mustang GT,1FA6P8CF4R5422878
 ,,,2024 Ford Mustang EcoBoost Premium,1FA6P8TH5R5117875
 ,,,2024 Ford Mustang GT Premium,1FA6P8CF3R5416540
 ,,,2024 Ford Mustang GT Premium,1FA6P8CF7R5416198
@@ -4050,7 +4050,7 @@ unknown,,62241b0c7fea4589|2022-10-25--13-40-05--0,2021 Bronco Sport,3FMCR9B61MRA
 ,,,2023 Ford Mustang Mach-E Premium,3FMTK3SU1PMA55388
 ,,,2023 Ford Mustang Mach-E Premium,3FMTK3SU2PMA53942
 ,,,2023 Ford Mustang Mach-E Premium,3FMTK3R77PMA54567
-,missing-asbuilt,,2024 Ford Mustang Mach-E Premium,3FMTK3R76RMA01247
+,no-asbuilt,,2024 Ford Mustang Mach-E Premium,3FMTK3R76RMA01247
 ,,,2024 Ford Mustang Mach-E Select,3FMTK1R47RMA02367
 ,,,2024 Ford Mustang Mach-E Premium,3FMTK3SU2RMA02783
 ,,,2023 Ford Mustang Mach-E Premium,3FMTK3R74PMA68118
@@ -4135,7 +4135,7 @@ unknown,,62241b0c7fea4589|2022-10-25--13-40-05--0,2021 Bronco Sport,3FMCR9B61MRA
 ,,,2020 Lincoln Aviator Reserve AWD,5LM5J7XC6LGL08886
 ,,,2023 Lincoln Aviator Standard RWD,5LM5J6WC9PGL23349
 ,,,2024 Lincoln Aviator Reserve AWD,5LM5J7XC8RGL06775
-,missing-asbuilt,,2023 Lincoln Aviator Standard AWD,5LM5J6XCXPGL29479
+,no-asbuilt,,2023 Lincoln Aviator Standard AWD,5LM5J6XCXPGL29479
 ,,,2023 Lincoln Aviator Reserve AWD,5LM5J7XC9PGL32587
 ,,,2023 Lincoln Aviator Reserve AWD,5LM5J7XC1PGL29361
 ,,,2023 Lincoln Aviator Reserve AWD,5LM5J7XC6PGL29663
@@ -4183,7 +4183,7 @@ unknown,,62241b0c7fea4589|2022-10-25--13-40-05--0,2021 Bronco Sport,3FMCR9B61MRA
 ,,,2024 Lincoln Aviator Black Label AWD,5LM5J9XC0RGL03509
 ,,,2023 Lincoln Aviator Standard RWD,5LM5J6WC8PGL23889
 ,,,2023 Lincoln Aviator Standard RWD,5LM5J6WC9PGL26140
-,missing-asbuilt,,2024 Lincoln Aviator Premiere,5LM5J6WCXRGL04991
+,no-asbuilt,,2024 Lincoln Aviator Premiere,5LM5J6WCXRGL04991
 ,,,2023 Lincoln Aviator Reserve RWD,5LM5J7WC2PGL33016
 ,,,2023 Lincoln Aviator Reserve RWD,5LM5J7WC0PGL08664
 ,,,2023 Lincoln Aviator Grand Touring,5LMYJ8XY8PNL02362
@@ -4280,7 +4280,7 @@ unknown,,62241b0c7fea4589|2022-10-25--13-40-05--0,2021 Bronco Sport,3FMCR9B61MRA
 ,,,2024 Lincoln Corsair Grand Touring,5LMTJ5DZ1RUL05425
 ,,,2024 Lincoln Corsair Reserve,5LMCJ2CA4RUL07423
 ,,,2023 Lincoln Corsair Standard,5LMCJ1CA8PUL17279
-,missing-asbuilt,,2024 Lincoln Corsair Reserve,5LMCJ2CA4RUL09348
+,no-asbuilt,,2024 Lincoln Corsair Reserve,5LMCJ2CA4RUL09348
 ,,,2023 Lincoln Corsair Standard,5LMCJ1CA2PUL19240
 ,,,2023 Lincoln Corsair Standard,5LMCJ1CA1PUL19052
 ,,,2023 Lincoln Corsair Reserve,5LMCJ2DA7PUL17018
@@ -4955,7 +4955,7 @@ unknown,,62241b0c7fea4589|2022-10-25--13-40-05--0,2021 Bronco Sport,3FMCR9B61MRA
 ,,,2021 Ford Bronco Badlands,1FMEE5DH8MLA61830
 ,,,2019 Ford Transit-150 150,1FTYE1YM9KKA24211
 ,,,2020 Ford Fusion SE,3FA6P0HD8LR146041
-,missing-asbuilt,,2021 Ford EcoSport S,MAJ3S2FEXMC399144
+,no-asbuilt,,2021 Ford EcoSport S,MAJ3S2FEXMC399144
 ,,,2020 Ford F-350,1FT8W3BTXMED82329
 ,,,2021 Ford Mustang GT Premium,1FA6P8CF6M5133882
 ,,,2020 Ford Expedition Limited,1FMJU1KT1LEA25448
@@ -5066,59 +5066,59 @@ unknown,,62241b0c7fea4589|2022-10-25--13-40-05--0,2021 Bronco Sport,3FMCR9B61MRA
 ,,,2020 Lincoln Nautilus Standard,2LMPJ6J95LBL18579
 ,,,2019 Ford F-250 LARIAT,1FT7W2BT3KEF86621
 ,,,2021 Ford Mustang Mach-E Premium,3FMTK3SU3MMA08133
-,missing-asbuilt,,2024 Ford F-150 STX,1FTEW2LP7RKD25951
-,missing-asbuilt,,2024 Ford Bronco Heritage Edition,1FMDE4DH7RLA14687
+,no-asbuilt,,2024 Ford F-150 STX,1FTEW2LP7RKD25951
+,no-asbuilt,,2024 Ford Bronco Heritage Edition,1FMDE4DH7RLA14687
 ,,,2019 Ford Escape SEL,1FMCU0HD8KUC25220
 ,,,2020 Ford F-150 Platinum,1FTEW1E44LFA37446
-,missing-asbuilt,,2024 Ford F-150 STX,1FTEW2LP4RKD41525
-,missing-asbuilt,,2024 Ford Edge Titanium,2FMPK4K96RBB04494
-,missing-asbuilt,,2024 Ford Escape ST-Line,1FMCU0MN8RUA51643
-,missing-asbuilt,,2024 Ford Bronco Sport Big Bend,3FMCR9B67RRE62427
-,missing-asbuilt,,2024 Ford Escape Active,1FMCU9GN9RUA37380
-,missing-asbuilt,,2024 Ford Bronco Sport Outer Banks,3FMCR9C68RRE65304
+,no-asbuilt,,2024 Ford F-150 STX,1FTEW2LP4RKD41525
+,no-asbuilt,,2024 Ford Edge Titanium,2FMPK4K96RBB04494
+,no-asbuilt,,2024 Ford Escape ST-Line,1FMCU0MN8RUA51643
+,no-asbuilt,,2024 Ford Bronco Sport Big Bend,3FMCR9B67RRE62427
+,no-asbuilt,,2024 Ford Escape Active,1FMCU9GN9RUA37380
+,no-asbuilt,,2024 Ford Bronco Sport Outer Banks,3FMCR9C68RRE65304
 ,,,2019 Ford Mustang GT,1FA6P8CF9K5129290
-,missing-asbuilt,,2024 Lincoln Corsair Reserve,5LMCJ2CA8RUL08462
-,missing-asbuilt,,2024 Lincoln Corsair Premiere,5LMCJ1CA6RUL09071
-,missing-asbuilt,,2024 Ford Expedition XLT,1FMJU1J89REA41550
-,missing-asbuilt,,2024 Ford Escape ST-Line,1FMCU9MN7RUA49421
-,missing-asbuilt,,2024 Ford Edge ST-Line,2FMPK4J95RBA97555
-,missing-asbuilt,,2024 Ford F-150 STX,1FTFW2L59RFA34539
-,missing-asbuilt,,2024 Ford Escape ST-Line Select,1FMCU9NA9RUA37752
-,missing-asbuilt,,2024 Ford Edge SEL,2FMPK4J93RBA95898
-,missing-asbuilt,,2024 Ford Edge SEL,2FMPK4J96RBA91375
-,missing-asbuilt,,2024 Ford F-150 XLT,1FTFW3LD8RFA44475
-,missing-asbuilt,,2024 Ford F-150 XLT,1FTFW3LD3RFA39930
-,missing-asbuilt,,2024 Ford F-150 XLT,1FTFW3LD5RFA48726
-,missing-asbuilt,,2024 Ford F-150 XLT,1FTFW3LD9RFA39978
-,missing-asbuilt,,2024 Ford F-150 XLT,1FTFW3LD6RFA47049
-,missing-asbuilt,,2024 Ford Escape ST-Line,1FMCU9MNXRUA49932
-,missing-asbuilt,,2024 Ford Edge SEL,2FMPK4J92RBA92314
-,missing-asbuilt,,2024 Ford Edge SEL,2FMPK4J97RBA98710
-,missing-asbuilt,,2024 Ford F-150 STX,1FTEW2KP2RKD23137
+,no-asbuilt,,2024 Lincoln Corsair Reserve,5LMCJ2CA8RUL08462
+,no-asbuilt,,2024 Lincoln Corsair Premiere,5LMCJ1CA6RUL09071
+,no-asbuilt,,2024 Ford Expedition XLT,1FMJU1J89REA41550
+,no-asbuilt,,2024 Ford Escape ST-Line,1FMCU9MN7RUA49421
+,no-asbuilt,,2024 Ford Edge ST-Line,2FMPK4J95RBA97555
+,no-asbuilt,,2024 Ford F-150 STX,1FTFW2L59RFA34539
+,no-asbuilt,,2024 Ford Escape ST-Line Select,1FMCU9NA9RUA37752
+,no-asbuilt,,2024 Ford Edge SEL,2FMPK4J93RBA95898
+,no-asbuilt,,2024 Ford Edge SEL,2FMPK4J96RBA91375
+,no-asbuilt,,2024 Ford F-150 XLT,1FTFW3LD8RFA44475
+,no-asbuilt,,2024 Ford F-150 XLT,1FTFW3LD3RFA39930
+,no-asbuilt,,2024 Ford F-150 XLT,1FTFW3LD5RFA48726
+,no-asbuilt,,2024 Ford F-150 XLT,1FTFW3LD9RFA39978
+,no-asbuilt,,2024 Ford F-150 XLT,1FTFW3LD6RFA47049
+,no-asbuilt,,2024 Ford Escape ST-Line,1FMCU9MNXRUA49932
+,no-asbuilt,,2024 Ford Edge SEL,2FMPK4J92RBA92314
+,no-asbuilt,,2024 Ford Edge SEL,2FMPK4J97RBA98710
+,no-asbuilt,,2024 Ford F-150 STX,1FTEW2KP2RKD23137
 ,,,2020 Ford F-150 Lariat,1FTEW1C54LFB71062
 ,,,2021 Ford Explorer Base,1FMSK7BH1MGA68217
 ,,,2022 Ford Mustang EcoBoost Premium,1FA6P8TH0N5140667
 ,,,2024 Ford Explorer XLT,1FMSK8DH7RGA39363
-,missing-asbuilt,,2024 Ford Bronco Sport Outer Banks,3FMCR9C62RRE66867
-,missing-asbuilt,,2024 Ford Bronco Sport Big Bend,3FMCR9B68RRE62744
+,no-asbuilt,,2024 Ford Bronco Sport Outer Banks,3FMCR9C62RRE66867
+,no-asbuilt,,2024 Ford Bronco Sport Big Bend,3FMCR9B68RRE62744
 ,,,2021 Ford Bronco Sport Big Bend,3FMCR9B66MRA77420
-,missing-asbuilt,,2024 Ford F-350 Lariat Super Duty,1FT8W3BT6RED15671
-,missing-asbuilt,,2024 Ford Maverick XLT,3FTTW8H3XRRA70093
-,missing-asbuilt,,2024 Ford Bronco Sport Big Bend,3FMCR9B60RRE63614
+,no-asbuilt,,2024 Ford F-350 Lariat Super Duty,1FT8W3BT6RED15671
+,no-asbuilt,,2024 Ford Maverick XLT,3FTTW8H3XRRA70093
+,no-asbuilt,,2024 Ford Bronco Sport Big Bend,3FMCR9B60RRE63614
 ,,,2020 Ford Explorer ST,1FM5K8GC9LGC04866
-,missing-asbuilt,,2024 Ford Bronco Sport Outer Banks,3FMCR9C69RRE63643
-,missing-asbuilt,,2024 Ford Escape ST-Line,1FMCU0MN5RUA39904
-,missing-asbuilt,,2024 Ford F-250 XL,1FT8W2BA4RED36527
-,missing-asbuilt,,2024 Ford F-150 XL,1FTMF1L56RKD31261
+,no-asbuilt,,2024 Ford Bronco Sport Outer Banks,3FMCR9C69RRE63643
+,no-asbuilt,,2024 Ford Escape ST-Line,1FMCU0MN5RUA39904
+,no-asbuilt,,2024 Ford F-250 XL,1FT8W2BA4RED36527
+,no-asbuilt,,2024 Ford F-150 XL,1FTMF1L56RKD31261
 ,,,2019 Ford Fusion Energi Titanium,3FA6P0SU3KR228122
-,missing-asbuilt,,2024 Ford Bronco Wildtrak,1FMEE2BPXRLA22494
+,no-asbuilt,,2024 Ford Bronco Wildtrak,1FMEE2BPXRLA22494
 ,,,2021 Ford Edge Titanium,2FMPK3K9XMBA03106
 ,,,2022 Ford F-150 Lariat,1FTFW1E89NKD72722
 ,,,2019 Ford F-150 Lariat,1FTEW1E57KKC56254
-,missing-asbuilt,,2024 Ford Maverick XLT,3FTTW8H39RRA69324
-,missing-asbuilt,,2024 Ford Bronco Wildtrak,1FMEE2BP3RLA21414
-,missing-asbuilt,,2024 Ford Bronco Sport Big Bend,3FMCR9B69RRE63949
-,missing-asbuilt,,2024 Ford Bronco Sport Big Bend,3FMCR9B65RRE68338
+,no-asbuilt,,2024 Ford Maverick XLT,3FTTW8H39RRA69324
+,no-asbuilt,,2024 Ford Bronco Wildtrak,1FMEE2BP3RLA21414
+,no-asbuilt,,2024 Ford Bronco Sport Big Bend,3FMCR9B69RRE63949
+,no-asbuilt,,2024 Ford Bronco Sport Big Bend,3FMCR9B65RRE68338
 ,,,2020 Ford Explorer XLT,1FMSK7DH8LGC47303
 ,,,2024 Lincoln Nautilus Premiere,5LMPJ8JA4RJ791957
 ,,,2021 Ford F-150 XLT,1FTFW1E8XMFA48279
@@ -10357,7 +10357,7 @@ unknown,,62241b0c7fea4589|2022-10-25--13-40-05--0,2021 Bronco Sport,3FMCR9B61MRA
 ,,,2019 Ford Escape S,1FMCU0F73KUB05547
 ,,,2019 Ford Escape SE,1FMCU0GD6KUC34502
 ,,,2020 Ford Escape SE,1FMCU9G69LUC13098
-,missing-asbuilt,,2019 Ford Expedition Max Limited,1FMJK2AT4KE188362
+,no-asbuilt,,2019 Ford Expedition Max Limited,1FMJK2AT4KE188362
 ,,,2021 Ford Mustang Mach-E Select,3FMTK1SS6MMA19761
 ,,,2022 Ford Escape Titanium,1FMCU9J98NUA29759
 ,,,2021 Ford Mustang GT,1FA6P8CFXM5154590

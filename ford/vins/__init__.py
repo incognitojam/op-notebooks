@@ -1,3 +1,4 @@
+from enum import StrEnum
 from pathlib import Path
 
 import pandas as pd
@@ -69,7 +70,16 @@ def load_csv() -> pd.DataFrame:
   return df_vins
 
 
-async def load_vins(filter_comment: str = None, include_openpilot = False, skip_missing_asbuilt = False) -> list[str]:
+class SkipReason(StrEnum):
+  COUNTRY_UK = 'country-uk'  # cannot decode UK VINs
+  COUNTRY_UNKNOWN = 'country-unknown'
+  NO_ASBUILT = 'no-asbuilt'  # no data on motorcraft
+  BAD_VIN = 'bad-vin'  # invalid VIN
+
+ALL_SKIP_REASONS = set(SkipReason)
+
+
+async def load_vins(filter_comment: str = None, include_openpilot = False, skip_reasons: set[str] = ALL_SKIP_REASONS, skip_missing_asbuilt = False) -> list[str]:
   df_vins = load_csv()
 
   duplicates = df_vins[df_vins.duplicated(subset=['vin'], keep=False)]
@@ -81,8 +91,12 @@ async def load_vins(filter_comment: str = None, include_openpilot = False, skip_
 
   count = len(df_vins)
 
-  # TODO: make configurable
-  df_vins = df_vins[df_vins['skip'].isnull()]
+  df_vins['skip'] = df_vins['skip'].fillna('').str.split(',')
+
+  known_skip_reasons = set(filter(bool, df_vins['skip'].explode().unique()))
+  assert known_skip_reasons == ALL_SKIP_REASONS, f'Invalid skip reason: {known_skip_reasons}'
+
+  df_vins = df_vins[df_vins['skip'].apply(lambda x: all(skip_reason not in x for skip_reason in skip_reasons))]
 
   if not include_openpilot:
     df_vins = df_vins[df_vins['pr'].isnull()]
@@ -91,6 +105,8 @@ async def load_vins(filter_comment: str = None, include_openpilot = False, skip_
 
   # Validate VINs
   for row in df_vins.itertuples():
+    if any(skip_reason in row.skip for skip_reason in (SkipReason.COUNTRY_UK, SkipReason.COUNTRY_UNKNOWN, SkipReason.BAD_VIN)):
+      continue
     try:
       check_vin(row.vin)
     except Exception as e:
@@ -117,13 +133,14 @@ async def search_vins(
   searches: list[str] = None,
   include_openpilot = False,
   skip_missing_asbuilt = False,
+  skip_reasons: set[str] = ALL_SKIP_REASONS,
 ) -> set[str]:
   vins = set()
 
   if searches:
     for filter_comment in searches:
-      vins.update(await load_vins(filter_comment=filter_comment, include_openpilot=include_openpilot, skip_missing_asbuilt=skip_missing_asbuilt))
+      vins.update(await load_vins(filter_comment=filter_comment, include_openpilot=include_openpilot, skip_reasons=skip_reasons, skip_missing_asbuilt=skip_missing_asbuilt))
   else:
-    vins.update(await load_vins(include_openpilot=include_openpilot, skip_missing_asbuilt=skip_missing_asbuilt))
+    vins.update(await load_vins(include_openpilot=include_openpilot, skip_reasons=skip_reasons, skip_missing_asbuilt=skip_missing_asbuilt))
 
   return vins
