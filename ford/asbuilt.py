@@ -3,6 +3,7 @@ from collections import defaultdict
 from dataclasses import dataclass
 from functools import cache
 from pathlib import Path
+from typing import Any, cast
 
 import aiohttp
 from bs4 import BeautifulSoup
@@ -84,7 +85,7 @@ class AsBuiltData:
   ecus: dict[FordEcu, ModuleAsBuiltData]
 
   def get_ecu(self, ecu: FordEcu | tuple[FordEcu, FordPart]) -> FordEcu | None:
-    if type(ecu) is tuple:
+    if isinstance(ecu, tuple):
       ecu, pn_core = ecu
       if ecu not in self.ecus:
         return None
@@ -97,9 +98,10 @@ class AsBuiltData:
       if parts[1] != pn_core:
         return None
       return ecu
-    if ecu not in self.ecus:
+    elif ecu in self.ecus:
+      return ecu
+    else:
       return None
-    return ecu
 
   def is_present(self, ecu: FordEcu | tuple[FordEcu, FordPart]) -> bool:
     return self.get_ecu(ecu) is not None
@@ -109,7 +111,7 @@ class AsBuiltData:
       return None
     return self.ecus[ecu].identifiers.get(identifier)
 
-  def get_configuration(self, ecu: FordEcu) -> dict[str, bytes] | None:
+  def get_configuration(self, ecu: FordEcu) -> list[bytes] | None:
     if ecu not in self.ecus:
       return None
     return self.ecus[ecu].configuration
@@ -127,7 +129,7 @@ class AsBuiltData:
     # print(f'data={bin(data)} ({hex(data)}) mask={bin(mask)} value={bin(value)}')
     return value
 
-  def get_setting_value(self, setting: VehicleSetting) -> str:
+  def get_setting_value(self, setting: VehicleSetting) -> str | Any:
     value = self.get_setting_data(setting)
     if value is None:
       return 'Missing'
@@ -193,11 +195,11 @@ class AsBuiltData:
     if not bce_module:
       raise ValueError(f'Failed to get AsBuilt Data for {vin=}')
 
-    configuration_by_ecu = defaultdict(dict)
+    configuration_by_ecu: defaultdict[FordEcu, dict[str, bytes]] = defaultdict(dict)
     for data in bce_module.find_all('data'):
-      addr, _, label = data['label'].partition('-')
+      raw_addr, _, label = data['label'].partition('-')
 
-      addr = int(addr, 16)
+      addr = int(raw_addr, 16)
       ecu = get_ford_ecu(addr)
       if ecu is None:
         continue
@@ -237,5 +239,5 @@ class AsBuiltData:
     with open(path, 'rb') as f:
       data = pickle.load(f)
       if type(data) is tuple:
-        return data
+        return cast(tuple[int, 'AsBuiltData'], data)
       return 1, data
