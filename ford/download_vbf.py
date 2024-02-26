@@ -1,30 +1,16 @@
 #!/usr/bin/env python3
+import asyncio
 import io
 import re
 import zipfile
-from pathlib import Path
 
 import aiohttp
 from bs4 import BeautifulSoup
 
-
-VBF_DIR = Path(__file__).parent / 'data' / 'vbf'
-VBF_DIR.mkdir(exist_ok=True)
-
-
-def get_vbf_path(filename: str) -> Path:
-  return VBF_DIR / f'{filename.upper()}.VBF'
-
-
-def vbf_exists(filename: str) -> bool:
-  return get_vbf_path(filename).is_file()
+from notebooks.ford.vbf import get_vbf_path
 
 
 class DownloadError(Exception):
-  pass
-
-
-class FileNotFoundError(Exception):
   pass
 
 
@@ -40,7 +26,6 @@ async def _download(filename: str, session: aiohttp.ClientSession) -> bytes:
     url='https://www.fordtechservice.dealerconnection.com/vdirs/wds/PCMReprogram/DSFM_DownloadFile.asp',
     headers={'content-type': 'application/x-www-form-urlencoded'},
     data=f'filename={filename}',
-    timeout=5,
   ) as response:
     response.raise_for_status()
 
@@ -84,16 +69,18 @@ async def _safe_download(filename: str, session: aiohttp.ClientSession, retries:
       if attempts == retries:
         raise
       print(f'Retrying download ({attempts}/{retries})')
+      await asyncio.sleep(0.2)
 
 
 async def download_vbf(filename: str, retries: int = 10) -> bool:
-  if vbf_exists(filename):
+  vbf_path = get_vbf_path(filename)
+  if vbf_path.is_file() and vbf_path.stat().st_size > 0:
     return False
 
   async with aiohttp.ClientSession(cookie_jar=aiohttp.DummyCookieJar()) as session:
     vbf_zip = await _safe_download(filename, session, retries=retries)
 
-  with open(get_vbf_path(filename), 'wb') as f, zipfile.ZipFile(io.BytesIO(vbf_zip)) as zf:
+  with open(vbf_path, 'wb') as f, zipfile.ZipFile(io.BytesIO(vbf_zip)) as zf:
     names = zf.namelist()
     assert len(names) == 1, f'Expected 1 file in ZIP, got {len(names)}: {names}'
 
