@@ -25,7 +25,7 @@ class VehicleSettings:
   ipma_vehicle = VehicleSetting(
     comment='Vehicle',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q3),
-    block_id=0,
+    block_id=1,
     offset=1,
     value_map={
       0: 'None',
@@ -108,7 +108,7 @@ class VehicleSettings:
   ipma_distance_alert = VehicleSetting(
     comment='Distance Alert',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q3),
-    block_id=0,
+    block_id=1,
     offset=2,
     bit_mask=0b11000000,
     value_map={
@@ -120,7 +120,7 @@ class VehicleSettings:
   ipma_fcw_hud = VehicleSetting(
     comment='Forward Collision Warning HUD',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q3),
-    block_id=0,
+    block_id=1,
     offset=2,
     bit_mask=0b00110000,
     value_map={
@@ -133,7 +133,7 @@ class VehicleSettings:
   ipma_high_beam = VehicleSetting(
     comment='High Beam',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q3),
-    block_id=0,
+    block_id=1,
     offset=2,
     bit_mask=0b00001100,
     value_map={
@@ -146,7 +146,7 @@ class VehicleSettings:
   ipma_ldw = VehicleSetting(
     comment='Lane Departure Warning',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q3),
-    block_id=0,
+    block_id=1,
     offset=2,
     bit_mask=0x01,
     value_map={
@@ -157,7 +157,7 @@ class VehicleSettings:
   ipma_lka = VehicleSetting(
     comment='Lane Keeping Aid',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q3),
-    block_id=0,
+    block_id=1,
     offset=3,
     bit_mask=0x80,
     value_map={
@@ -168,7 +168,7 @@ class VehicleSettings:
   ipma_driver_alert_system = VehicleSetting(
     comment='Driver Alert System',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q3),
-    block_id=0,
+    block_id=1,
     offset=3,
     bit_mask=0b01100000,
     value_map={
@@ -180,7 +180,7 @@ class VehicleSettings:
   ipma_traffic_sign_recognition = VehicleSetting(
     comment='Traffic Sign Recognition',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q3),
-    block_id=0,
+    block_id=1,
     offset=3,
     bit_mask=0x10,
     value_map={
@@ -191,7 +191,7 @@ class VehicleSettings:
   ipma_traffic_sign_recognition_mode = VehicleSetting(
     comment='Traffic Sign Recognition Mode',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q3),
-    block_id=0,
+    block_id=1,
     offset=3,
     bit_mask=0x08,
     value_map={
@@ -202,7 +202,7 @@ class VehicleSettings:
   ipma_traffic_sign_recognition_feature = VehicleSetting(
     comment='Traffic Sign Recognition Feature',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q3),
-    block_id=0,
+    block_id=1,
     offset=3,
     bit_mask=0b00000011,
     value_map={
@@ -215,7 +215,7 @@ class VehicleSettings:
   ipma_lks_switch = VehicleSetting(
     comment='LKS Switch',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q3),
-    block_id=0,
+    block_id=1,
     offset=4,
     bit_mask=0b11000000,
     value_map={
@@ -228,7 +228,7 @@ class VehicleSettings:
   ipma_pre_collision_assist_type = VehicleSetting(
     comment='Pre-Collision Assist Type',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q3),
-    block_id=0,
+    block_id=1,
     offset=4,
     bit_mask=0b00110000,
     value_map={
@@ -241,7 +241,7 @@ class VehicleSettings:
   ipma_enable_adaptive_cruise = VehicleSetting(
     comment='Enable ACC',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q3),
-    block_id=0,
+    block_id=1,
     offset=4,
     bit_mask=0b00001100,
     value_map={
@@ -253,7 +253,7 @@ class VehicleSettings:
   ipma_driving_side = VehicleSetting(
     comment='Driving Side',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q3),
-    block_id=0,
+    block_id=1,
     offset=4,
     bit_mask=0b00000011,
     value_map={
@@ -265,14 +265,14 @@ class VehicleSettings:
   ipma_region_country = VehicleSetting(
     comment='Region and Country',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q3),
-    block_id=0,
+    block_id=1,
     offset=5,
     bit_mask=0xFFF,
   )
   ipma_enable_traffic_jam_assist = VehicleSetting(
     comment='Enable TJA',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q3),
-    block_id=0,
+    block_id=1,
     offset=6,
     bit_mask=0b00000011,
     value_map={
@@ -284,7 +284,7 @@ class VehicleSettings:
   ipma_windshield_type = VehicleSetting(
     comment='Windshield Type',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q3),
-    block_id=0,
+    block_id=1,
     offset=7,
     bit_mask=0b00000110,
     value_map={
@@ -297,7 +297,7 @@ class VehicleSettings:
   ipma_lks_actuator = VehicleSetting(
     comment='LKS Actuator',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q3),
-    block_id=0,
+    block_id=1,
     offset=7,
     bit_mask=0x180,  # TODO: verify
     value_map={
@@ -310,7 +310,7 @@ class VehicleSettings:
   ipma_shift_by_wire = VehicleSetting(
     comment='Shift by Wire',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q3),
-    block_id=0,
+    block_id=1,
     offset=8,
     bit_mask=0b00001100,
     value_map={
@@ -322,7 +322,7 @@ class VehicleSettings:
   ipma_speed_limit_sign_unit = VehicleSetting(
     comment='Speed Limit Sign Unit',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q3),
-    block_id=0,
+    block_id=1,
     offset=9,
     bit_mask=0b11000000,
     value_map={
@@ -334,7 +334,7 @@ class VehicleSettings:
   ipma_module_feature_cfg_lks = VehicleSetting(
     comment='ModuleFeatureCfg_LKS',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
-    block_id=0,
+    block_id=1,
     offset=0,
     bit_mask=0b00000110,
     value_map={
@@ -347,7 +347,7 @@ class VehicleSettings:
   ipma_module_feature_cfg_tsr = VehicleSetting(
     comment='ModuleFeatureCfg_TSR',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
-    block_id=0,
+    block_id=1,
     offset=1,
     bit_mask=0b00110000,
     value_map={
@@ -359,7 +359,7 @@ class VehicleSettings:
   ipma_module_feature_cfg_iacc = VehicleSetting(
     comment='ModuleFeatureCfg_IACC',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
-    block_id=0,
+    block_id=1,
     offset=1,
     bit_mask=0x10,
     value_map={
@@ -370,7 +370,7 @@ class VehicleSettings:
   ipma_module_feature_cfg_tja = VehicleSetting(
     comment='ModuleFeatureCfg_TJA',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
-    block_id=0,
+    block_id=1,
     offset=1,
     bit_mask=0x08,
     value_map={
@@ -381,7 +381,7 @@ class VehicleSettings:
   ipma_module_feature_cfg_blis = VehicleSetting(
     comment='ModuleFeatureCfg_BLIS',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
-    block_id=0,
+    block_id=1,
     offset=2,
     bit_mask=0x10,
     value_map={
@@ -392,7 +392,7 @@ class VehicleSettings:
   ipma_module_feature_cfg_hwy_assist = VehicleSetting(
     comment='ModuleFeatureCfg_HwyAssist',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
-    block_id=0,
+    block_id=1,
     offset=4,
     bit_mask=0x20,
     value_map={
@@ -403,7 +403,7 @@ class VehicleSettings:
   ipma_market_cfg_driving_side = VehicleSetting(
     comment='MarketCfg_DrivingSide',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
-    block_id=3,
+    block_id=4,
     offset=0,
     bit_mask=0x80,
     value_map={
@@ -414,7 +414,7 @@ class VehicleSettings:
   ipma_market_cfg_region = VehicleSetting(
     comment='MarketCfg_Region',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
-    block_id=3,
+    block_id=4,
     offset=0,
     bit_mask=0b00111100,
     value_map={
@@ -432,7 +432,7 @@ class VehicleSettings:
   ipma_market_cfg_speed_limit_sign_unit = VehicleSetting(
     comment='MarketCfg_SpeedLimitSignUnit',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
-    block_id=3,
+    block_id=4,
     offset=0,
     bit_mask=0b00000011,
     value_map={
@@ -444,7 +444,7 @@ class VehicleSettings:
   ipma_market_cfg_country = VehicleSetting(
     comment='MarketCfg_Country',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
-    block_id=3,
+    block_id=4,
     offset=1,
     value_map={
       0x0: 'Rest of World',
@@ -463,7 +463,7 @@ class VehicleSettings:
   ipma_vehicle_cfg_ste_whl_side = VehicleSetting(
     comment='VehicleCfg_SteWhlSide',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
-    block_id=3,
+    block_id=4,
     offset=2,
     bit_mask=0x80,
     value_map={
@@ -474,7 +474,7 @@ class VehicleSettings:
   ipma_vehicle_cfg_transmission_type = VehicleSetting(
     comment='VehicleCfg_TransmissionType',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
-    block_id=13,
+    block_id=14,
     offset=0,
     bit_mask=0x08,
     value_map={
@@ -485,7 +485,7 @@ class VehicleSettings:
   ipma_vehicle_cfg_acc_type = VehicleSetting(
     comment='VehicleCfg_ACCType',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
-    block_id=15,
+    block_id=16,
     offset=0,
     bit_mask=0b00110000,
     value_map={
@@ -496,7 +496,7 @@ class VehicleSettings:
   ipma_vehicle_cfg_windshield_type = VehicleSetting(
     comment='VehicleCfg_WindshieldType',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
-    block_id=15,
+    block_id=16,
     offset=0,
     bit_mask=0b00000110,
     value_map={
@@ -508,7 +508,7 @@ class VehicleSettings:
   ipma_vehicle_cfg_gear_shift_by_wire = VehicleSetting(
     comment='VehicleCfg_GearShiftByWire',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
-    block_id=15,
+    block_id=16,
     offset=1,
     bit_mask=0b11000000,
     value_map={
@@ -520,7 +520,7 @@ class VehicleSettings:
   ipma_vehicle_cfg_engine = VehicleSetting(
     comment='VehicleCfg_Engine',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
-    block_id=17,
+    block_id=18,
     offset=0,
     value_map={
       0x0: 'Undefined',
@@ -542,7 +542,7 @@ class VehicleSettings:
   ipma_vehicle_cfg_steering_ratio = VehicleSetting(
     comment='VehicleCfg_SteeringRatio',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
-    block_id=17,
+    block_id=18,
     offset=1,
     bit_mask=0xFFF0,
     value_map=lambda x: x * 0.01,
@@ -550,7 +550,7 @@ class VehicleSettings:
   ipma_vehicle_cfg_start_stop = VehicleSetting(
     comment='VehicleCfg_StartStop',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
-    block_id=17,
+    block_id=18,
     offset=3,
     bit_mask=0x08,
     value_map={
@@ -561,13 +561,13 @@ class VehicleSettings:
   ipma_vehicle_cfg_steer_vehicle_type = VehicleSetting(
     comment='VehicleCfg_Steer_VehicleType',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
-    block_id=17,
+    block_id=18,
     offset=4,
   )
   ipma_vehicle_cfg_vehicle_type = VehicleSetting(
     comment='VehicleCfg_VehicleType',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
-    block_id=19,
+    block_id=20,
     offset=5,
     value_map={
       0x7: 'F-150 BEV',  # not confirmed
@@ -576,13 +576,13 @@ class VehicleSettings:
   ipma_vehicle_cfg_ccm_vehicle_type = VehicleSetting(
     comment='VehicleCfg_CCM_VehicleType',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
-    block_id=19,
+    block_id=20,
     offset=7,
   )
   ipma_vehicle_cfg_overall_length = VehicleSetting(
     comment='VehicleCfg_OverallLength',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
-    block_id=20,
+    block_id=21,
     offset=0,
     bit_mask=0xFFFF,
     value_map=lambda x: x,
@@ -590,7 +590,7 @@ class VehicleSettings:
   ipma_vehicle_cfg_wheelbase = VehicleSetting(
     comment='VehicleCfg_Wheelbase',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
-    block_id=20,
+    block_id=21,
     offset=2,
     bit_mask=0xFFFF,
     value_map=lambda x: f'{x * 0.001:.2f} m',
@@ -598,7 +598,7 @@ class VehicleSettings:
   ipma_vehicle_cfg_front_axle_to_bumper = VehicleSetting(
     comment='VehicleCfg_FrontAxleToBumper',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
-    block_id=20,
+    block_id=21,
     offset=4,
     bit_mask=0xFFFF,
     value_map=lambda x: x,
@@ -606,7 +606,7 @@ class VehicleSettings:
   ipma_vehicle_cfg_rear_axle_to_bumper = VehicleSetting(
     comment='VehicleCfg_RearAxleToBumper',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
-    block_id=20,
+    block_id=21,
     offset=6,
     bit_mask=0xFFFF,
     value_map=lambda x: x,
@@ -614,7 +614,7 @@ class VehicleSettings:
   ipma_vehicle_cfg_width = VehicleSetting(
     comment='VehicleCfg_Width',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
-    block_id=20,
+    block_id=21,
     offset=8,
     bit_mask=0xFFFF,
     value_map=lambda x: x,
@@ -622,7 +622,7 @@ class VehicleSettings:
   ipma_vehicle_cfg_width_with_mirror = VehicleSetting(
     comment='VehicleCfg_WidthWithMirror',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
-    block_id=20,
+    block_id=21,
     offset=10,
     bit_mask=0xFFFF,
     value_map=lambda x: x,
@@ -630,7 +630,7 @@ class VehicleSettings:
   ipma_vehicle_cfg_frnt_trck_width_center = VehicleSetting(
     comment='VehicleCfg_FrntTrckWidthCenter',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
-    block_id=20,
+    block_id=21,
     offset=12,
     bit_mask=0xFFFF,
     value_map=lambda x: x,
@@ -638,14 +638,14 @@ class VehicleSettings:
   ipma_vehicle_cfg_frnt_trck_width_outside = VehicleSetting(
     comment='VehicleCfg_FrntTrckWidthOutside',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
-    block_id=20,
+    block_id=21,
     offset=14,
     bit_mask=0xFFFF,
   )
   ipma_vehicle_cfg_rear_trck_width_center = VehicleSetting(
     comment='VehicleCfg_RearTrckWidthCenter',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
-    block_id=20,
+    block_id=21,
     offset=16,
     bit_mask=0xFFFF,
     value_map=lambda x: x,
@@ -653,7 +653,7 @@ class VehicleSettings:
   ipma_vehicle_cfg_rear_trck_width_outside = VehicleSetting(
     comment='VehicleCfg_RearTrckWidthOutside',
     ecu=(FordEcu.ImageProcessingModuleA, FordPart.IPMA_Q4),
-    block_id=20,
+    block_id=21,
     offset=18,
     bit_mask=0xFFFF,
     value_map=lambda x: x,
@@ -661,7 +661,7 @@ class VehicleSettings:
   ipc_display_units = VehicleSetting(
     comment='Display Units',
     ecu=FordEcu.InstrumentPanelCluster,
-    block_id=3,
+    block_id=4,
     offset=7,
     bit_mask=0x80,
     value_map={
@@ -672,7 +672,7 @@ class VehicleSettings:
   pscm_tuning_variant_coding = VehicleSetting(
     comment='Tuning Variant Coding',
     ecu=FordEcu.PowerSteeringControlModule,
-    block_id=0,
+    block_id=1,
     offset=1,
     value_map={
       0x0: 'No Variant Selected (default)',
@@ -683,7 +683,7 @@ class VehicleSettings:
   pscm_can_multi_identity = VehicleSetting(
     comment='CAN Multi-Identity',
     ecu=FordEcu.PowerSteeringControlModule,
-    block_id=0,
+    block_id=1,
     offset=2,
     value_map={
       0x0: 'CADS 3.5 (default)',
@@ -693,7 +693,7 @@ class VehicleSettings:
   pscm_esc_abs_non_abs = VehicleSetting(
     comment='ESC / ABS / Non-ABS',
     ecu=FordEcu.PowerSteeringControlModule,
-    block_id=0,
+    block_id=1,
     offset=4,
     value_map={
       0x0: 'Vehicle without ABS',
@@ -704,7 +704,7 @@ class VehicleSettings:
   pscm_active_front_steering_equipped = VehicleSetting(
     comment='Active Front Steering Equipped',
     ecu=FordEcu.PowerSteeringControlModule,
-    block_id=0,
+    block_id=1,
     offset=5,
     value_map={
       0x0: 'Not Present',
@@ -714,7 +714,7 @@ class VehicleSettings:
   pscm_engine_torque_class = VehicleSetting(
     comment='Engine Torque Class',
     ecu=FordEcu.PowerSteeringControlModule,
-    block_id=0,
+    block_id=1,
     offset=6,
     value_map={
       0x0: 'Lowest',
@@ -727,7 +727,7 @@ class VehicleSettings:
   pscm_active_nibble_control = VehicleSetting(
     comment='Active Nibble Control (ANC)',
     ecu=FordEcu.PowerSteeringControlModule,
-    block_id=1,
+    block_id=2,
     offset=1,
     value_map={
       0x00: 'Disabled',
@@ -737,7 +737,7 @@ class VehicleSettings:
   pscm_pull_drift_compensation = VehicleSetting(
     comment='Pull Drift Compensation (PDC)',
     ecu=FordEcu.PowerSteeringControlModule,
-    block_id=1,
+    block_id=2,
     offset=2,
     value_map={
       0x00: 'Disabled',
@@ -747,7 +747,7 @@ class VehicleSettings:
   pscm_torque_steer_compensation = VehicleSetting(
     comment='Torque Steer Compensation (TSC)',
     ecu=FordEcu.PowerSteeringControlModule,
-    block_id=1,
+    block_id=2,
     offset=3,
     value_map={
       0x00: 'Disabled',
@@ -757,7 +757,7 @@ class VehicleSettings:
   pscm_bpr = VehicleSetting(
     comment='BPR',
     ecu=FordEcu.PowerSteeringControlModule,
-    block_id=1,
+    block_id=2,
     offset=4,
     value_map={
       0x00: 'Disabled',
@@ -767,7 +767,7 @@ class VehicleSettings:
   pscm_lane_departure_warning = VehicleSetting(
     comment='Lane Departure Warning (LDW)',
     ecu=FordEcu.PowerSteeringControlModule,
-    block_id=1,
+    block_id=2,
     offset=5,
     value_map={
       0x0: 'Disabled',
@@ -777,7 +777,7 @@ class VehicleSettings:
   pscm_lane_keeping_aid = VehicleSetting(
     comment='Lane Keeping Aid (LKA)',
     ecu=FordEcu.PowerSteeringControlModule,
-    block_id=1,
+    block_id=2,
     offset=6,
     value_map={
       0x0: 'Disabled',
@@ -787,7 +787,7 @@ class VehicleSettings:
   pscm_traffic_jam_assist = VehicleSetting(
     comment='Traffic Jam Assist (TJA)',
     ecu=FordEcu.PowerSteeringControlModule,
-    block_id=1,
+    block_id=2,
     offset=7,
     value_map={
       0x0: 'Disabled',
@@ -797,7 +797,7 @@ class VehicleSettings:
   pscm_lane_centering_assist = VehicleSetting(
     comment='Lane Centering Assist (LCA)',
     ecu=FordEcu.PowerSteeringControlModule,
-    block_id=1,
+    block_id=2,
     offset=8,
     value_map={
       0x0: 'Disabled',
@@ -808,7 +808,7 @@ class VehicleSettings:
     comment='Trailer Backup Assist (TBA)',
     # TRG = Trailer Reverse Guidance
     ecu=FordEcu.PowerSteeringControlModule,
-    block_id=1,
+    block_id=2,
     offset=9,
     value_map={
       0x0: 'Disabled',
@@ -821,7 +821,7 @@ class VehicleSettings:
   pscm_evasive_steering_assist = VehicleSetting(
     comment='Evasive Steering Assist (ESA)',
     ecu=FordEcu.PowerSteeringControlModule,
-    block_id=1,
+    block_id=2,
     offset=10,
     value_map={
       0x0: 'Disabled',
@@ -831,7 +831,7 @@ class VehicleSettings:
   pscm_had = VehicleSetting(
     comment='HAD',
     ecu=FordEcu.PowerSteeringControlModule,
-    block_id=1,
+    block_id=2,
     offset=11,
     value_map={
       0x0: 'Disabled',
@@ -841,7 +841,7 @@ class VehicleSettings:
   pscm_rf = VehicleSetting(
     comment='RF',
     ecu=FordEcu.PowerSteeringControlModule,
-    block_id=1,
+    block_id=2,
     offset=23,
     value_map={
       0x0: 'Disabled',
@@ -853,7 +853,7 @@ class VehicleSettings:
     # SAPP = Semi-Automatic Parallel Parking
     # APA = Active Park Assist
     ecu=FordEcu.PowerSteeringControlModule,
-    block_id=2,
+    block_id=3,
     offset=1,
     value_map={
       0x0: 'Disabled',
@@ -863,7 +863,7 @@ class VehicleSettings:
   pscm_active_return = VehicleSetting(
     comment='Active Return',
     ecu=FordEcu.PowerSteeringControlModule,
-    block_id=2,
+    block_id=3,
     offset=2,
     value_map={
       0x0: 'Disabled',
@@ -873,7 +873,7 @@ class VehicleSettings:
   pscm_soft_end_stops = VehicleSetting(
     comment='Soft End Stops',
     ecu=FordEcu.PowerSteeringControlModule,
-    block_id=2,
+    block_id=3,
     offset=3,
     value_map={
       0x0: 'Disabled',
@@ -883,7 +883,7 @@ class VehicleSettings:
   pscm_start_stop = VehicleSetting(
     comment='Start/Stop',
     ecu=FordEcu.PowerSteeringControlModule,
-    block_id=2,
+    block_id=3,
     offset=4,
     value_map={
       0x0: 'Disabled',
@@ -894,7 +894,7 @@ class VehicleSettings:
   pscm_dsr = VehicleSetting(
     comment='DSR',
     ecu=FordEcu.PowerSteeringControlModule,
-    block_id=2,
+    block_id=3,
     offset=5,
     value_map={
       0x0: 'Disabled',
@@ -904,7 +904,7 @@ class VehicleSettings:
   pscm_sdm_equipped = VehicleSetting(
     comment='SDM Equipped',
     ecu=FordEcu.PowerSteeringControlModule,
-    block_id=2,
+    block_id=3,
     offset=6,
     value_map={
       0x0: 'Not Present',
@@ -914,7 +914,7 @@ class VehicleSettings:
   abs_wheel_base = VehicleSetting(
     comment='Wheel Base',
     ecu=FordEcu.AntiLockBrakeSystem,
-    block_id=1,
+    block_id=2,
     offset=0,
     bit_mask=0xF0,
     value_map={
@@ -929,7 +929,7 @@ class VehicleSettings:
   abs_payload = VehicleSetting(
     comment='Payload',
     ecu=FordEcu.AntiLockBrakeSystem,
-    block_id=1,
+    block_id=2,
     offset=0,
     bit_mask=0x0F,
     value_map={
@@ -941,7 +941,7 @@ class VehicleSettings:
   abs_steering_gear = VehicleSetting(
     comment='Steering Gear',
     ecu=FordEcu.AntiLockBrakeSystem,
-    block_id=1,
+    block_id=2,
     offset=1,
     bit_mask=0b00000011,
     value_map={
@@ -952,7 +952,7 @@ class VehicleSettings:
   abs_tire_size = VehicleSetting(
     comment='Tire Size',
     ecu=FordEcu.AntiLockBrakeSystem,
-    block_id=1,
+    block_id=2,
     offset=2,
     bit_mask=0xF0,
     value_map={
@@ -964,7 +964,7 @@ class VehicleSettings:
   abs_cruise_control_mode = VehicleSetting(
     comment='Cruise Control Mode',
     ecu=FordEcu.AntiLockBrakeSystem,
-    block_id=1,
+    block_id=2,
     offset=5,
     bit_mask=0x0F,
     value_map={
@@ -975,7 +975,7 @@ class VehicleSettings:
   abs_stop_and_go = VehicleSetting(
     comment='Stop and Go',
     ecu=FordEcu.AntiLockBrakeSystem,
-    block_id=2,
+    block_id=3,
     offset=0,
     bit_mask=0x80,
     value_map={
@@ -986,7 +986,7 @@ class VehicleSettings:
   abs_collision_mitigation = VehicleSetting(
     comment='Collision Mitigation by Braking (CMbB)',
     ecu=FordEcu.AntiLockBrakeSystem,
-    block_id=2,
+    block_id=3,
     offset=0,
     bit_mask=0x40,
     value_map={
@@ -997,7 +997,7 @@ class VehicleSettings:
   apim_steering_wheel_angle_sensor = VehicleSetting(
     comment='Steering Wheel Angle Sensor (SWAS)',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
-    block_id=0,
+    block_id=1,
     offset=3,
     bit_mask=0x02,
     value_map={
@@ -1008,7 +1008,7 @@ class VehicleSettings:
   apim_brand = VehicleSetting(
     comment='Brand Identification',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
-    block_id=0,
+    block_id=1,
     offset=5,
     bit_mask=0b11000000,
     value_map={
@@ -1020,7 +1020,7 @@ class VehicleSettings:
   apim_hybrid = VehicleSetting(
     comment='Hybrid (HEV)',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
-    block_id=0,
+    block_id=1,
     offset=5,
     bit_mask=0x20,
     value_map={
@@ -1031,7 +1031,7 @@ class VehicleSettings:
   apim_transmission_type = VehicleSetting(
     comment='Transmission Type',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
-    block_id=0,
+    block_id=1,
     offset=6,
     bit_mask=0x10,
     value_map={
@@ -1042,7 +1042,7 @@ class VehicleSettings:
   apim_fuel_type = VehicleSetting(
     comment='Fuel Type',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
-    block_id=0,
+    block_id=1,
     offset=7,
     bit_mask=0b11000000,
     value_map={
@@ -1055,7 +1055,7 @@ class VehicleSettings:
   apim_phev = VehicleSetting(
     comment='Plug-in Hybrid (PHEV)',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
-    block_id=0,
+    block_id=1,
     offset=8,
     bit_mask=0x80,
     value_map={
@@ -1066,7 +1066,7 @@ class VehicleSettings:
   apim_cgea_version = VehicleSetting(
     comment='Common Global Electrical Architecture (CGEA)',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
-    block_id=0,
+    block_id=1,
     offset=9,
     bit_mask=0x80,
     value_map={
@@ -1077,7 +1077,7 @@ class VehicleSettings:
   apim_heated_windshield = VehicleSetting(
     comment='Heated Windshield',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
-    block_id=0,
+    block_id=1,
     offset=9,
     bit_mask=0x40,
     value_map={
@@ -1088,7 +1088,7 @@ class VehicleSettings:
   apim_country_code_first_letter = VehicleSetting(
     comment='Country Code (First Letter)',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
-    block_id=1,
+    block_id=2,
     offset=0,
     value_map={
       value: character for value, character in zip(
@@ -1100,7 +1100,7 @@ class VehicleSettings:
   apim_country_code_second_letter = VehicleSetting(
     comment='Country Code (Second Letter)',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
-    block_id=1,
+    block_id=2,
     offset=1,
     value_map={
       value: character for value, character in zip(
@@ -1112,7 +1112,7 @@ class VehicleSettings:
   apim_vehicle_style = VehicleSetting(
     comment='Vehicle Style',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
-    block_id=1,
+    block_id=2,
     offset=3,
     value_map={
       0x00: 'None',
@@ -1137,7 +1137,7 @@ class VehicleSettings:
   apim_gps_mount = VehicleSetting(
     comment='GPS Antenna Location/Mount Type',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
-    block_id=2,
+    block_id=3,
     offset=0,
     bit_mask=0x0F,
     value_map={
@@ -1151,7 +1151,7 @@ class VehicleSettings:
   apim_electric_vehicle = VehicleSetting(
     comment='Electric Vehicle',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
-    block_id=2,
+    block_id=3,
     offset=1,
     value_map={
       0x00: 'Non-HEV, BEV, PHEV',
@@ -1168,7 +1168,7 @@ class VehicleSettings:
   apim_drivetrain = VehicleSetting(
     comment='Drivetrain Type',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
-    block_id=2,
+    block_id=3,
     offset=3,
     value_map={
       0x00: 'FWD',
@@ -1182,7 +1182,7 @@ class VehicleSettings:
   apim_bluetooth_name = VehicleSetting(
     comment='Bluetooth Vehicle Nameplate ID',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
-    block_id=3,
+    block_id=4,
     offset=4,
     value_map={
       0x00: 'SYNC',
@@ -1257,7 +1257,7 @@ class VehicleSettings:
   apim_front_track = VehicleSetting(
     comment='Front Track',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
-    block_id=4,
+    block_id=5,
     offset=0,
     bit_mask=0xFFFF,
     value_map=lambda value: f'{value * 0.01 * 0.0254:.2f} m',
@@ -1265,7 +1265,7 @@ class VehicleSettings:
   apim_rear_track = VehicleSetting(
     comment='Rear Track',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
-    block_id=4,
+    block_id=5,
     offset=2,
     bit_mask=0xFFFF,
     value_map=lambda value: f'{value * 0.01 * 0.0254:.2f} m',
@@ -1273,7 +1273,7 @@ class VehicleSettings:
   apim_wheel_base = VehicleSetting(
     comment='Wheel Base',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
-    block_id=4,
+    block_id=5,
     offset=4,
     bit_mask=0xFFFF,
     value_map=lambda value: f'{value * 0.01 * 0.0254:.2f} m',
@@ -1281,21 +1281,21 @@ class VehicleSettings:
   apim_vehicle_weight = VehicleSetting(
     comment='Vehicle Weight',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
-    block_id=6,
+    block_id=7,
     offset=0,
     value_map=lambda value: f'{value * 100} kg',
   )
   apim_tire_circumference = VehicleSetting(
     comment='Tire Circumference',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
-    block_id=6,
+    block_id=7,
     offset=13,
     value_map=lambda value: f'{(value + 100) * 0.01:.2f} m',
   )
   apim_distance_from_ip_to_rear_axle = VehicleSetting(
     comment='Distance from IP to Rear Axle',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
-    block_id=6,
+    block_id=7,
     offset=14,
     bit_mask=0xFFFF,
     value_map=lambda value: f'{(value + 100) * 0.01:.2f} m',
@@ -1303,7 +1303,7 @@ class VehicleSettings:
   apim_adaptive_cruise_menu = VehicleSetting(
     comment='ACC Menu',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
-    block_id=8,
+    block_id=9,
     offset=0,
     bit_mask=0x20,
     value_map={
@@ -1314,7 +1314,7 @@ class VehicleSettings:
   apim_forward_collision_warning = VehicleSetting(
     comment='Forward Collision Warning',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
-    block_id=8,
+    block_id=9,
     offset=3,
     bit_mask=0b01100000,
     value_map={
@@ -1327,7 +1327,7 @@ class VehicleSettings:
   apim_fcw_menu = VehicleSetting(
     comment='FCW Menu',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
-    block_id=8,
+    block_id=9,
     offset=5,
     bit_mask=0x40,
     value_map={
@@ -1338,7 +1338,7 @@ class VehicleSettings:
   apim_fcw_braking = VehicleSetting(
     comment='FCW Braking',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
-    block_id=8,
+    block_id=9,
     offset=6,
     bit_mask=0x40,
     value_map={
@@ -1349,7 +1349,7 @@ class VehicleSettings:
   apim_evasive_steering_assist = VehicleSetting(
     comment='Evasive Steering Assist (ESA)',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
-    block_id=8,
+    block_id=9,
     offset=6,
     bit_mask=0x08,
     value_map={
@@ -1360,7 +1360,7 @@ class VehicleSettings:
   apim_lane_change_assist = VehicleSetting(
     comment='Lane Change Assist (LCA)',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
-    block_id=8,
+    block_id=9,
     offset=7,
     bit_mask=0b11000000,
     value_map={
@@ -1372,7 +1372,7 @@ class VehicleSettings:
   apim_lane_keeping_sensitivity = VehicleSetting(
     comment='Lane Keeping Sensitivity',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
-    block_id=8,
+    block_id=9,
     offset=7,
     bit_mask=0x20,
     value_map={
@@ -1383,7 +1383,7 @@ class VehicleSettings:
   apim_adaptive_cruise_mode = VehicleSetting(
     comment='ACC Mode',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
-    block_id=8,
+    block_id=9,
     offset=7,
     bit_mask=0x02,
     value_map={
@@ -1394,7 +1394,7 @@ class VehicleSettings:
   apim_lane_assist_ncap_aid = VehicleSetting(
     comment='Lane Assist NCAP Aid',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
-    block_id=8,
+    block_id=9,
     offset=10,
     bit_mask=0b01100000,
     value_map={
@@ -1407,7 +1407,7 @@ class VehicleSettings:
   apim_lane_assist_ncap_alert = VehicleSetting(
     comment='Lane Assist NCAP Alert',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC3),
-    block_id=8,
+    block_id=9,
     offset=10,
     bit_mask=0x18,
     value_map={
@@ -1420,7 +1420,7 @@ class VehicleSettings:
   apim_sync4_steering_angle = VehicleSetting(
     comment='Steering Angle',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
-    block_id=0,
+    block_id=1,
     offset=5,
     bit_mask=0x10,
     value_map={
@@ -1431,7 +1431,7 @@ class VehicleSettings:
   apim_sync4_start_stop_vehicle = VehicleSetting(
     comment='Start/Stop Vehicle',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
-    block_id=0,
+    block_id=1,
     offset=7,
     bit_mask=0x10,
     value_map={
@@ -1442,7 +1442,7 @@ class VehicleSettings:
   apim_sync4_transmission_type = VehicleSetting(
     comment='Transmission Type',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
-    block_id=0,
+    block_id=1,
     offset=7,
     bit_mask=0x08,
     value_map={
@@ -1453,7 +1453,7 @@ class VehicleSettings:
   apim_sync4_park_brake_type = VehicleSetting(
     comment='Park Brake Type',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
-    block_id=0,
+    block_id=1,
     offset=8,
     bit_mask=0x08,
     value_map={
@@ -1464,7 +1464,7 @@ class VehicleSettings:
   apim_sync4_reverse_gear = VehicleSetting(
     comment='Reverse Gear',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
-    block_id=0,
+    block_id=1,
     offset=9,
     bit_mask=0x08,
     value_map={
@@ -1475,7 +1475,7 @@ class VehicleSettings:
   apim_sync4_architecture_version = VehicleSetting(
     comment='Architecture Version',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
-    block_id=0,
+    block_id=1,
     offset=11,
     bit_mask=0b00000011,
     value_map={
@@ -1486,7 +1486,7 @@ class VehicleSettings:
   apim_sync4_vehicle_driver_location = VehicleSetting(
     comment='Vehicle Driver Location',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
-    block_id=1,
+    block_id=2,
     offset=0,
     bit_mask=0x40,
     value_map={
@@ -1497,7 +1497,7 @@ class VehicleSettings:
   apim_sync4_brand = VehicleSetting(
     comment='Brand',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
-    block_id=1,
+    block_id=2,
     offset=0,
     bit_mask=0x20,
     value_map={
@@ -1508,7 +1508,7 @@ class VehicleSettings:
   apim_sync4_hybrid = VehicleSetting(
     comment='Hybrid (HEV)',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
-    block_id=1,
+    block_id=2,
     offset=6,
     bit_mask=0x80,
     value_map={
@@ -1519,7 +1519,7 @@ class VehicleSettings:
   apim_sync4_phev = VehicleSetting(
     comment='Plug-in Hybrid (PHEV)',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
-    block_id=1,
+    block_id=2,
     offset=6,
     bit_mask=0x40,
     value_map={
@@ -1530,7 +1530,7 @@ class VehicleSettings:
   apim_sync4_other_brand = VehicleSetting(
     comment='Other Brand',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
-    block_id=1,
+    block_id=2,
     offset=8,
     bit_mask=0b00000011,
     value_map={
@@ -1543,27 +1543,27 @@ class VehicleSettings:
   apim_sync4_country_code_first_letter = VehicleSetting(
     comment='Country Code (First Letter)',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
-    block_id=2,
+    block_id=3,
     offset=0,
     value_map=lambda value: chr(value),
   )
   apim_sync4_country_code_second_letter = VehicleSetting(
     comment='Country Code (Second Letter)',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
-    block_id=2,
+    block_id=3,
     offset=1,
     value_map=lambda value: chr(value),
   )
   apim_sync4_splash_screen = VehicleSetting(
     comment='Splash Screen',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
-    block_id=2,
+    block_id=3,
     offset=2,
   )
   apim_symc4_vehicle_style = VehicleSetting(
     comment='Vehicle Style',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
-    block_id=2,
+    block_id=3,
     offset=3,
     value_map={
       0x00: 'Undefined',
@@ -1588,7 +1588,7 @@ class VehicleSettings:
   apim_symc4_vehicle = VehicleSetting(
     comment='Vehicle',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
-    block_id=2,
+    block_id=3,
     offset=5,
     value_map={
       0x00: 'Undefined',
@@ -1651,7 +1651,7 @@ class VehicleSettings:
   apim_sync4_fuel_type = VehicleSetting(
     comment='Fuel Type',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
-    block_id=4,
+    block_id=5,
     offset=0,
     bit_mask=0b00001100,
     value_map={
@@ -1664,7 +1664,7 @@ class VehicleSettings:
   apim_sync4_gps_mount_type = VehicleSetting(
     comment='GPS Mount Type',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
-    block_id=4,
+    block_id=5,
     offset=5,
     bit_mask=0x0F,
     value_map={
@@ -1678,7 +1678,7 @@ class VehicleSettings:
   apim_sync4_drive_type = VehicleSetting(
     comment='Drive Type',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
-    block_id=4,
+    block_id=5,
     offset=6,
     value_map={
       0x00: 'FWD',
@@ -1692,7 +1692,7 @@ class VehicleSettings:
   apim_sync4_vehicle_length = VehicleSetting(
     comment='Vehicle Length',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
-    block_id=4,
+    block_id=5,
     offset=7,
     bit_mask=0xFFFFFF,
     value_map=lambda value: f'{value * 0.01:.2f} m',
@@ -1700,7 +1700,7 @@ class VehicleSettings:
   apim_sync4_vehicle_height = VehicleSetting(
     comment='Vehicle Height',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
-    block_id=4,
+    block_id=5,
     offset=10,
     bit_mask=0xFFFF,
     value_map=lambda value: f'{value * 0.01:.2f} m',
@@ -1708,7 +1708,7 @@ class VehicleSettings:
   apim_sync4_front_track = VehicleSetting(
     comment='Front Track',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
-    block_id=5,
+    block_id=6,
     offset=0,
     bit_mask=0xFFFF,
     value_map=lambda value: f'{value * 0.01 * 0.0254:.2f} m',
@@ -1716,7 +1716,7 @@ class VehicleSettings:
   apim_sync4_rear_track = VehicleSetting(
     comment='Rear Track',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
-    block_id=5,
+    block_id=6,
     offset=2,
     bit_mask=0xFFFF,
     value_map=lambda value: f'{value * 0.01 * 0.0254:.2f} m',
@@ -1724,7 +1724,7 @@ class VehicleSettings:
   apim_sync4_wheel_base = VehicleSetting(
     comment='Wheel Base',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
-    block_id=5,
+    block_id=6,
     offset=4,
     bit_mask=0xFFFF,
     value_map=lambda value: f'{value * 0.01 * 0.0254:.2f} m',
@@ -1732,42 +1732,42 @@ class VehicleSettings:
   apim_sync4_vehicle_weight = VehicleSetting(
     comment='Vehicle Weight',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
-    block_id=6,
+    block_id=7,
     offset=0,
     value_map=lambda value: f'{value * 100} kg',
   )
   apim_sync4_eco_route_curve = VehicleSetting(
     comment='ECO Route Curve',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
-    block_id=6,
+    block_id=7,
     offset=1,
     value_map=lambda value: value + 1,  # unitless
   )
   apim_sync4_powertrain_efficiency = VehicleSetting(
     comment='Powertrain Efficiency',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
-    block_id=6,
+    block_id=7,
     offset=2,
     value_map=lambda value: f'{value * 0.39215:.2f}%',
   )
   apim_sync4_regenerative_braking_efficiency_highway = VehicleSetting(
     comment='Regenerative Braking Efficiency Highway',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
-    block_id=6,
+    block_id=7,
     offset=3,
     value_map=lambda value: f'{value * 0.39215:.2f}%',
   )
   apim_sync4_regenerative_braking_efficiency_city = VehicleSetting(
     comment='Regenerative Braking Efficiency City',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
-    block_id=6,
+    block_id=7,
     offset=4,
     value_map=lambda value: f'{value * 0.39215:.2f}%',
   )
   apim_sync4_install_angle_of_apim_for_accelerometer_x = VehicleSetting(
     comment='Install Angle of APIM for Accelerometer X',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
-    block_id=6,
+    block_id=7,
     offset=5,
     bit_mask=0xFFFF,
     value_map=lambda value: f'{value * 0.006:.2f}°',
@@ -1775,7 +1775,7 @@ class VehicleSettings:
   apim_sync4_install_angle_of_apim_for_accelerometer_y = VehicleSetting(
     comment='Install Angle of APIM for Accelerometer Y',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
-    block_id=6,
+    block_id=7,
     offset=7,
     bit_mask=0xFFFF,
     value_map=lambda value: f'{value * 0.006:.2f}°',
@@ -1783,7 +1783,7 @@ class VehicleSettings:
   apim_sync4_install_angle_of_apim_for_accelerometer_z = VehicleSetting(
     comment='Install Angle of APIM for Accelerometer Z',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
-    block_id=6,
+    block_id=7,
     offset=9,
     bit_mask=0xFFFF,
     value_map=lambda x: x,
@@ -1791,28 +1791,28 @@ class VehicleSettings:
   apim_sync4_wheel_ticks_to_revolution_front = VehicleSetting(
     comment='Wheel Ticks to Revolution Front',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
-    block_id=6,
+    block_id=7,
     offset=11,
     value_map=lambda value: value,
   )
   apim_sync4_wheel_ticks_to_revolution_rear = VehicleSetting(
     comment='Wheel Ticks to Revolution Rear',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
-    block_id=6,
+    block_id=7,
     offset=12,
     value_map=lambda value: value,
   )
   apim_sync4_tire_circumference = VehicleSetting(
     comment='Tire Circumference',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
-    block_id=6,
+    block_id=7,
     offset=13,
     value_map=lambda value: f'{(value + 100) * 0.393701:.2f} in',
   )
   apim_sync4_distance_from_ip_to_rear_axle = VehicleSetting(
     comment='Distance from IP to Rear Axle',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
-    block_id=6,
+    block_id=7,
     offset=14,
     bit_mask=0xFFFF,
     value_map=lambda x: x,
@@ -1820,7 +1820,7 @@ class VehicleSettings:
   apim_sync4_steering_wheel_angle_sensor = VehicleSetting(
     comment='Steering Wheel Angle Sensor',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
-    block_id=7,
+    block_id=8,
     offset=0,
     bit_mask=0x40,
     value_map={
@@ -1831,7 +1831,7 @@ class VehicleSettings:
   apim_sync4_parking_assistance = VehicleSetting(
     comment='Parking Assistance',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
-    block_id=7,
+    block_id=8,
     offset=3,
     bit_mask=0x0F,
     value_map={
@@ -1855,7 +1855,7 @@ class VehicleSettings:
   apim_sync4_acc_menu = VehicleSetting(
     comment='ACC Menu',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
-    block_id=8,
+    block_id=9,
     offset=0,
     bit_mask=0x20,
     value_map={
@@ -1866,7 +1866,7 @@ class VehicleSettings:
   apim_sync4_forward_collision_warning = VehicleSetting(
     comment='Forward Collision Warning',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
-    block_id=8,
+    block_id=9,
     offset=2,
     bit_mask=0b01100000,
     value_map={
@@ -1878,7 +1878,7 @@ class VehicleSettings:
   apim_sync4_forward_collision_warning_braking_on_off = VehicleSetting(
     comment='Forward Collision Warning Braking On/Off',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
-    block_id=8,
+    block_id=9,
     offset=6,
     bit_mask=0x40,
     value_map={
@@ -1889,7 +1889,7 @@ class VehicleSettings:
   apim_sync4_evasive_steering_assist = VehicleSetting(
     comment='Evasive Steering Assist (ESA)',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
-    block_id=8,
+    block_id=9,
     offset=6,
     bit_mask=0x08,
     value_map={
@@ -1900,7 +1900,7 @@ class VehicleSettings:
   apim_sync4_lane_assist_haptic_intensity = VehicleSetting(
     comment='Lane Assist Haptic Intensity',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
-    block_id=8,
+    block_id=9,
     offset=6,
     bit_mask=0x04,
     value_map={
@@ -1911,7 +1911,7 @@ class VehicleSettings:
   apim_sync4_intelligent_adaptive_cruise_control = VehicleSetting(
     comment='Intelligent Adaptive Cruise Control',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
-    block_id=8,
+    block_id=9,
     offset=6,
     bit_mask=0x02,
     value_map={
@@ -1922,7 +1922,7 @@ class VehicleSettings:
   apim_sync4_lane_change_assist = VehicleSetting(
     comment='Lane Change Assist',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
-    block_id=8,
+    block_id=9,
     offset=7,
     bit_mask=0b11000000,
     value_map={
@@ -1934,7 +1934,7 @@ class VehicleSettings:
   apim_sync4_lane_keeping_sensitivity = VehicleSetting(
     comment='Lane Keeping Sensitivity',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
-    block_id=8,
+    block_id=9,
     offset=7,
     bit_mask=0x20,
     value_map={
@@ -1945,7 +1945,7 @@ class VehicleSettings:
   apim_sync4_adaptive_cruise = VehicleSetting(
     comment='Adaptive Cruise',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
-    block_id=8,
+    block_id=9,
     offset=7,
     bit_mask=0x02,
     value_map={
@@ -1956,7 +1956,7 @@ class VehicleSettings:
   apim_sync4_traffic_sign_recognition = VehicleSetting(
     comment='Traffic Sign Recognition',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
-    block_id=8,
+    block_id=9,
     offset=9,
     bit_mask=0x08,
     value_map={
@@ -1967,7 +1967,7 @@ class VehicleSettings:
   apim_sync4_lane_centering = VehicleSetting(
     comment='Lane Centering',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
-    block_id=8,
+    block_id=9,
     offset=19,
     bit_mask=0x20,
     value_map={
@@ -1978,7 +1978,7 @@ class VehicleSettings:
   apim_sync4_steering_gear_ratio = VehicleSetting(
     comment='Steering Gear Ratio',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
-    block_id=8,
+    block_id=9,
     offset=22,
     bit_mask=0x10,
     value_map={
@@ -1989,7 +1989,7 @@ class VehicleSettings:
   apim_sync4_assisted_lane_change = VehicleSetting(
     comment='Assisted Lane Change',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
-    block_id=15,
+    block_id=16,
     offset=9,
     bit_mask=0x10,
     value_map={
@@ -2000,7 +2000,7 @@ class VehicleSettings:
   apim_sync4_bench_setup = VehicleSetting(
     comment='Bench Setup',
     ecu=(FordEcu.AccessoryProtocolInterfaceModule, FordPart.APIM_SYNC4),
-    block_id=9,
+    block_id=10,
     offset=15,
     bit_mask=0x0F,
     value_map={
