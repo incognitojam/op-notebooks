@@ -40,10 +40,10 @@ from openpilot.selfdrive.car.fw_query_definitions import FwQueryConfig, p16, Req
 DATA_IDENTIFIER_FORD_ASBUILT = 0xDE
 
 def ford_asbuilt_block_request(block_id: int) -> bytes:
-  return bytes([uds.SERVICE_TYPE.READ_DATA_BY_IDENTIFIER]) + p16(DATA_IDENTIFIER_FORD_ASBUILT + block_id - 1)
+  return bytes([uds.SERVICE_TYPE.READ_DATA_BY_IDENTIFIER]) + p16(DATA_IDENTIFIER_FORD_ASBUILT + block_id)
 
 def ford_asbuilt_block_response(block_id: int) -> bytes:
-  return bytes([uds.SERVICE_TYPE.READ_DATA_BY_IDENTIFIER + 0x40]) + p16(DATA_IDENTIFIER_FORD_ASBUILT + block_id - 1)
+  return bytes([uds.SERVICE_TYPE.READ_DATA_BY_IDENTIFIER + 0x40]) + p16(DATA_IDENTIFIER_FORD_ASBUILT + block_id)
 """)
 
   print("""
@@ -54,6 +54,7 @@ FW_QUERY_CONFIG = FwQueryConfig(
   for block_id, settings in sorted(queries.items()):
     block_ecus = set()
 
+    last_ecu = None
     for setting in settings:
       ecu = setting.ecu[0] if isinstance(setting.ecu, tuple) else setting.ecu
       openpilot_ecu = ECU_TO_NAME[FORD_ADDR_TO_ECU.get(ecu, Ecu.debug)]
@@ -61,7 +62,15 @@ FW_QUERY_CONFIG = FwQueryConfig(
       if openpilot_ecu == 'debug':
         extra_ecus.add(ecu)
 
-      print(f'    # Ecu.{openpilot_ecu}: {setting.comment} ({get_data_access_example(setting.offset, setting.bit_mask, data_name="response")})')
+      if isinstance(setting.ecu, tuple):
+        openpilot_ecu += f' ({setting.ecu[1]})'
+
+      openpilot_ecu = f'# Ecu.{openpilot_ecu}:'
+      if last_ecu == openpilot_ecu:
+        openpilot_ecu = ''
+      else:
+        last_ecu = openpilot_ecu
+      print(f'    {openpilot_ecu:<25} {setting.comment} ({get_data_access_example(setting.offset, setting.bit_mask, data_name="response")})')
 
     print(f"""    Request(
       [StdQueries.TESTER_PRESENT_REQUEST, ford_asbuilt_block_request({block_id})],
@@ -70,11 +79,10 @@ FW_QUERY_CONFIG = FwQueryConfig(
       logging=True,
     ),""")
 
-  extra_ecus = [f'(Ecu.debug, {hex(ecu.value)}, None),  # {ecu.name}' for ecu in extra_ecus]
-  extra_ecus = '\n    '.join(extra_ecus)
+  extra_ecus_str = '\n    '.join(f'(Ecu.debug, {hex(ecu.value)}, None),  # {ecu.name}' for ecu in extra_ecus)
   print(f"""  ],
   extra_ecus=[
-    {extra_ecus}
+    {extra_ecus_str}
   ],
 )
 """)
@@ -82,9 +90,10 @@ FW_QUERY_CONFIG = FwQueryConfig(
 
 if __name__ == '__main__':
   # Example usage: ./generate_query.py abs_wheel_base apim_wheel_base apim_sync4_wheel_base ipma_vehicle_cfg_wheelbase
-  parser = argparse.ArgumentParser(description='Code generator for Ford vehicle settings\n'
-                                               'Generate openpilot query to read ECU configuration')
-  parser.add_argument('setting_name', type=str, nargs='+', help='Name of the vehicle setting')
+  # parser = argparse.ArgumentParser(description='Code generator for Ford vehicle settings\n'
+  #                                              'Generate openpilot query to read ECU configuration')
+  # parser.add_argument('setting_name', type=str, nargs='+', help='Name of the vehicle setting')
 
-  args = parser.parse_args()
-  main(args.setting_name)
+  # args = parser.parse_args()
+  # print()
+  main([ k for k, v in VehicleSettings.__dict__.items() if isinstance(v, VehicleSetting) ])
