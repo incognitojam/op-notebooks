@@ -42,7 +42,7 @@ IsoTpFrame = Annotated[Union[SingleFrame, FirstFrame, ConsecutiveFrame, FlowCont
 
 # ISO 15765-2 or ISO-TP (Transport Layer)
 # https://en.wikipedia.org/wiki/ISO_15765-2
-def parse_iso_tp(data: bytes) -> IsoTpFrame:
+def parse_iso_tp(data: bytes) -> IsoTpFrame | None:
   if len(data) < 2:
     raise ValueError('ISO-TP frame must be at least 2 bytes')
 
@@ -50,10 +50,10 @@ def parse_iso_tp(data: bytes) -> IsoTpFrame:
 
   if frame_type == 0:  # Single frame
     size = data[0] & 0x0F
-    if size == 0:
-      # FIXME: this is technically valid, but is a good filter
-      print('Invalid single frame size: 0')
-      return None
+    # if size == 0:
+    #   # FIXME: this is technically valid, but is a good filter
+    #   print('Invalid single frame size: 0')
+    #   return None
 
     return SingleFrame(size=size, payload=data[1:size + 1])
 
@@ -79,5 +79,5 @@ def parse_iso_tp(data: bytes) -> IsoTpFrame:
       block_size=data[1],
       separation_time=FlowControlFrame.get_separation_time(data[2])
     )
-  
+
   return None
