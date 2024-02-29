@@ -71,6 +71,7 @@ def load_csv() -> pd.DataFrame:
 
 
 class SkipReason(StrEnum):
+  COUNTRY_CA = 'country-ca'  # note: we CAN decode CA VINs, but sometimes we don't want to
   COUNTRY_UK = 'country-uk'  # cannot decode UK VINs
   COUNTRY_UNKNOWN = 'country-unknown'
   NO_ASBUILT = 'no-asbuilt'  # no data on motorcraft
@@ -78,12 +79,13 @@ class SkipReason(StrEnum):
 
 
 ALL_SKIP_REASONS = set(SkipReason)
+DEFAULT_SKIP_REASONS = set(SkipReason) - {SkipReason.COUNTRY_CA}
 
 
 async def load_vins(
   filter_comment: str = None,
   include_openpilot=False,
-  skip_reasons: set[str] = ALL_SKIP_REASONS,
+  skip_reasons: set[str] = DEFAULT_SKIP_REASONS,
   skip_missing_asbuilt=False,
 ) -> list[str]:
   df_vins = load_csv()
@@ -138,7 +140,7 @@ async def load_vins(
 async def search_vins(
   searches: list[str] = None,
   include_openpilot=False,
-  skip_reasons: set[str] = ALL_SKIP_REASONS,
+  skip_reasons: set[str] = DEFAULT_SKIP_REASONS,
   skip_missing_asbuilt=False,
 ) -> set[str]:
   vins = set()
