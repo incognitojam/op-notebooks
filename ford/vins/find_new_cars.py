@@ -14,13 +14,12 @@ async def find_new_cars():
 
   session = aiohttp.ClientSession()
   extra_args = dict(
-    page_size=100,
     stock_type=StockType.USED,
     sort=SortBy.NEWEST_LISTED,
     session=session,
   )
   page_args = [
-    dict(page_size=100, page=page) for page in range(1, 11)
+    dict(page_size=100, page=page) for page in range(1, 101)
   ]
 
   # queries = [
