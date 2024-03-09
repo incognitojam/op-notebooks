@@ -53,19 +53,17 @@ def convert_forscan_label_to_block_id_and_offset(label: str) -> tuple[int, int]:
   from data identifier 0xDE + 0x00 and the second field begins at the 5th byte.
   """
   block, field = label.split('-')
-  block = int(block, 10) - 1
-  field = int(field, 10) - 1
-  return block, field * 5
+  return int(block, 10) - 1, (int(field, 10) - 1) * 5
 
 
 def convert_forscan_dict_to_blocks(data: dict[str, bytes]) -> list[bytes]:
-  blocks = defaultdict(dict)
+  blocks: defaultdict[int, dict[int, bytes]] = defaultdict(dict)
 
   for label, value in data.items():
     block, offset = convert_forscan_label_to_block_id_and_offset(label)
     blocks[block][offset] = value
 
-  result = []
+  result: list[bytes] = []
   for block_id, block in sorted(blocks.items()):
     assert block_id >= len(result), f'expected {block_id=} to be greater than or equal to {len(result)}'
     block_data = bytearray()
