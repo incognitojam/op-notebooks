@@ -82,12 +82,13 @@ ALL_SKIP_REASONS = set(SkipReason)
 DEFAULT_SKIP_REASONS = set(SkipReason) - {SkipReason.COUNTRY_CA}
 
 
-async def load_vins(
+async def load_vins_df(
   filter_comment: str = None,
   include_openpilot=False,
   skip_reasons: set[str] = DEFAULT_SKIP_REASONS,
   skip_missing_asbuilt=False,
-) -> list[str]:
+  load_asbuilt=True,
+) -> pd.DataFrame:
   df_vins = load_csv()
 
   duplicates = df_vins[df_vins.duplicated(subset=['vin'], keep=False)]
@@ -125,16 +126,31 @@ async def load_vins(
 
   vins = list(df_vins['vin'])
 
+  missing_vins = get_missing_asbuilt(vins)
+  missing_asbuilt = len(missing_vins)
   if skip_missing_asbuilt:
-    missing_vins = get_missing_asbuilt(vins)
-    missing_asbuilt = len(missing_vins)
-    vins = list(set(vins) - set(missing_vins))
-  else:
+    df_vins = df_vins[~df_vins['vin'].isin(missing_vins)]
+  elif load_asbuilt:
     await check_asbuilt(vins)
     missing_asbuilt = 0
 
   print(f'Loaded {len(vins)} VINs ({filter_comment=}, {include_openpilot=}, {skipped=}, {missing_asbuilt=})')
-  return vins
+  return df_vins
+
+
+async def load_vins(
+  filter_comment: str = None,
+  include_openpilot=False,
+  skip_reasons: set[str] = DEFAULT_SKIP_REASONS,
+  skip_missing_asbuilt=False,
+) -> list[str]:
+  df_vins = await load_vins_df(
+    filter_comment=filter_comment,
+    include_openpilot=include_openpilot,
+    skip_reasons=skip_reasons,
+    skip_missing_asbuilt=skip_missing_asbuilt,
+  )
+  return list(df_vins['vin'])
 
 
 async def search_vins(

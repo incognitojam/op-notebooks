@@ -63,6 +63,28 @@ TRANSFORM_PROPERTIES = {
 }
 
 
+async def decode(
+  vins: set[str],
+  include_police=False,
+  min_model_year: int = None,
+  max_model_year: int = None,
+) -> pd.DataFrame:
+  df_nhtsa = await decode_vins(vins)
+
+  for column, func in TRANSFORM_PROPERTIES.items():
+    df_nhtsa[column] = df_nhtsa.apply(func, axis=1)
+
+  if min_model_year:
+    df_nhtsa = df_nhtsa[df_nhtsa['ModelYear'] >= min_model_year]
+  if max_model_year:
+    df_nhtsa = df_nhtsa[df_nhtsa['ModelYear'] <= max_model_year]
+
+  if not include_police:
+    df_nhtsa = df_nhtsa[~df_nhtsa['Series'].str.contains('Police', na=False)]
+
+  return df_nhtsa
+
+
 async def search(
   searches: list[str] = None,
   include_openpilot=False,
@@ -82,20 +104,12 @@ async def search(
     skip_reasons=skip_reasons,
     skip_missing_asbuilt=skip_missing_asbuilt,
   )
-  df_nhtsa = await decode_vins(vins)
-
-  for column, func in TRANSFORM_PROPERTIES.items():
-    df_nhtsa[column] = df_nhtsa.apply(func, axis=1)
-
-  if min_model_year:
-    df_nhtsa = df_nhtsa[df_nhtsa['ModelYear'] >= min_model_year]
-  if max_model_year:
-    df_nhtsa = df_nhtsa[df_nhtsa['ModelYear'] <= max_model_year]
-
-  if not include_police:
-    df_nhtsa = df_nhtsa[~df_nhtsa['Series'].str.contains('Police', na=False)]
-
-  return df_nhtsa
+  return await decode(
+    vins,
+    include_police=include_police,
+    min_model_year=min_model_year,
+    max_model_year=max_model_year,
+  )
 
 
 def print_breakdown(df: pd.DataFrame, include_model_year=True) -> None:
