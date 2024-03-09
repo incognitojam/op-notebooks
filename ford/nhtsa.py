@@ -2,12 +2,14 @@ import asyncio
 import json
 import random
 from pathlib import Path
+from typing import cast
 
 import aiohttp
 import pandas as pd
 from tqdm.asyncio import tqdm
 
 NHTSA_DIR = Path(__file__).parent / 'data' / 'nhtsa'
+SEMAPHORE = asyncio.Semaphore(5)
 
 if not NHTSA_DIR.is_dir():
   NHTSA_DIR.mkdir(exist_ok=True)
@@ -21,13 +23,15 @@ async def decode_nhtsa_vin_values(vin: str, session: aiohttp.ClientSession) -> d
   path = get_nhtsa_path(vin)
   if path.is_file():
     with open(path, 'r') as f:
-      return json.load(f)
+      return cast(dict[str, str], json.load(f))
 
-  async with session.get(f'https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValuesExtended/{vin}?format=json') as response:
-    await asyncio.sleep(random.random() * 60)
-    response.raise_for_status()
-    data = await response.json()
+  async with SEMAPHORE:
+    await asyncio.sleep(0.1)
+    async with session.get(f'https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValuesExtended/{vin}?format=json') as response:
+      response.raise_for_status()
+      data = await response.json()
 
+  # TODO: validate with pydantic
   data = data['Results'][0]
   error_codes = data['ErrorCode'].split(',') if 'ErrorCode' in data else []
   if '3' in error_codes:
@@ -42,16 +46,16 @@ async def decode_nhtsa_vin_values(vin: str, session: aiohttp.ClientSession) -> d
   with open(path, 'w') as f:
     json.dump(data, f)
 
-  return data
+  return cast(dict[str, str], data)
 
 
 async def decode_vins(vins: set[str]) -> pd.DataFrame:
-  vins = list(vins)
-  random.shuffle(vins)
+  shuffled_vins = list(vins)
+  random.shuffle(shuffled_vins)
 
   rows = []
   async with aiohttp.ClientSession() as session:
-    rows = await tqdm.gather(*[decode_nhtsa_vin_values(vin, session) for vin in vins], desc='Downloading NHTSA data')
+    rows = await tqdm.gather(*[decode_nhtsa_vin_values(vin, session) for vin in shuffled_vins], desc='Downloading NHTSA data')
   df = pd.DataFrame.from_records(rows)
 
   # Delete columns with all empty strings
