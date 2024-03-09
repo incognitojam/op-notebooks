@@ -123,7 +123,7 @@ class AsBuiltData:
     configuration = self.get_configuration(ecu)
     if configuration is None or setting.block_id >= len(configuration):
       return None
-    block = configuration[setting.block_id]
+    block = configuration[setting.block_id - 1]
     if setting.offset < 0 or setting.offset >= len(block):
       # out of range
       return None
