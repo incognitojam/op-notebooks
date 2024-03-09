@@ -124,7 +124,13 @@ class AsBuiltData:
     if configuration is None or setting.block_id >= len(configuration):
       return None
     block = configuration[setting.block_id]
-    value = get_data(block, setting.offset, setting.bit_mask)
+    if setting.offset < 0 or setting.offset >= len(block):
+      # out of range
+      return None
+    try:
+      value = get_data(block, setting.offset, setting.bit_mask)
+    except Exception as e:
+      raise ValueError(f'Failed to get data for {setting=}') from e
     # print('get_setting_data', setting)
     # print(f'data={bin(data)} ({hex(data)}) mask={bin(mask)} value={bin(value)}')
     return value

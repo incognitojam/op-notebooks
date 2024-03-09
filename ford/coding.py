@@ -33,7 +33,7 @@ def get_data_access_example(offset: int, mask: int, data_name = 'data') -> str:
 
 def get_data(code: bytes, offset: int, mask: int) -> int:
   if offset < 0 or offset >= len(code):
-    raise KeyError(f'Invalid offset: {offset}')
+    raise KeyError(f'Invalid offset: {offset=} {code=} (len: {len(code)})')
   if mask == 0:
     raise ValueError('Mask cannot be 0')
 
