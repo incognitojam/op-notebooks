@@ -3,9 +3,9 @@ from itertools import groupby
 
 import pandas as pd
 
+from panda.python.uds import DATA_IDENTIFIER_TYPE
 from notebooks.ford.asbuilt import AsBuiltData
 from notebooks.ford.settings import VEHICLE_SETTINGS
-from panda.python.uds import DATA_IDENTIFIER_TYPE
 
 
 def get_settings(vin: str) -> pd.DataFrame:
@@ -32,8 +32,8 @@ def get_settings(vin: str) -> pd.DataFrame:
       ecu = ecu[0]
 
     rows.append([ecu_name, ''])
-    rows.append(['part', abd.get_identifier(ecu, 0xF111)])
-    rows.append(['fw', abd.get_identifier(ecu, DATA_IDENTIFIER_TYPE.VEHICLE_MANUFACTURER_ECU_SOFTWARE_NUMBER)])
+    rows.append(['part', str(abd.get_identifier(ecu, 0xF111))])
+    rows.append(['fw', str(abd.get_identifier(ecu, DATA_IDENTIFIER_TYPE.VEHICLE_MANUFACTURER_ECU_SOFTWARE_NUMBER))])
 
     for setting in settings:
       rows.append([setting.comment, abd.get_setting_value(setting)])
