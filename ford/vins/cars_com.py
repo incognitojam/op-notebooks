@@ -183,7 +183,7 @@ async def search_cars(
 
   session = session or aiohttp.ClientSession()
   async with semaphore:
-    await asyncio.sleep(random.random() * 0.1)
+    await asyncio.sleep(random.random() * 0.5)
     async with session.get(url) as response:
       response.raise_for_status()
       text = await response.text()

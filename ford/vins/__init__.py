@@ -73,6 +73,7 @@ def load_csv() -> pd.DataFrame:
 class SkipReason(StrEnum):
   COUNTRY_CA = 'country-ca'  # note: we CAN decode CA VINs, but sometimes we don't want to
   COUNTRY_UK = 'country-uk'  # cannot decode UK VINs
+  COUNTRY_BR = 'country-br'  # cannot decode BR VINs
   COUNTRY_UNKNOWN = 'country-unknown'
   NO_ASBUILT = 'no-asbuilt'  # no data on motorcraft
   BAD_VIN = 'bad-vin'  # invalid VIN
@@ -103,7 +104,7 @@ async def load_vins_df(
   df_vins['skip'] = df_vins['skip'].fillna('').str.split(',')
 
   known_skip_reasons = set(filter(bool, df_vins['skip'].explode().unique()))
-  assert known_skip_reasons == ALL_SKIP_REASONS, f'Invalid skip reason: {known_skip_reasons}'
+  assert ALL_SKIP_REASONS.issuperset(known_skip_reasons), f'Invalid skip reason: {known_skip_reasons}'
 
   df_vins = df_vins[df_vins['skip'].apply(lambda x: all(skip_reason not in x for skip_reason in skip_reasons))]
 

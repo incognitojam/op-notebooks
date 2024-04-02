@@ -15,11 +15,11 @@ async def find_new_cars():
   session = aiohttp.ClientSession()
   extra_args = dict(
     stock_type=StockType.USED,
-    sort=SortBy.NEWEST_LISTED,
+    sort=SortBy.OLDEST_LISTED,
     session=session,
   )
   page_args = [
-    dict(page_size=100, page=page) for page in range(1, 101)
+    *[dict(page_size=100, page=page) for page in range(1, 21)],
   ]
 
   # queries = [
@@ -28,19 +28,22 @@ async def find_new_cars():
 
   queries = [
     dict(models=[Model.FORD_BRONCO_SPORT]),
-    dict(models=[Model.FORD_EDGE], year_min=2019),
-    dict(models=[Model.FORD_ESCAPE, Model.FORD_ESCAPE_PHEV], year_min=2020),
+    dict(models=[Model.FORD_EDGE], year_min=2019 - 1),
+    dict(models=[Model.FORD_ESCAPE, Model.FORD_ESCAPE_PHEV], year_min=2020 - 1),
     dict(models=[Model.FORD_E_TRANSIT]),
-    dict(models=[Model.FORD_EXPLORER], year_min=2020),
-    dict(models=[Model.FORD_F_150], year_min=2021),
+    dict(models=[Model.FORD_EXPEDITION, Model.FORD_EXPEDITION_MAX], year_min=2020 - 1),
+    dict(models=[Model.FORD_EXPLORER], year_min=2020 - 1),
+    dict(models=[Model.FORD_F_150], year_min=2021 - 1),
     dict(models=[Model.FORD_F_150_LIGHTNING]),
+    dict(models=[Model.FORD_F_250, Model.FORD_F_350, Model.FORD_F_150], year_min=2023 - 1),
     dict(models=[Model.FORD_MAVERICK]),
-    dict(models=[Model.FORD_MUSTANG], year_min=2024),
+    dict(models=[Model.FORD_MUSTANG], year_min=2024 - 1),
     dict(models=[Model.FORD_MUSTANG_MACH_E]),
-    dict(models=[Model.LINCOLN_AVIATOR], year_min=2020),
-    dict(models=[Model.LINCOLN_CORSAIR], year_min=2020),
-    dict(models=[Model.LINCOLN_NAUTILUS], year_min=2019),
-    dict(models=[Model.LINCOLN_NAVIGATOR, Model.LINCOLN_NAVIGATOR_L], year_min=2022),
+    dict(models=[Model.FORD_RANGER], year_min=2024 - 1),
+    dict(models=[Model.LINCOLN_AVIATOR], year_min=2020 - 1),
+    dict(models=[Model.LINCOLN_CORSAIR], year_min=2020 - 1),
+    dict(models=[Model.LINCOLN_NAUTILUS], year_min=2019 - 1),
+    dict(models=[Model.LINCOLN_NAVIGATOR, Model.LINCOLN_NAVIGATOR_L], year_min=2022 - 1),
   ]
 
   cars = []
